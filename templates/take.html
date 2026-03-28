@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住民掲示板</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1>住民掲示板</h1>
+            <p><a href="{{ url_for('home') }}" class="sub-link">← 工事おしらせ画面へ戻る</a></p>
+        </header>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-box">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <section class="card">
+            <h2>コメントを書く</h2>
+            <form action="{{ url_for('add_comment') }}" method="POST" class="form-box">
+                <label>お名前</label>
+                <input type="text" name="name" placeholder="例：近隣住民" required>
+
+                <label>コメント</label>
+                <textarea name="message" rows="4" placeholder="お気づきの点やご意見をご記入ください。" required></textarea>
+
+                <button type="submit">投稿する</button>
+            </form>
+        </section>
+
+        {% if edit_comment %}
+        <section class="card">
+            <h2>コメントを訂正する</h2>
+            <form action="{{ url_for('update', comment_id=edit_comment.id) }}" method="POST" class="form-box">
+                <label>お名前</label>
+                <input type="text" name="edit_name" value="{{ edit_comment.name }}" required>
+
+                <label>コメント</label>
+                <textarea name="edit_message" rows="4" required>{{ edit_comment.message }}</textarea>
+
+                <button type="submit">訂正を保存する</button>
+            </form>
+        </section>
+        {% endif %}
+
+        <section class="card">
+            <h2>投稿一覧</h2>
+
+            {% for comment in comments %}
+                <div class="comment-box">
+                    <div class="comment-head">
+                        <strong>{{ comment.name }}</strong>
+                        <span>{{ comment.created_at }}</span>
+                    </div>
+                    <p>{{ comment.message }}</p>
+
+                    <div class="action-row">
+                        <a href="{{ url_for('board', edit_id=comment.id) }}" class="mini-link">訂正</a>
+                    </div>
+
+                    <div class="reply-form">
+                        <form action="{{ url_for('reply', comment_id=comment.id) }}" method="POST" class="form-box small-form">
+                            <label>返信する人の名前</label>
+                            <input type="text" name="reply_name" placeholder="例：現場担当者" required>
+
+                            <label>返信内容</label>
+                            <textarea name="reply_message" rows="2" placeholder="返信内容を入力してください。" required></textarea>
+
+                            <button type="submit">返信する</button>
+                        </form>
+                    </div>
+
+                    <div class="delete-form">
+                        <form action="{{ url_for('delete', comment_id=comment.id) }}" method="POST" class="form-box small-form">
+                            <label>削除用パスワード</label>
+                            <input type="password" name="delete_password" placeholder="管理者のみ" required>
+                            <button type="submit" class="danger-btn">削除する</button>
+                        </form>
+                    </div>
+
+                    <div class="reply-list">
+                        {% for reply in replies %}
+                            {% if reply.parent_id == comment.id %}
+                                <div class="reply-box">
+                                    <div class="comment-head">
+                                        <strong>{{ reply.name }}</strong>
+                                        <span>{{ reply.created_at }}</span>
+                                    </div>
+                                    <p>{{ reply.message }}</p>
+
+                                    <div class="action-row">
+                                        <a href="{{ url_for('board', edit_id=reply.id) }}" class="mini-link">訂正</a>
+                                    </div>
+
+                                    <form action="{{ url_for('delete', comment_id=reply.id) }}" method="POST" class="form-box small-form">
+                                        <label>削除用パスワード</label>
+                                        <input type="password" name="delete_password" placeholder="管理者のみ" required>
+                                        <button type="submit" class="danger-btn">削除する</button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <p>まだコメントはありません。</p>
+            {% endfor %}
+        </section>
+    </div>
+</body>
+</html>
