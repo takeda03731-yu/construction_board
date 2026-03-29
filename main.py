@@ -1,22 +1,45 @@
+import os
+from datetime import datetime
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, ForeignKey
-from datetime import datetime
+
+load_dotenv()
+
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "your_secret_key_here"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+
+# -------------------------
+# 基本設定
+# -------------------------
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
+# PostgreSQL の接続先を環境変数から取得
+# 例:
+# postgresql+psycopg://user:password@host:5432/dbname
+database_url = os.getenv("DATABASE_URL")
+
+if not database_url:
+    raise RuntimeError(
+        "DATABASE_URL が設定されていません。"
+        "PostgreSQL の接続URLを環境変数に設定してください。"
+    )
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # 管理者用削除パスワード
-ADMIN_DELETE_PASSWORD = "1234"
+ADMIN_DELETE_PASSWORD = os.getenv("ADMIN_DELETE_PASSWORD")
+
 
 # -------------------------
 # DB設定
 # -------------------------
 class Base(DeclarativeBase):
     pass
+
 
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
@@ -26,7 +49,10 @@ class Comment(db.Model):
     __tablename__ = "comments"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    parent_id: Mapped[int | None] = mapped_column(ForeignKey("comments.id"), nullable=True)
+    parent_id: Mapped[int | None] = mapped_column(
+        ForeignKey("comments.id"),
+        nullable=True
+    )
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     message: Mapped[str] = mapped_column(Text, nullable=False)
     created_at: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -37,7 +63,7 @@ class Comment(db.Model):
         remote_side=[id]
     )
 
-    def is_reply(self):
+    def is_reply(self) -> bool:
         return self.parent_id is not None
 
 
