@@ -75,7 +75,7 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路移設事業 ○○地区配水管工事",
+    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事",
     "image_type": "jpg",  # "jpg" または "pdf"
     "image_file": "progress.jpg",  # staticフォルダ内のファイル名
     "image_description": "こちらは現在の施工状況を示した図面です。工事の進み具合や施工位置をご確認いただけます。",
