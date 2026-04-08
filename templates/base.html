@@ -15,18 +15,21 @@
         <section class="card">
             <h2>現場の進捗図面</h2>
 
-            {% if site.image_type == "jpg" %}
+            {% set ext = site.image_file.split('.')[-1].lower() %}
+
+            {% if ext in ["jpg", "jpeg", "png"] %}
                 <img
                     src="{{ url_for('static', filename=site.image_file) }}"
                     alt="現場進捗図面"
                     class="progress-image"
                 >
-            {% elif site.image_type == "pdf" %}
-                <embed
+            {% elif ext == "pdf" %}
+                <iframe
                     src="{{ url_for('static', filename=site.image_file) }}"
-                    type="application/pdf"
                     class="progress-pdf"
-                >
+                ></iframe>
+            {% else %}
+                <p>対応していないファイル形式です。</p>
             {% endif %}
 
             <p class="image-description">
