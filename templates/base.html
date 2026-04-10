@@ -36,6 +36,31 @@
                 {{ site.image_description }}
             </p>
         </section>
+        
+        <section class="card">
+            <h2>本工事の順番です。</h2>
+
+            {% set ext = site.image_file2.split('.')[-1].lower() %}
+
+            {% if ext in ["jpg", "jpeg", "png"] %}
+                <img
+                    src="{{ url_for('static', filename=site.image_file2) }}"
+                    alt="工事概要"
+                    class="progress-image"
+                >
+            {% elif ext == "pdf" %}
+                <iframe
+                    src="{{ url_for('static', filename=site.image_file2) }}"
+                    class="progress-pdf"
+                ></iframe>
+            {% else %}
+                <p>対応していないファイル形式です。</p>
+            {% endif %}
+
+            <p class="image-description">
+                {{ site.image_description2 }}
+            </p>
+        </section>
 
         <section class="card notice-box">
             <h2>【休工日のおしらせ】</h2>
