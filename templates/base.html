@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工事のお知らせ</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 </head>
+
 <body>
     <div class="container">
         <header class="main-header">
@@ -18,58 +20,44 @@
             {% set ext = site.image_file.split('.')[-1].lower() %}
 
             {% if ext in ["jpg", "jpeg", "png"] %}
-                <img
-                    src="{{ url_for('static', filename=site.image_file) }}"
-                    alt="現場進捗図面"
-                    class="progress-image"
-                >
+            <img src="{{ url_for('static', filename=site.image_file) }}" alt="現場進捗図面" class="progress-image">
             {% elif ext == "pdf" %}
-                <iframe
-                    src="{{ url_for('static', filename=site.image_file) }}"
-                    class="progress-pdf"
-                ></iframe>
+            <iframe src="{{ url_for('static', filename=site.image_file) }}" class="progress-pdf"></iframe>
             {% else %}
-                <p>対応していないファイル形式です。</p>
+            <p>対応していないファイル形式です。</p>
             {% endif %}
 
-            <p class="image-description">
+            <p class="image-description" style="white-space: pre-line;">
                 {{ site.image_description }}
             </p>
-        </section>
-        
-        <section class="card">
-            <h2>本工事の順番です。</h2>
 
-            {% set ext = site.image_file2.split('.')[-1].lower() %}
+            <section class="card">
+                <h2>本工事の順番です。</h2>
 
-            {% if ext in ["jpg", "jpeg", "png"] %}
-                <img
-                    src="{{ url_for('static', filename=site.image_file2) }}"
-                    alt="工事概要"
-                    class="progress-image"
-                >
-            {% elif ext == "pdf" %}
-                <iframe
-                    src="{{ url_for('static', filename=site.image_file2) }}"
-                    class="progress-pdf"
-                ></iframe>
-            {% else %}
+                {% set ext = site.image_file2.split('.')[-1].lower() %}
+
+                {% if ext in ["jpg", "jpeg", "png"] %}
+                <img src="{{ url_for('static', filename=site.image_file2) }}" alt="工事概要" class="progress-image">
+                {% elif ext == "pdf" %}
+                <iframe src="{{ url_for('static', filename=site.image_file2) }}" class="progress-pdf"></iframe>
+                {% else %}
                 <p>対応していないファイル形式です。</p>
-            {% endif %}
+                {% endif %}
 
-            <p class="image-description">
-                {{ site.image_description2 }}
-            </p>
-        </section>
+                <p class="image-description">
+                    {{ site.image_description2 }}
+                </p>
+            </section>
 
-        <section class="card notice-box">
-            <h2>【休工日のおしらせ】</h2>
-            <p>{{ site.holiday_notice }}</p>
-        </section>
+            <section class="card notice-box">
+                <h2>【休工日のおしらせ】</h2>
+                <p>{{ site.holiday_notice }}</p>
+            </section>
 
-        <section class="card center-box">
-            <a href="{{ url_for('board') }}" class="main-link">地元住民様専用掲示板を見る</a>
-        </section>
+            <section class="card center-box">
+                <a href="{{ url_for('board') }}" class="main-link">地元住民様専用掲示板を見る</a>
+            </section>
     </div>
 </body>
+
 </html>
