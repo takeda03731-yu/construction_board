@@ -31,6 +31,23 @@
                 {{ site.image_description }}
             </p>
 
+<section class="card">
+            <h2>臨時駐車場を設置させて頂きました。</h2>
+
+            {% set ext = site.image_file.split('.')[-1].lower() %}
+
+            {% if ext in ["jpg", "jpeg", "png"] %}
+            <img src="{{ url_for('static', filename=site.image_file3) }}" alt="臨時駐車場" class="progress-image">
+            {% elif ext == "pdf" %}
+            <iframe src="{{ url_for('static', filename=site.image_file3) }}" class="progress-pdf"></iframe>
+            {% else %}
+            <p>対応していないファイル形式です。</p>
+            {% endif %}
+
+            <p class="image-description" style="white-space: pre-line;">
+                {{ site.image_description3 }}
+            </p>
+
             <section class="card">
                 <h2>本工事の順番です。</h2>
 
