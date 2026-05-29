@@ -66,6 +66,24 @@
                 </p>
             </section>
 
+            <section class="card">
+                <h2>ゴミの移動について</h2>
+
+                {% set ext = site.image_file4.split('.')[-1].lower() %}
+
+                {% if ext in ["jpg", "jpeg", "png"] %}
+                <img src="{{ url_for('static', filename=site.image_file4) }}" alt="ゴミの移動" class="progress-image">
+                {% elif ext == "pdf" %}
+                <iframe src="{{ url_for('static', filename=site.image_file4) }}" class="progress-pdf"></iframe>
+                {% else %}
+                <p>対応していないファイル形式です。</p>
+                {% endif %}
+
+                <p class="image-description" style="white-space: pre-line;">
+                    {{ site.image_description4 }}
+                </p>
+            </section>
+
             <section class="card notice-box">
                 <h2>【休工日のおしらせ】</h2>
                 <p style="white-space: pre-line;">{{ site.holiday_notice }}</p>
