@@ -225,3 +225,23 @@ body {
 html {
     scroll-behavior: smooth;
 }
+
+.back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
+    background-color: #2a6f97;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.back-to-top:hover {
+    opacity: 0.8;
+}
