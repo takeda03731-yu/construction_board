@@ -13,9 +13,18 @@
         <header class="main-header">
             <h1>{{ site.construction_name }}</h1>
         </header>
-
+        <nav class="toc">
+            <h2>📋 目次</h2>
+            <ul>
+                <li><a href="#work">6月1日は、引き続き、配水管布設工事を実施します。<span class="new-badge">NEW</span></a></li>
+                <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
+                <li><a href="#flow">本工事の順番です。</a></li>
+                <li><a href="#garbage">ゴミの移動について <span class="new-badge">NEW</span></a></li>
+                <li><a href="#holiday">休工日のおしらせ</a></li>
+            </ul>
+        </nav>
         <section class="card">
-            <h2>6月1日は、引き続き、配水管布設工事を実施します。</h2>
+            <h2 id="work">6月1日は、引き続き、配水管布設工事を実施します。<span class="new-badge">NEW</span></h2>
 
             {% set ext = site.image_file.split('.')[-1].lower() %}
 
@@ -31,8 +40,8 @@
                 {{ site.image_description }}
             </p>
 
-<section class="card">
-            <h2>臨時駐車場を設置させて頂きました。</h2>
+        <section class="card">
+            <h2 id="parking">臨時駐車場を設置させて頂きました。</h2>
 
             {% set ext = site.image_file.split('.')[-1].lower() %}
 
@@ -48,8 +57,8 @@
                 {{ site.image_description3 }}
             </p>
 
-            <section class="card">
-                <h2>本工事の順番です。</h2>
+        <section class="card">
+                <h2 id="flow">本工事の順番です。</h2>
 
                 {% set ext = site.image_file2.split('.')[-1].lower() %}
 
@@ -66,8 +75,11 @@
                 </p>
             </section>
 
-            <section class="card">
-                <h2>ゴミの移動について</h2>
+        <section class="card">
+                <h2 id="garbage">
+                    ゴミの移動について
+                    <span class="new-badge">NEW</span>
+                </h2>
 
                 {% set ext = site.image_file4.split('.')[-1].lower() %}
 
@@ -85,7 +97,7 @@
             </section>
 
             <section class="card notice-box">
-                <h2>【休工日のおしらせ】</h2>
+                <h2 id="holiday">【休工日のおしらせ】</h2>
                 <p style="white-space: pre-line;">{{ site.holiday_notice }}</p>
             </section>
 
