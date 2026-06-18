@@ -245,3 +245,11 @@ html {
 .back-to-top:hover {
     opacity: 0.8;
 }
+
+.ai-answer-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f4f8fb;
+    border: 1px solid #cfe3f0;
+}

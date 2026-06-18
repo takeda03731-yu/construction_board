@@ -5,9 +5,11 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, ForeignKey
+from openai import OpenAI
 
 load_dotenv()
 
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__)
 
@@ -87,6 +89,26 @@ SITE_INFO = {
     "holiday_notice": "このたび、工事を進めるにあたり、所定の手続きや確認を要する事項が生じたため、しばらくの間、休工とさせていただくこととなりました。次回工事再開は、7月上旬頃を予定しております。\n\n本工事では、作業員の安全確保や健康管理、ならびに建設業界における働き方改善の取り組みの一環として、原則として土曜日・日曜日を休工日としております。\n\n近年、建設業界では、安全で持続的な施工体制を維持するため、適切に休日を確保しながら工事を進める取り組みが進められております。\n\nそのため、本工事につきましても、特別な事情がない限り、土曜日・日曜日の作業は行わない予定としております。\n\n地域の皆様にはご不便をおかけする場面もございますが、安全かつ円滑に工事を進めていくため、何卒ご理解とご協力を賜りますようお願い申し上げます。"
 }
 
+def get_board_text():
+    return f"""
+工事名:
+{SITE_INFO["construction_name"]}
+
+次回工事のお知らせ:
+{SITE_INFO["image_description"]}
+
+工事の順番:
+{SITE_INFO["image_description2"]}
+
+臨時駐車場について:
+{SITE_INFO["image_description3"]}
+
+ゴミの移動について:
+{SITE_INFO["image_description4"]}
+
+休工日のお知らせ:
+{SITE_INFO["holiday_notice"]}
+"""
 
 # -------------------------
 # ルート
@@ -123,6 +145,64 @@ def board():
         comments=comments,
         replies=replies,
         edit_comment=edit_comment
+    )
+
+@app.route("/ask_ai", methods=["POST"])
+def ask_ai():
+    question = request.form.get("question", "").strip()
+
+    if not question:
+        flash("質問を入力してください。")
+        return redirect(url_for("board"))
+
+    board_text = get_board_text()
+
+    system_message = """
+あなたは公共工事の住民向け掲示板の案内AIです。
+
+必ず以下のルールを守ってください。
+
+・掲示板本文に書かれている内容だけをもとに回答してください。
+・推測で答えないでください。
+・工事費、契約内容、責任問題、職人や発注者の評価には答えないでください。
+・分からない場合は「公開されている掲示板情報では確認できません。必要に応じて現場担当者へお問い合わせください。」と答えてください。
+・住民の方に対して、丁寧で分かりやすい日本語で回答してください。
+・回答は長くしすぎず、必要な内容を簡潔に伝えてください。
+"""
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {"role": "system", "content": system_message},
+                {
+                    "role": "user",
+                    "content": f"""
+以下が掲示板に掲載されている情報です。
+
+【掲示板情報】
+{board_text}
+
+【住民からの質問】
+{question}
+"""
+                }
+            ],
+            temperature=0.2,
+        )
+
+        ai_answer = response.choices[0].message.content
+
+    except Exception:
+        ai_answer = "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。"
+
+    return render_template(
+        "take.html",
+        comments=db.session.query(Comment).filter(Comment.parent_id.is_(None)).order_by(Comment.id.desc()).all(),
+        replies=db.session.query(Comment).filter(Comment.parent_id.is_not(None)).order_by(Comment.id.asc()).all(),
+        edit_comment=None,
+        ai_question=question,
+        ai_answer=ai_answer
     )
 
 
