@@ -29,21 +29,66 @@
         掲示板に掲載されている内容をもとに、工事予定・通行規制・休工日・ゴミの移動などについて回答します。
     </p>
 
-    <form action="{{ url_for('ask_ai') }}" method="POST" class="form-box">
+    <form id="ai-form" action="{{ url_for('ask_ai') }}" method="POST" class="form-box">
         <label>質問内容</label>
-        <textarea name="question" rows="3" placeholder="例：明日は工事がありますか？" required></textarea>
+        <textarea id="ai-question" name="question" rows="3" placeholder="例：明日は工事がありますか？" required></textarea>
 
-        <button type="submit">AIに質問する</button>
+        <button id="ai-submit-btn" type="submit">AIに質問する</button>
     </form>
 
-    {% if ai_answer %}
-        <div class="ai-answer-box">
-            <h3>AI回答</h3>
-            <p><strong>質問：</strong>{{ ai_question }}</p>
-            <p style="white-space: pre-line;">{{ ai_answer }}</p>
-        </div>
-    {% endif %}
+    <div id="thinking-message" style="display: none; margin-top: 10px;">
+        AIが回答を考察中です。少々お待ちください...
+    </div>
+
+    <div id="ai-answer-box" class="ai-answer-box" style="display: none;">
+        <h3>AI回答</h3>
+        <p><strong>質問：</strong><span id="ai-question-display"></span></p>
+        <p id="ai-answer-display" style="white-space: pre-line;"></p>
+    </div>
 </section>
+
+<script>
+document.getElementById("ai-form").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const thinkingMessage = document.getElementById("thinking-message");
+    const submitBtn = document.getElementById("ai-submit-btn");
+    const answerBox = document.getElementById("ai-answer-box");
+
+    thinkingMessage.style.display = "block";
+    answerBox.style.display = "none";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "考察中...";
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        document.getElementById("ai-question-display").textContent = data.question;
+        document.getElementById("ai-answer-display").textContent = data.answer;
+
+        answerBox.style.display = "block";
+
+    } catch (error) {
+        document.getElementById("ai-question-display").textContent = "";
+        document.getElementById("ai-answer-display").textContent =
+            "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。";
+        answerBox.style.display = "block";
+    }
+
+    thinkingMessage.style.display = "none";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "AIに質問する";
+});
+</script>
+
 
         <section class="card">
             <h2>コメントを書く</h2>

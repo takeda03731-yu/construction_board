@@ -253,3 +253,13 @@ html {
     background-color: #f4f8fb;
     border: 1px solid #cfe3f0;
 }
+
+#thinking-message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #eef7fc;
+    color: #1e5f8c;
+    font-weight: bold;
+    text-align: center;
+}

@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, ForeignKey
@@ -196,14 +196,10 @@ def ask_ai():
     except Exception:
         ai_answer = "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。"
 
-    return render_template(
-        "take.html",
-        comments=db.session.query(Comment).filter(Comment.parent_id.is_(None)).order_by(Comment.id.desc()).all(),
-        replies=db.session.query(Comment).filter(Comment.parent_id.is_not(None)).order_by(Comment.id.asc()).all(),
-        edit_comment=None,
-        ai_question=question,
-        ai_answer=ai_answer
-    )
+    return jsonify({
+    "question": question,
+    "answer": ai_answer
+})
 
 
 @app.route("/add_comment", methods=["POST"])
