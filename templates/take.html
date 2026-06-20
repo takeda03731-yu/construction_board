@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="{{ 'en' if lang == 'en' else 'ja' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>地元住民様専用掲示板</title>
+    <title>
+        {% if lang == "en" %}
+            Residents' Message Board
+        {% else %}
+            地元住民様専用掲示板
+        {% endif %}
+    </title>
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 </head>
+
 <body>
     <div class="container">
         <header class="main-header">
-            <h1>地元住民様専用掲示板</h1>
-            <p><a href="{{ url_for('home') }}" class="sub-link">← 工事おしらせ画面へ戻る</a></p>
+            <h1>
+                {% if lang == "en" %}
+                    Residents' Message Board
+                {% else %}
+                    地元住民様専用掲示板
+                {% endif %}
+            </h1>
+
+            <p>
+                {% if lang == "en" %}
+                    <a href="{{ url_for('home_en') }}" class="sub-link">← Back to Construction Notice Page</a>
+                {% else %}
+                    <a href="{{ url_for('home') }}" class="sub-link">← 工事おしらせ画面へ戻る</a>
+                {% endif %}
+            </p>
+
+            <p>
+                {% if lang == "en" %}
+                    <a href="{{ url_for('board') }}" class="sub-link">日本語</a>
+                {% else %}
+                    <a href="{{ url_for('board_en') }}" class="sub-link">English</a>
+                {% endif %}
+            </p>
         </header>
 
         {% with messages = get_flashed_messages() %}
@@ -23,103 +51,224 @@
             {% endif %}
         {% endwith %}
 
-<section class="card">
-    <h2>AI住民コンシェルジュ</h2>
-    <p>
-        掲示板に掲載されている内容をもとに、工事予定・通行規制・休工日・ゴミの移動などについて回答します。
-    </p>
+        <section class="card">
+            <h2>
+                {% if lang == "en" %}
+                    AI Resident Concierge
+                {% else %}
+                    AI住民コンシェルジュ
+                {% endif %}
+            </h2>
 
-    <form id="ai-form" action="{{ url_for('ask_ai') }}" method="POST" class="form-box">
-        <label>質問内容</label>
-        <textarea id="ai-question" name="question" rows="3" placeholder="例：明日は工事がありますか？" required></textarea>
+            <p>
+                {% if lang == "en" %}
+                    Based on the information posted on this notice board, the AI can answer questions about construction schedules, traffic restrictions, closure days, and garbage collection point movement.
+                {% else %}
+                    掲示板に掲載されている内容をもとに、工事予定・通行規制・休工日・ゴミの移動などについて回答します。
+                {% endif %}
+            </p>
 
-        <button id="ai-submit-btn" type="submit">AIに質問する</button>
-    </form>
+            <form id="ai-form" action="{{ url_for('ask_ai') }}" method="POST" class="form-box">
+                <input type="hidden" name="lang" value="{{ lang }}">
 
-    <div id="thinking-message" style="display: none; margin-top: 10px;">
-        AIが回答を考察中です。少々お待ちください...
-    </div>
+                <label>
+                    {% if lang == "en" %}
+                        Question
+                    {% else %}
+                        質問内容
+                    {% endif %}
+                </label>
 
-    <div id="ai-answer-box" class="ai-answer-box" style="display: none;">
-        <h3>AI回答</h3>
-        <p><strong>質問：</strong><span id="ai-question-display"></span></p>
-        <p id="ai-answer-display" style="white-space: pre-line;"></p>
-    </div>
-</section>
+                <textarea id="ai-question" name="question" rows="3"
+                    placeholder="{% if lang == 'en' %}Example: Will construction work take place tomorrow?{% else %}例：明日は工事がありますか？{% endif %}"
+                    required></textarea>
 
-<script>
-document.getElementById("ai-form").addEventListener("submit", async function(event) {
-    event.preventDefault();
+                <button id="ai-submit-btn" type="submit">
+                    {% if lang == "en" %}
+                        Ask AI
+                    {% else %}
+                        AIに質問する
+                    {% endif %}
+                </button>
+            </form>
 
-    const form = event.target;
-    const formData = new FormData(form);
+            <div id="thinking-message" style="display: none; margin-top: 10px;">
+                {% if lang == "en" %}
+                    The AI is preparing an answer. Please wait a moment...
+                {% else %}
+                    AIが回答を考察中です。少々お待ちください...
+                {% endif %}
+            </div>
 
-    const thinkingMessage = document.getElementById("thinking-message");
-    const submitBtn = document.getElementById("ai-submit-btn");
-    const answerBox = document.getElementById("ai-answer-box");
+            <div id="ai-answer-box" class="ai-answer-box" style="display: none;">
+                <h3>
+                    {% if lang == "en" %}
+                        AI Answer
+                    {% else %}
+                        AI回答
+                    {% endif %}
+                </h3>
 
-    thinkingMessage.style.display = "block";
-    answerBox.style.display = "none";
-    submitBtn.disabled = true;
-    submitBtn.textContent = "考察中...";
+                <p>
+                    <strong>
+                        {% if lang == "en" %}
+                            Question:
+                        {% else %}
+                            質問：
+                        {% endif %}
+                    </strong>
+                    <span id="ai-question-display"></span>
+                </p>
 
-    try {
-        const response = await fetch(form.action, {
-            method: "POST",
-            body: formData
+                <p id="ai-answer-display" style="white-space: pre-line;"></p>
+            </div>
+        </section>
+
+        <script>
+        const pageLang = "{{ lang }}";
+
+        document.getElementById("ai-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            const thinkingMessage = document.getElementById("thinking-message");
+            const submitBtn = document.getElementById("ai-submit-btn");
+            const answerBox = document.getElementById("ai-answer-box");
+
+            thinkingMessage.style.display = "block";
+            answerBox.style.display = "none";
+            submitBtn.disabled = true;
+            submitBtn.textContent = pageLang === "en" ? "Thinking..." : "考察中...";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                document.getElementById("ai-question-display").textContent = data.question;
+                document.getElementById("ai-answer-display").textContent = data.answer;
+
+                answerBox.style.display = "block";
+
+            } catch (error) {
+                document.getElementById("ai-question-display").textContent = "";
+                document.getElementById("ai-answer-display").textContent =
+                    pageLang === "en"
+                    ? "We are sorry. The AI guidance service is currently unavailable. Please try again later."
+                    : "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。";
+
+                answerBox.style.display = "block";
+            }
+
+            thinkingMessage.style.display = "none";
+            submitBtn.disabled = false;
+            submitBtn.textContent = pageLang === "en" ? "Ask AI" : "AIに質問する";
         });
-
-        const data = await response.json();
-
-        document.getElementById("ai-question-display").textContent = data.question;
-        document.getElementById("ai-answer-display").textContent = data.answer;
-
-        answerBox.style.display = "block";
-
-    } catch (error) {
-        document.getElementById("ai-question-display").textContent = "";
-        document.getElementById("ai-answer-display").textContent =
-            "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。";
-        answerBox.style.display = "block";
-    }
-
-    thinkingMessage.style.display = "none";
-    submitBtn.disabled = false;
-    submitBtn.textContent = "AIに質問する";
-});
-</script>
-
+        </script>
 
         <section class="card">
-            <h2>コメントを書く</h2>
+            <h2>
+                {% if lang == "en" %}
+                    Leave a Comment
+                {% else %}
+                    コメントを書く
+                {% endif %}
+            </h2>
+
             <form action="{{ url_for('add_comment') }}" method="POST" class="form-box">
-                <label>お名前</label>
-                <input type="text" name="name" placeholder="例：近隣住民" required>
+                <input type="hidden" name="lang" value="{{ lang }}">
 
-                <label>コメント</label>
-                <textarea name="message" rows="4" placeholder="お気づきの点やご意見をご記入ください。" required></textarea>
+                <label>
+                    {% if lang == "en" %}
+                        Name
+                    {% else %}
+                        お名前
+                    {% endif %}
+                </label>
 
-                <button type="submit">投稿する</button>
+                <input type="text" name="name"
+                    placeholder="{% if lang == 'en' %}Example: Local resident{% else %}例：近隣住民{% endif %}"
+                    required>
+
+                <label>
+                    {% if lang == "en" %}
+                        Comment
+                    {% else %}
+                        コメント
+                    {% endif %}
+                </label>
+
+                <textarea name="message" rows="4"
+                    placeholder="{% if lang == 'en' %}Please write any questions, concerns, or comments here.{% else %}お気づきの点やご意見をご記入ください。{% endif %}"
+                    required></textarea>
+
+                <button type="submit">
+                    {% if lang == "en" %}
+                        Submit
+                    {% else %}
+                        投稿する
+                    {% endif %}
+                </button>
             </form>
         </section>
 
         {% if edit_comment %}
         <section class="card">
-            <h2>コメントを訂正する</h2>
+            <h2>
+                {% if lang == "en" %}
+                    Edit Comment
+                {% else %}
+                    コメントを訂正する
+                {% endif %}
+            </h2>
+
             <form action="{{ url_for('update', comment_id=edit_comment.id) }}" method="POST" class="form-box">
-                <label>お名前</label>
+                <input type="hidden" name="lang" value="{{ lang }}">
+
+                <label>
+                    {% if lang == "en" %}
+                        Name
+                    {% else %}
+                        お名前
+                    {% endif %}
+                </label>
+
                 <input type="text" name="edit_name" value="{{ edit_comment.name }}" required>
 
-                <label>コメント</label>
+                <label>
+                    {% if lang == "en" %}
+                        Comment
+                    {% else %}
+                        コメント
+                    {% endif %}
+                </label>
+
                 <textarea name="edit_message" rows="4" required>{{ edit_comment.message }}</textarea>
 
-                <button type="submit">訂正を保存する</button>
+                <button type="submit">
+                    {% if lang == "en" %}
+                        Save Changes
+                    {% else %}
+                        訂正を保存する
+                    {% endif %}
+                </button>
             </form>
         </section>
         {% endif %}
 
         <section class="card">
-            <h2>投稿一覧</h2>
+            <h2>
+                {% if lang == "en" %}
+                    Comments
+                {% else %}
+                    投稿一覧
+                {% endif %}
+            </h2>
 
             {% for comment in comments %}
                 <div class="comment-box">
@@ -127,29 +276,78 @@ document.getElementById("ai-form").addEventListener("submit", async function(eve
                         <strong>{{ comment.name }}</strong>
                         <span>{{ comment.created_at }}</span>
                     </div>
+
                     <p>{{ comment.message }}</p>
 
                     <div class="action-row">
-                        <a href="{{ url_for('board', edit_id=comment.id) }}" class="mini-link">訂正</a>
+                        {% if lang == "en" %}
+                            <a href="{{ url_for('board_en', edit_id=comment.id) }}" class="mini-link">Edit</a>
+                        {% else %}
+                            <a href="{{ url_for('board', edit_id=comment.id) }}" class="mini-link">訂正</a>
+                        {% endif %}
                     </div>
 
                     <div class="reply-form">
                         <form action="{{ url_for('reply', comment_id=comment.id) }}" method="POST" class="form-box small-form">
-                            <label>返信する人の名前</label>
-                            <input type="text" name="reply_name" placeholder="例：現場担当者" required>
+                            <input type="hidden" name="lang" value="{{ lang }}">
 
-                            <label>返信内容</label>
-                            <textarea name="reply_message" rows="2" placeholder="返信内容を入力してください。" required></textarea>
+                            <label>
+                                {% if lang == "en" %}
+                                    Reply Name
+                                {% else %}
+                                    返信する人の名前
+                                {% endif %}
+                            </label>
 
-                            <button type="submit">返信する</button>
+                            <input type="text" name="reply_name"
+                                placeholder="{% if lang == 'en' %}Example: Site staff{% else %}例：現場担当者{% endif %}"
+                                required>
+
+                            <label>
+                                {% if lang == "en" %}
+                                    Reply
+                                {% else %}
+                                    返信内容
+                                {% endif %}
+                            </label>
+
+                            <textarea name="reply_message" rows="2"
+                                placeholder="{% if lang == 'en' %}Please enter your reply.{% else %}返信内容を入力してください。{% endif %}"
+                                required></textarea>
+
+                            <button type="submit">
+                                {% if lang == "en" %}
+                                    Reply
+                                {% else %}
+                                    返信する
+                                {% endif %}
+                            </button>
                         </form>
                     </div>
 
                     <div class="delete-form">
                         <form action="{{ url_for('delete', comment_id=comment.id) }}" method="POST" class="form-box small-form">
-                            <label>削除用パスワード</label>
-                            <input type="password" name="delete_password" placeholder="管理者のみ" required>
-                            <button type="submit" class="danger-btn">削除する</button>
+                            <input type="hidden" name="lang" value="{{ lang }}">
+
+                            <label>
+                                {% if lang == "en" %}
+                                    Delete Password
+                                {% else %}
+                                    削除用パスワード
+                                {% endif %}
+                            </label>
+
+                            <input type="password" name="delete_password"
+                                placeholder="{% if lang == 'en' %}Administrator only{% else %}管理者のみ{% endif %}"
+                                required>
+
+                            <button type="submit" class="danger-btn">
+                                {% if lang == "en" %}
+                                    Delete
+                                {% else %}
+                                    削除する
+                                {% endif %}
+                            </button>
                         </form>
                     </div>
 
@@ -161,16 +359,39 @@ document.getElementById("ai-form").addEventListener("submit", async function(eve
                                         <strong>{{ reply.name }}</strong>
                                         <span>{{ reply.created_at }}</span>
                                     </div>
+
                                     <p>{{ reply.message }}</p>
 
                                     <div class="action-row">
-                                        <a href="{{ url_for('board', edit_id=reply.id) }}" class="mini-link">訂正</a>
+                                        {% if lang == "en" %}
+                                            <a href="{{ url_for('board_en', edit_id=reply.id) }}" class="mini-link">Edit</a>
+                                        {% else %}
+                                            <a href="{{ url_for('board', edit_id=reply.id) }}" class="mini-link">訂正</a>
+                                        {% endif %}
                                     </div>
 
                                     <form action="{{ url_for('delete', comment_id=reply.id) }}" method="POST" class="form-box small-form">
-                                        <label>削除用パスワード</label>
-                                        <input type="password" name="delete_password" placeholder="管理者のみ" required>
-                                        <button type="submit" class="danger-btn">削除する</button>
+                                        <input type="hidden" name="lang" value="{{ lang }}">
+
+                                        <label>
+                                            {% if lang == "en" %}
+                                                Delete Password
+                                            {% else %}
+                                                削除用パスワード
+                                            {% endif %}
+                                        </label>
+
+                                        <input type="password" name="delete_password"
+                                            placeholder="{% if lang == 'en' %}Administrator only{% else %}管理者のみ{% endif %}"
+                                            required>
+
+                                        <button type="submit" class="danger-btn">
+                                            {% if lang == "en" %}
+                                                Delete
+                                            {% else %}
+                                                削除する
+                                            {% endif %}
+                                        </button>
                                     </form>
                                 </div>
                             {% endif %}
@@ -178,7 +399,13 @@ document.getElementById("ai-form").addEventListener("submit", async function(eve
                     </div>
                 </div>
             {% else %}
-                <p>まだコメントはありません。</p>
+                <p>
+                    {% if lang == "en" %}
+                        No comments have been posted yet.
+                    {% else %}
+                        まだコメントはありません。
+                    {% endif %}
+                </p>
             {% endfor %}
         </section>
     </div>

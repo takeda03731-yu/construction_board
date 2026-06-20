@@ -12,19 +12,44 @@
     <div class="container">
         <header class="main-header" id="top">
             <h1>{{ site.construction_name }}</h1>
+            <div style="margin-top: 10px;">
+        {% if lang == "en" %}
+            <a href="{{ url_for('home') }}" class="sub-link">日本語ページへ</a>
+        {% else %}
+            <a href="{{ url_for('home_en') }}" class="sub-link">English Page</a>
+        {% endif %}
+    </div>
         </header>
         <nav class="toc">
-            <h2>📋 目次</h2>
-            <ul>
-                <li><a href="#work">次回の工事は引き続き配水管布設工を実施する予定です。<span class="new-badge">NEW</span></a></li>
-                <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
-                <li><a href="#flow">本工事の順番です。</a></li>
-                <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
-                <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li>
-            </ul>
-        </nav>
+    {% if lang == "en" %}
+        <h2>📋 Contents</h2>
+        <ul>
+            <li><a href="#work">Next Construction Work <span class="new-badge">NEW</span></a></li>
+            <li><a href="#parking">Temporary Parking Area</a></li>
+            <li><a href="#flow">Construction Work Flow</a></li>
+            <li><a href="#garbage">Garbage Collection Point <span class="new-badge">NEW</span></a></li>
+            <li><a href="#holiday">Construction Holiday Notice <span class="new-badge">NEW</span></a></li>
+        </ul>
+    {% else %}
+        <h2>📋 目次</h2>
+        <ul>
+            <li><a href="#work">次回の工事は引き続き配水管布設工を実施する予定です。<span class="new-badge">NEW</span></a></li>
+            <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
+            <li><a href="#flow">本工事の順番です。</a></li>
+            <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
+            <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li>
+        </ul>
+    {% endif %}
+</nav>
         <section class="card">
-            <h2 id="work">次回の工事は引き続き配水管布設工を実施する予定です。<span class="new-badge">NEW</span></h2>
+            <h2 id="work">
+    {% if lang == "en" %}
+        Next Construction Work
+    {% else %}
+        次回の工事は引き続き配水管布設工を実施する予定です。
+    {% endif %}
+    <span class="new-badge">NEW</span>
+</h2>
 
             {% set ext = site.image_file.split('.')[-1].lower() %}
 
@@ -41,7 +66,13 @@
             </p>
 
         <section class="card">
-            <h2 id="parking">臨時駐車場を設置させて頂きました。</h2>
+            <h2 id="parking">
+    {% if lang == "en" %}
+        Temporary Parking Area
+    {% else %}
+        臨時駐車場を設置させて頂きました。
+    {% endif %}
+</h2>
 
             {% set ext = site.image_file.split('.')[-1].lower() %}
 
@@ -58,7 +89,13 @@
             </p>
 
         <section class="card">
-                <h2 id="flow">本工事の順番です。</h2>
+                <h2 id="flow">
+    {% if lang == "en" %}
+        Construction Work Flow
+    {% else %}
+        本工事の順番です。
+    {% endif %}
+</h2>
 
                 {% set ext = site.image_file2.split('.')[-1].lower() %}
 
@@ -77,8 +114,13 @@
 
         <section class="card">
                 <h2 id="garbage">
-                    ゴミの移動について
-                    <span class="new-badge">NEW</span></h2>
+    {% if lang == "en" %}
+        Garbage Collection Point
+    {% else %}
+        ゴミの移動について
+    {% endif %}
+    <span class="new-badge">NEW</span>
+</h2>
 
                 {% set ext = site.image_file4.split('.')[-1].lower() %}
 
@@ -96,17 +138,34 @@
             </section>
 
             <section class="card notice-box">
-                <h2 id="holiday">【休工日のおしらせ】<span class="new-badge">NEW</span></h2>
+                <h2 id="holiday">
+    {% if lang == "en" %}
+        Construction Holiday Notice
+    {% else %}
+        【休工日のおしらせ】
+    {% endif %}
+    <span class="new-badge">NEW</span>
+</h2>
                 <p style="white-space: pre-line;">{{ site.holiday_notice }}</p>
             </section>
 
             <section class="card center-box">
-                <a href="{{ url_for('board') }}" class="main-link">地元住民様専用掲示板を見る</a>
+                {% if lang == "en" %}
+    <a href="{{ url_for('board') }}" class="main-link">View Residents' Message Board</a>
+{% else %}
+    <a href="{{ url_for('board') }}" class="main-link">地元住民様専用掲示板を見る</a>
+{% endif %}
             </section>
     </div>
 </body>
 <div style="text-align:center; margin:20px 0;">
-    <a href="#top">▲ ページ上部へ戻る</a>
+    <a href="#top">
+        {% if lang == "en" %}
+            ▲ Back to Top
+        {% else %}
+            ▲ ページ上部へ戻る
+        {% endif %}
+    </a>
 </div>
 
 <a href="#top" class="back-to-top">▲</a>

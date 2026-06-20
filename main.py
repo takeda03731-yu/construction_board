@@ -89,6 +89,68 @@ SITE_INFO = {
     "holiday_notice": "このたび、工事を進めるにあたり、所定の手続きや確認を要する事項が生じたため、しばらくの間、休工とさせていただくこととなりました。次回工事再開は、7月上旬頃を予定しております。\n\n本工事では、作業員の安全確保や健康管理、ならびに建設業界における働き方改善の取り組みの一環として、原則として土曜日・日曜日を休工日としております。\n\n近年、建設業界では、安全で持続的な施工体制を維持するため、適切に休日を確保しながら工事を進める取り組みが進められております。\n\nそのため、本工事につきましても、特別な事情がない限り、土曜日・日曜日の作業は行わない予定としております。\n\n地域の皆様にはご不便をおかけする場面もございますが、安全かつ円滑に工事を進めていくため、何卒ご理解とご協力を賜りますようお願い申し上げます。"
 }
 
+SITE_INFO_EN = {
+    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of June 18, 2026",
+    "image_file": "配水管布設工en.pdf",
+    "image_file2": "工事概要en.pdf",
+    "image_file3": "臨時駐車場en.pdf",
+    "image_file4": "ゴミの移動en.pdf",
+
+    "image_description": """Thank you very much for your understanding and cooperation with this construction work.
+
+We sincerely apologize for the inconvenience caused by traffic restrictions and detours during the construction period.
+
+At this time, the work will be temporarily suspended due to required procedures and items that need to be confirmed before continuing the construction.
+
+The next construction work is currently scheduled to resume around early July. Once the exact restart date has been decided, we will inform you as soon as possible.
+
+After the work resumes, construction is planned to continue from the section where work was carried out on June 16.
+
+The traffic restriction area is expected to be extended further from the previous restricted area. Therefore, through traffic from the south side to the north side is expected to remain unavailable.
+
+In addition, construction is planned near the three-way intersection shown on the drawing. For this reason, through traffic from the railroad crossing area on the south side is also expected to be unavailable.
+
+When driving in the area, please use the detour route shown on the drawing.
+
+Traffic guides will be stationed on site for safety. Please follow their guidance when passing near the construction area.
+
+We apologize for the continued inconvenience and sincerely appreciate your understanding and cooperation.
+
+We will continue to place safety as our highest priority and make every effort to reduce the impact on local residents as much as possible.""",
+
+    "image_description2": """The construction work will begin with pavement cutting and will be completed with final pavement restoration.
+
+During water service connection replacement work, temporary water outages may occur for individual properties.
+
+When a water outage is necessary, we will notify affected residents in advance. Thank you for your understanding and cooperation.""",
+
+    "image_description3": """A temporary parking area has been provided with the kind cooperation of a nearby resident.
+
+Depending on the construction location, access to some private parking spaces may become temporarily difficult.
+
+In such cases, we may kindly ask residents to move their vehicles to the temporary parking area.
+
+Please note that we cannot be responsible for theft, accidents, or damage within the temporary parking area. We kindly ask you to lock your vehicle and manage your valuables carefully.
+
+We will do our best to minimize inconvenience and appreciate your cooperation for safe construction work.""",
+
+    "image_description4": """As the construction work is currently suspended, temporary movement of garbage collection points is not required for the time being.
+
+Thank you very much for your cooperation.
+
+When construction resumes around early July, garbage collection point movement may be required again. We will inform residents in advance if this becomes necessary.""",
+
+    "holiday_notice": """The construction work is currently suspended due to required procedures and items that need to be confirmed before continuing the work.
+
+The next construction work is scheduled to resume around early July.
+
+As part of efforts to ensure worker safety, health management, and improved working conditions in the construction industry, this project is generally scheduled to be closed on Saturdays and Sundays.
+
+Except in special circumstances, construction work will not be carried out on Saturdays or Sundays.
+
+We apologize for any inconvenience and appreciate your understanding and cooperation."""
+}
+
 def get_board_text():
     return f"""
 工事名:
@@ -115,8 +177,11 @@ def get_board_text():
 # -------------------------
 @app.route("/")
 def home():
-    return render_template("base.html", site=SITE_INFO)
+    return render_template("base.html", site=SITE_INFO, lang="ja")
 
+@app.route("/en")
+def home_en():
+    return render_template("base.html", site=SITE_INFO_EN, lang="en")
 
 @app.route("/board")
 def board():
@@ -144,7 +209,38 @@ def board():
         "take.html",
         comments=comments,
         replies=replies,
-        edit_comment=edit_comment
+        edit_comment=edit_comment,
+        lang="ja"
+    )
+
+@app.route("/en/board")
+def board_en():
+    edit_id = request.args.get("edit_id", type=int)
+
+    comments = (
+        db.session.query(Comment)
+        .filter(Comment.parent_id.is_(None))
+        .order_by(Comment.id.desc())
+        .all()
+    )
+
+    replies = (
+        db.session.query(Comment)
+        .filter(Comment.parent_id.is_not(None))
+        .order_by(Comment.id.asc())
+        .all()
+    )
+
+    edit_comment = None
+    if edit_id:
+        edit_comment = db.session.get(Comment, edit_id)
+
+    return render_template(
+        "take.html",
+        comments=comments,
+        replies=replies,
+        edit_comment=edit_comment,
+        lang="en"
     )
 
 @app.route("/ask_ai", methods=["POST"])
@@ -167,6 +263,7 @@ def ask_ai():
 ・工事費、契約内容、責任問題、職人や発注者の評価には答えないでください。
 ・分からない場合は「公開されている掲示板情報では確認できません。必要に応じて現場担当者へお問い合わせください。」と答えてください。
 ・住民の方に対して、丁寧で分かりやすい日本語で回答してください。
+・英語や他の言語で質問された場合は、丁寧で分かりやすい同じ言語で回答してください。
 ・回答は長くしすぎず、必要な内容を簡潔に伝えてください。
 """
 
