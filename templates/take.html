@@ -51,7 +51,13 @@
             {% endif %}
         {% endwith %}
 
-        <section class="card">
+        <section class="card ai-concierge-card">
+    <div class="ai-concierge-header">
+        <div class="ai-character">
+            <img src="{{ url_for('static', filename='mizuhho.png') }}" alt="AIコンシェルジュみずほ" class="ai-character-img">
+        </div>
+
+        <div class="ai-character-message">
             <h2>
                 {% if lang == "en" %}
                     AI Resident Concierge
@@ -62,67 +68,80 @@
 
             <p>
                 {% if lang == "en" %}
-                    Based on the information posted on this notice board, the AI can answer questions about construction schedules, traffic restrictions, closure days, and garbage collection point movement.
+                    Hello. I am your AI construction guide. Please feel free to ask about the construction notice.
                 {% else %}
-                    掲示板に掲載されている内容をもとに、工事予定・通行規制・休工日・ゴミの移動などについて回答します。
+                    こんにちは。現場案内AIの「みずほ」です。工事予定・通行規制・休工日・ゴミの移動などについて、お気軽にご質問ください。
                 {% endif %}
             </p>
+        </div>
+    </div>
 
-            <form id="ai-form" action="{{ url_for('ask_ai') }}" method="POST" class="form-box">
-                <input type="hidden" name="lang" value="{{ lang }}">
+    <form id="ai-form" action="{{ url_for('ask_ai') }}" method="POST" class="form-box">
+        <input type="hidden" name="lang" value="{{ lang }}">
 
-                <label>
-                    {% if lang == "en" %}
-                        Question
-                    {% else %}
-                        質問内容
-                    {% endif %}
-                </label>
+        <label>
+            {% if lang == "en" %}
+                Question
+            {% else %}
+                質問内容
+            {% endif %}
+        </label>
 
-                <textarea id="ai-question" name="question" rows="3"
-                    placeholder="{% if lang == 'en' %}Example: Will construction work take place tomorrow?{% else %}例：明日は工事がありますか？{% endif %}"
-                    required></textarea>
+        <textarea id="ai-question" name="question" rows="3"
+            placeholder="{% if lang == 'en' %}Example: Will construction work take place tomorrow?{% else %}例：明日は工事がありますか？{% endif %}"
+            required></textarea>
 
-                <button id="ai-submit-btn" type="submit">
-                    {% if lang == "en" %}
-                        Ask AI
-                    {% else %}
-                        AIに質問する
-                    {% endif %}
-                </button>
-            </form>
+        <button id="ai-submit-btn" type="submit">
+            {% if lang == "en" %}
+                Ask AI
+            {% else %}
+                AIに質問する
+            {% endif %}
+        </button>
+    </form>
 
-            <div id="thinking-message" style="display: none; margin-top: 10px;">
+    <div id="thinking-message" class="ai-thinking" style="display: none;">
+        <img src="{{ url_for('static', filename='mizuhho.png') }}"
+            alt="AIコンシェルジュみずほ"
+            class="mini-ai-face-img">
+        <div class="speech-bubble">
+            {% if lang == "en" %}
+                I am checking the notice board information. Please wait a moment...
+            {% else %}
+                掲示板の内容を確認しています。少々お待ちください...
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="ai-answer-box" class="ai-answer-box character-answer" style="display: none;">
+        <img src="{{ url_for('static', filename='mizuhho.png') }}"
+            alt="AIコンシェルジュみずほ"
+            class="mini-ai-face-img">
+
+        <div class="speech-bubble answer-bubble">
+            <h3>
                 {% if lang == "en" %}
-                    The AI is preparing an answer. Please wait a moment...
+                    Mizuhō's Answer
                 {% else %}
-                    AIが回答を考察中です。少々お待ちください...
+                    みずほの回答
                 {% endif %}
-            </div>
+            </h3>
 
-            <div id="ai-answer-box" class="ai-answer-box" style="display: none;">
-                <h3>
+            <p>
+                <strong>
                     {% if lang == "en" %}
-                        AI Answer
+                        Question:
                     {% else %}
-                        AI回答
+                        質問：
                     {% endif %}
-                </h3>
+                </strong>
+                <span id="ai-question-display"></span>
+            </p>
 
-                <p>
-                    <strong>
-                        {% if lang == "en" %}
-                            Question:
-                        {% else %}
-                            質問：
-                        {% endif %}
-                    </strong>
-                    <span id="ai-question-display"></span>
-                </p>
-
-                <p id="ai-answer-display" style="white-space: pre-line;"></p>
-            </div>
-        </section>
+            <p id="ai-answer-display" style="white-space: pre-line;"></p>
+        </div>
+    </div>
+</section>
 
         <script>
         const pageLang = "{{ lang }}";
