@@ -68,7 +68,7 @@
 
             <p>
                 {% if lang == "en" %}
-                    Hello. I am your AI construction guide. Please feel free to ask about the construction notice.
+                    Hello. I am your AI construction guide Mizuhō. Please feel free to ask about the construction notice.
                 {% else %}
                     こんにちは。現場案内AIの「みずほ」です。工事予定・通行規制・休工日・ゴミの移動などについて、お気軽にご質問ください。
                 {% endif %}
@@ -93,15 +93,15 @@
 
         <button id="ai-submit-btn" type="submit">
             {% if lang == "en" %}
-                Ask AI
+                Ask Mizuhō
             {% else %}
-                AIに質問する
+                みずほに質問する
             {% endif %}
         </button>
     </form>
 
     <div id="thinking-message" class="ai-thinking" style="display: none;">
-        <img src="{{ url_for('static', filename='mizuhho.png') }}"
+        <img src="{{ url_for('static', filename='mizuhho.thinking.png') }}"
             alt="AIコンシェルジュみずほ"
             class="mini-ai-face-img">
         <div class="speech-bubble">
@@ -114,7 +114,7 @@
     </div>
 
     <div id="ai-answer-box" class="ai-answer-box character-answer" style="display: none;">
-        <img src="{{ url_for('static', filename='mizuhho.png') }}"
+        <img src="{{ url_for('static', filename='mizuhho.answer.png') }}"
             alt="AIコンシェルジュみずほ"
             class="mini-ai-face-img">
 
