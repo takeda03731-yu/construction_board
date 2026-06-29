@@ -24,31 +24,31 @@
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
         <ul>
-            <li><a href="#work">Next Construction Work</a></li>
+            <li><a href="#work">Next Construction Work on July 6<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">Temporary Parking Area</a></li>
             <li><a href="#flow">Construction Work Flow</a></li>
-            <li><a href="#garbage">Garbage Collection Point</a></li>
-            <li><a href="#holiday">Construction Holiday Notice</a></li>
+            <li><a href="#garbage">Garbage Collection Point<span class="new-badge">NEW</span></a></li>
+            <li><a href="#holiday">Construction Holiday Notice<span class="new-badge">NEW</span></a></li>
         </ul>
     {% else %}
         <h2>📋 目次</h2>
         <ul>
-            <li><a href="#work">次回の工事は引き続き配水管布設工を実施する予定です。</a></li>
+            <li><a href="#work">7月6日は引き続き配水管布設工を実施する予定です。<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
             <li><a href="#flow">本工事の順番です。</a></li>
-            <li><a href="#garbage">ゴミの移動について</a></li>
-            <li><a href="#holiday">休工日のおしらせ</a></li>
+            <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
+            <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li>
         </ul>
     {% endif %}
 </nav>
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
-        Next Construction Work
+        Next Construction Work on July 6
     {% else %}
-        次回の工事は引き続き配水管布設工を実施する予定です。
+        7月6日は引き続き配水管布設工を実施する予定です。
     {% endif %}
-</h2>
+<span class="new-badge">NEW</span></h2>
 
             {% set ext = site.image_file.split('.')[-1].lower() %}
 
@@ -118,7 +118,7 @@
     {% else %}
         ゴミの移動について
     {% endif %}
-</h2>
+<span class="new-badge">NEW</span></h2>
 
                 {% set ext = site.image_file4.split('.')[-1].lower() %}
 
@@ -142,7 +142,7 @@
     {% else %}
         【休工日のおしらせ】
     {% endif %}
-</h2>
+<span class="new-badge">NEW</span></h2>
                 <p style="white-space: pre-line;">{{ site.holiday_notice }}</p>
             </section>
 

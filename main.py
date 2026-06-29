@@ -77,46 +77,26 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　6月18日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　6月29日現在",
     "image_file": "配水管布設工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.pdf",
-    "image_description": "日頃より、本工事へのご理解とご協力をいただき、誠にありがとうございます。\n\n工事期間中は、交通規制や迂回のお願いなどにより、地域の皆様にはご不便をおかけしておりますが、皆様の温かいご協力に支えられながら、日々安全に作業を進めることができております。改めまして、心より御礼申し上げます。\n\nこのたび、工事を進めるにあたり、所定の手続きや確認を要する事項が生じたため、しばらくの間、休工とさせていただくこととなりました。\n\n順調に作業を進めることができておりましたところ、地域の皆様にはご心配とご迷惑をおかけすることとなり、誠に申し訳ございません。\n\n次回の工事再開は、7月上旬頃を予定しております。再開日程が確定次第、できるだけ早めにお知らせいたします。\n\n工事再開後は、6月16日に施工した箇所の続きから作業を再開する予定です。\n\n交通規制区間につきましては、前回の規制範囲からさらに延長する予定としております。そのため、南側から北側への通り抜けは引き続きご利用いただけない見込みです。\n\nまた、図に示しております三叉路付近での施工を予定しているため、南側の踏切付近からの通り抜けにつきましても、できなくなる見込みです。\n\nお車で通行される際は、お手数をおかけいたしますが、線路手前より迂回していただきますようお願いいたします。\n\n現地では、安全確保のため、交通誘導員の方を配置する予定です。通行の際は、交通誘導員の方の案内をご確認いただき、図面に記載しております迂回路をご利用くださいますようお願いいたします。\n\nなお、北側からの車両の進入につきましても、引き続き制限を行う予定です。中型車両をご利用の方は、恐れ入りますが、図面に記載しております指定経路からの進入にご協力をお願いいたします。\n\n迂回路には、道路幅の狭い箇所や見通しの悪い箇所もございますので、通行の際は十分ご注意くださいますようお願いいたします。\n\n長期間にわたりご不便をおかけしておりますが、皆様のご理解とご協力に深く感謝申し上げます。\n\n今後も安全を最優先に、できる限り皆様の生活への影響を抑えながら工事を進めてまいります。\n\n工事再開の際は、引き続きご理解とご協力を賜りますよう、よろしくお願い申し上げます。",
+    "image_description": "日頃より、本工事へのご理解とご協力をいただき、誠にありがとうございます。\n\n工事期間中は、交通規制や迂回などにより、地域の皆様にはご不便をおかけしておりますが、皆様の温かいご協力のおかげで、安全に工事を進めることができております。改めまして、心より感謝申し上げます。\n\nこのたび、工事再開の日程が決まりましたので、お知らせいたします。工事は7月6日（月曜日）より再開し、6月16日に施工した箇所の続きから作業を進める予定です。\n\n工事再開に伴い、交通規制区間は前回よりさらに延長する予定です。そのため、南側から北側への通り抜けは、引き続きご利用いただけません。また、図に示しております三叉路付近での施工を予定しておりますので、南側の踏切付近からの通り抜けにつきましても、ご利用いただけなくなる見込みです。\n\nお車で通行される際は、お手数をおかけいたしますが、線路手前より迂回していただきますようお願いいたします。\n\n現地では、安全確保のため交通誘導員を配置する予定です。通行の際は、交通誘導員の案内に従っていただき、図面に記載しております迂回路をご利用くださいますようお願いいたします。なお、北側からの車両の進入につきましても、引き続き制限を行います。中型車両をご利用の方は、お手数をおかけいたしますが、図面に記載しております指定経路からご通行くださいますよう、ご協力をお願いいたします。\n\n迂回路には道路幅が狭い箇所や見通しの悪い箇所がありますので、通行の際は十分ご注意ください。\n\n長期間にわたりご不便をおかけしておりますが、皆様のご理解とご協力に深く感謝申し上げます。今後も安全を最優先に、できる限り皆様の生活への影響を少なくできるよう努めながら工事を進めてまいります。工事再開後も、ご不便をおかけいたしますが、引き続きご理解とご協力を賜りますよう、よろしくお願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工で終了となります。給水分岐替工では、個別に断水が発生します。断水の際は事前にお知らせしますので、ご理解とご協力をお願い致します。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いさせていただくことがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
-    "image_description4": "このたび、工事が休工となりましたため、ゴミの移動はしばらくの間、不要となりました。地域の皆様にはご協力いただき、誠にありがとうございます。\n\nなお、7月上旬頃に工事を再開する際には、改めてゴミの移動を行う予定としております。その際は、事前にお知らせいたしますので、引き続きご理解とご協力のほど、よろしくお願いいたします。",
-    "holiday_notice": "このたび、工事を進めるにあたり、所定の手続きや確認を要する事項が生じたため、しばらくの間、休工とさせていただくこととなりました。次回工事再開は、7月上旬頃を予定しております。\n\n本工事では、作業員の安全確保や健康管理、ならびに建設業界における働き方改善の取り組みの一環として、原則として土曜日・日曜日を休工日としております。\n\n近年、建設業界では、安全で持続的な施工体制を維持するため、適切に休日を確保しながら工事を進める取り組みが進められております。\n\nそのため、本工事につきましても、特別な事情がない限り、土曜日・日曜日の作業は行わない予定としております。\n\n地域の皆様にはご不便をおかけする場面もございますが、安全かつ円滑に工事を進めていくため、何卒ご理解とご協力を賜りますようお願い申し上げます。"
+    "image_description4": "このたび、工事の再開日が7月6日（月曜日）に決まりましたので、ゴミの移動対応を再開させていただきます。\n\nなお、皆様に新たなご対応をお願いするものではございません。これまでと同様に、ゴミは所定のゴミステーションへお出しください。回収日当日の午前8時頃に、工事関係者が移動先のゴミステーションへ運搬いたします。\n\n今回は、工事に伴う交通規制範囲の拡大により、前回とは異なるゴミステーションにつきましても移動対応を実施いたします。図面に記載しております「メゾン・ド・モンマルトル」前のゴミステーションを含め、追加となるゴミステーションについても対応いたします。\n\nこれまでと同様、皆様には通常どおりゴミをお出しいただくだけで結構です。移動作業は当社にて対応いたしますので、引き続きご理解とご協力のほど、よろしくお願い申し上げます。",
+    "holiday_notice": "次回の工事再開は、7月6日（月曜日）を予定しております。そのため、7月5日（日曜日）まで休工とさせていただきます。\n\n本工事では、作業員の安全確保や健康管理、ならびに建設業界における働き方改革の取り組みの一環として、原則として土曜日・日曜日を休工日としております。\n\n近年、建設業界では、安全で質の高い施工を継続するため、適切に休日を確保しながら工事を進める取り組みが進められています。\n\nそのため、本工事におきましても、特別な事情がない限り、土曜日・日曜日の作業は行わない予定です。\n\n地域の皆様には、ご不便をおかけすることもございますが、安全で円滑な工事の実施のため、何卒ご理解とご協力を賜りますよう、よろしくお願い申し上げます。"
 }
 
 SITE_INFO_EN = {
-    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of June 18, 2026",
+    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of June 29, 2026",
     "image_file": "配水管布設工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.pdf",
 
-    "image_description": """Thank you very much for your understanding and cooperation with this construction work.
-
-We sincerely apologize for the inconvenience caused by traffic restrictions and detours during the construction period.
-
-At this time, the work will be temporarily suspended due to required procedures and items that need to be confirmed before continuing the construction.
-
-The next construction work is currently scheduled to resume around early July. Once the exact restart date has been decided, we will inform you as soon as possible.
-
-After the work resumes, construction is planned to continue from the section where work was carried out on June 16.
-
-The traffic restriction area is expected to be extended further from the previous restricted area. Therefore, through traffic from the south side to the north side is expected to remain unavailable.
-
-In addition, construction is planned near the three-way intersection shown on the drawing. For this reason, through traffic from the railroad crossing area on the south side is also expected to be unavailable.
-
-When driving in the area, please use the detour route shown on the drawing.
-
-Traffic guides will be stationed on site for safety. Please follow their guidance when passing near the construction area.
-
-We apologize for the continued inconvenience and sincerely appreciate your understanding and cooperation.
-
-We will continue to place safety as our highest priority and make every effort to reduce the impact on local residents as much as possible.""",
+    "image_description": """Thank you very much for your continued understanding and cooperation regarding this construction project.\n\nDuring the construction period, we apologize for any inconvenience caused by traffic restrictions and detours. Thanks to your kind cooperation, we have been able to carry out the work safely. We sincerely appreciate your continued support.\n\nWe would like to inform you that the construction restart date has now been confirmed. Construction will resume on Monday, July 6, continuing from the section where work stopped on June 16.\n\nAs construction resumes, the traffic restriction area will be extended beyond the previous work zone. Therefore, through traffic from the south side to the north side will continue to be unavailable. In addition, as work is scheduled near the three-way intersection shown on the map, through traffic near the railroad crossing on the south side will also be unavailable.\n\nIf you are traveling by car, we kindly ask that you use the designated detour before reaching the railroad crossing.\n\nFor your safety, traffic controllers will be stationed at the construction site. Please follow their instructions and use the detour routes shown on the map. Vehicle access from the north side will also continue to be restricted. Drivers of medium-sized vehicles are kindly requested to use the designated route shown on the map.\n\nPlease note that some sections of the detour route are narrow and have limited visibility. We kindly ask you to drive with extra caution.\n\nWe sincerely apologize for the inconvenience caused over this extended construction period and greatly appreciate your understanding and cooperation.\n\nWe will continue to place the highest priority on safety while making every effort to minimize the impact on the daily lives of local residents.\n\nWe appreciate your continued understanding and cooperation as construction resumes. Thank you for your patience and support.""",
 
     "image_description2": """The construction work will begin with pavement cutting and will be completed with final pavement restoration.
 
@@ -134,21 +114,9 @@ Please note that we cannot be responsible for theft, accidents, or damage within
 
 We will do our best to minimize inconvenience and appreciate your cooperation for safe construction work.""",
 
-    "image_description4": """As the construction work is currently suspended, temporary movement of garbage collection points is not required for the time being.
+    "image_description4": """We would like to inform you that construction will resume on Monday, July 6. Accordingly, we will also resume our temporary waste collection relocation service.\n\nPlease note that no additional action is required from residents. As before, simply place your garbage at your usual designated waste collection station. Our staff will move it to the temporary collection location at approximately 8:00 a.m. on the collection day.\n\nDue to the expansion of the construction area, we will also relocate waste from additional collection stations that were not included previously. This includes the waste collection station in front of Maison de Montmartre, as shown on the map, as well as the newly designated collection stations.\n\nAs always, you only need to place your garbage at your usual collection station. Our staff will take care of moving it to the temporary collection location. We sincerely appreciate your continued understanding and cooperation.""",
 
-Thank you very much for your cooperation.
-
-When construction resumes around early July, garbage collection point movement may be required again. We will inform residents in advance if this becomes necessary.""",
-
-    "holiday_notice": """The construction work is currently suspended due to required procedures and items that need to be confirmed before continuing the work.
-
-The next construction work is scheduled to resume around early July.
-
-As part of efforts to ensure worker safety, health management, and improved working conditions in the construction industry, this project is generally scheduled to be closed on Saturdays and Sundays.
-
-Except in special circumstances, construction work will not be carried out on Saturdays or Sundays.
-
-We apologize for any inconvenience and appreciate your understanding and cooperation."""
+    "holiday_notice": """The next phase of construction is scheduled to resume on Monday, July 6. Therefore, construction work will be suspended until Sunday, July 5.\n\nAs part of our commitment to worker safety, health management, and improved working conditions in the construction industry, construction work is generally suspended on Saturdays and Sundays.\n\nIn recent years, the construction industry has been promoting appropriate work schedules with regular days off to ensure safe, high-quality, and sustainable construction.\n\nAccordingly, unless special circumstances arise, no construction work is planned on Saturdays or Sundays for this project.\n\nWe apologize for any inconvenience this may cause and sincerely appreciate your understanding and cooperation. We will continue to prioritize safety and strive to carry out the construction work as safely and smoothly as possible."""
 }
 
 def get_board_text():
