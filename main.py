@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, ForeignKey
 from openai import OpenAI
+import fitz
 
 load_dotenv()
 
@@ -140,6 +141,19 @@ def get_board_text():
 {SITE_INFO["holiday_notice"]}
 """
 
+
+def get_pdf_text():
+    pdf_path = os.path.join(app.root_path, "static", "polytech.pdf")
+    try:
+        doc = fitz.open(pdf_path)
+        text_list = []
+        for page in doc:
+            text_list.append(page.get_text())
+        doc.close()
+        return "\n".join(text_list)
+    except Exception:
+        return ""
+
 # -------------------------
 # ルート
 # -------------------------
@@ -220,16 +234,18 @@ def ask_ai():
         return redirect(url_for("board"))
 
     board_text = get_board_text()
+    pdf_text = get_pdf_text()
 
     system_message = """
 あなたは公共工事の住民向け掲示板の案内AIです。
 
 必ず以下のルールを守ってください。
 
-・掲示板本文に書かれている内容だけをもとに回答してください。
+・掲示板本文とPDF資料に書かれている内容だけをもとに回答してください。
+・掲示板本文にもPDF資料にも書かれていない内容は推測しないでください。
 ・推測で答えないでください。
 ・工事費、契約内容、責任問題、職人や発注者の評価には答えないでください。
-・分からない場合は「公開されている掲示板情報では確認できません。必要に応じて現場担当者へお問い合わせください。」と答えてください。
+・分からない場合は「公開されている掲示板情報および資料では確認できません。必要に応じて現場担当者へお問い合わせください。」と答えてください。
 
 【回答言語のルール】
 ・住民からの質問文の言語を判定し、その言語で回答してください。
@@ -253,6 +269,9 @@ def ask_ai():
 
 【掲示板情報】
 {board_text}
+
+【ポリテックPDF資料】
+{pdf_text}
 
 【住民からの質問】
 {question}
