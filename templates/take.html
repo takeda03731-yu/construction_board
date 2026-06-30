@@ -91,6 +91,32 @@
             placeholder="{% if lang == 'en' %}Example: Will construction work take place tomorrow?{% else %}例：明日は工事がありますか？{% endif %}"
             required></textarea>
 
+        <div class="faq-section">
+            <p class="faq-label">
+                {% if lang == "en" %}
+                    Frequently Asked Questions
+                {% else %}
+                    よくある質問
+                {% endif %}
+            </p>
+
+            <div class="faq-buttons">
+                {% if lang == "en" %}
+                    <button type="button" class="faq-btn">Will construction take place tomorrow?</button>
+                    <button type="button" class="faq-btn">Can I pass through the road?</button>
+                    <button type="button" class="faq-btn">Where should I put out my garbage?</button>
+                    <button type="button" class="faq-btn">Can I use the temporary parking area?</button>
+                    <button type="button" class="faq-btn">Is construction work carried out on weekends?</button>
+                {% else %}
+                    <button type="button" class="faq-btn">明日は工事がありますか？</button>
+                    <button type="button" class="faq-btn">通り抜けできますか？</button>
+                    <button type="button" class="faq-btn">ゴミはどこに出せばいいですか？</button>
+                    <button type="button" class="faq-btn">臨時駐車場は使えますか？</button>
+                    <button type="button" class="faq-btn">土日は工事しますか？</button>
+                {% endif %}
+            </div>
+        </div>
+
         <button id="ai-submit-btn" type="submit">
             {% if lang == "en" %}
                 Ask Mizuhō
@@ -145,6 +171,22 @@
 
         <script>
         const pageLang = "{{ lang }}";
+
+        // よくある質問ボタン：質問文をtextareaに入れてそのまま送信する
+        document.querySelectorAll(".faq-btn").forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                const questionInput = document.getElementById("ai-question");
+                questionInput.value = btn.textContent.trim();
+
+                const aiForm = document.getElementById("ai-form");
+                if (typeof aiForm.requestSubmit === "function") {
+                    aiForm.requestSubmit();
+                } else {
+                    // 古いブラウザ向けフォールバック
+                    aiForm.dispatchEvent(new Event("submit", { cancelable: true }));
+                }
+            });
+        });
 
         document.getElementById("ai-form").addEventListener("submit", async function(event) {
             event.preventDefault();

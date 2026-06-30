@@ -351,6 +351,41 @@ html {
     background: #f8fcff;
 }
 
+/* よくある質問ボタン */
+.faq-section {
+    margin-top: 4px;
+}
+
+.faq-label {
+    margin: 0 0 8px;
+    font-size: 0.9rem;
+    color: #4c7a96;
+    font-weight: bold;
+}
+
+.faq-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.faq-buttons .faq-btn {
+    width: auto;
+    padding: 8px 14px;
+    border: 1px solid #b9d8ea;
+    border-radius: 20px;
+    background-color: #eef8ff;
+    color: #34607a;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.faq-buttons .faq-btn:hover {
+    background-color: #d9eef9;
+    border-color: #8fc3e0;
+}
+
 @media (max-width: 600px) {
     .ai-concierge-header {
         flex-direction: column;
