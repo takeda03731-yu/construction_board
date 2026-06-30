@@ -425,3 +425,71 @@ html {
     box-shadow: 0 3px 8px rgba(0, 70, 120, 0.12);
     flex-shrink: 0;
 }
+
+/* 断水予定の注意ボックス
+   掲示板全体の角丸・影の基調は維持しつつ、本文に埋もれないよう
+   落ち着いた琥珀色のふちで強調。公共工事の掲示として派手すぎないトーンに調整 */
+.suidan-box {
+    background-color: #fff8ef;
+    border: 3px solid #e08a2e;
+    border-radius: 14px;
+    padding: 24px 20px;
+    margin-bottom: 22px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(180, 100, 20, 0.12);
+}
+
+/* 「重要なお知らせ」ラベル：注意ボックスであることを一目で示す */
+.suidan-label {
+    display: inline-block;
+    background-color: #e08a2e;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: bold;
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+}
+
+/* 「7月9日」：箱の中で最も目立たせる最大サイズの文字 */
+.suidan-date {
+    display: block;
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: #c25e00;
+    line-height: 1.3;
+}
+
+/* 「断水予定」：日付に次いで大きく、内容がすぐ伝わるサイズ */
+.suidan-title {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #234;
+    margin-top: 4px;
+}
+
+/* 対象区域・チラシ案内などの説明文 */
+.suidan-desc {
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #5a4326;
+}
+
+/* スマートフォン表示：文字サイズを抑えて画面内に収まりやすくする */
+@media (max-width: 600px) {
+    .suidan-date {
+        font-size: 2rem;
+    }
+
+    .suidan-title {
+        font-size: 1.4rem;
+    }
+
+    .suidan-desc {
+        font-size: 1rem;
+    }
+}

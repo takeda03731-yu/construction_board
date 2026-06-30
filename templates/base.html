@@ -20,6 +20,31 @@
         {% endif %}
     </div>
         </header>
+
+        <!-- 断水予定の注意ボックス：通常の文章に埋もれず、断水予定日を一目で分かるようにするため、
+             ヘッダー直下（最も目に入る位置）に独立した注意ボックスとして配置 -->
+        <section class="suidan-box">
+            <span class="suidan-label">
+                {% if lang == "en" %}NOTICE{% else %}重要なお知らせ{% endif %}
+            </span>
+            <!-- 「7月9日」を最大サイズで最も目立たせ、その下に「断水予定」を大きく表示 -->
+            <span class="suidan-date">
+                {% if lang == "en" %}July 9 (Thu){% else %}7月9日（木曜日）{% endif %}
+            </span>
+            <span class="suidan-title">
+                {% if lang == "en" %}Planned Water Outage{% else %}断水予定{% endif %}
+            </span>
+            <p class="suidan-desc">
+                {% if lang == "en" %}
+                    In the target areas shown on the drawing, a water outage is scheduled.<br>
+                    Further details will be provided in a flyer to be distributed shortly. Please check it.
+                {% else %}
+                    図面に記載しております対象区域では、断水を予定しております。<br>
+                    詳細につきましては、近日中に配布予定のチラシをご確認ください。
+                {% endif %}
+            </p>
+        </section>
+
         <nav class="toc">
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
