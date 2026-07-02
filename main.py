@@ -1,14 +1,14 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, ForeignKey
 from openai import OpenAI
-import fitz
-import datetime
 from zoneinfo import ZoneInfo
+
+import rag  # PDFの検索（Retriever）と会話履歴の保存を担当する自作モジュール
 
 load_dotenv()
 
@@ -79,6 +79,20 @@ class Comment(db.Model):
 
     def is_reply(self) -> bool:
         return self.parent_id is not None
+
+
+class AiLog(db.Model):
+    """みずほAIへの質問と回答の履歴。あとから管理者が確認するために保存する。"""
+
+    __tablename__ = "ai_logs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    question: Mapped[str] = mapped_column(Text, nullable=False)
+    answer: Mapped[str] = mapped_column(Text, nullable=False)
+    lang: Mapped[str] = mapped_column(String(10), nullable=False, default="ja")
+    created_at: Mapped[str] = mapped_column(String(50), nullable=False)
+    # Retrieverが取り出したPDFの関連チャンク（根拠として何を参照したかの記録）
+    pdf_chunks: Mapped[str | None] = mapped_column(Text, nullable=True)
 
 
 with app.app_context():
@@ -152,18 +166,6 @@ def get_board_text():
 {SITE_INFO["holiday_notice"]}
 """
 
-
-def get_pdf_text():
-    pdf_path = os.path.join(app.root_path, "static", "polytech.pdf")
-    try:
-        doc = fitz.open(pdf_path)
-        text_list = []
-        for page in doc:
-            text_list.append(page.get_text())
-        doc.close()
-        return "\n".join(text_list)
-    except Exception:
-        return ""
 
 # -------------------------
 # ルート
@@ -239,20 +241,39 @@ def board_en():
 @app.route("/ask_ai", methods=["POST"])
 def ask_ai():
     question = request.form.get("question", "").strip()
+    lang = request.form.get("lang", "ja").strip() or "ja"
 
     if not question:
-        flash("質問を入力してください。")
-        return redirect(url_for("board"))
+        # このフォームは JavaScript の fetch で送られJSONを期待するため、
+        # リダイレクトではなくやさしい文言のJSONを返す。
+        message = (
+            "Please enter your question."
+            if lang == "en"
+            else "質問を入力してください。"
+        )
+        return jsonify({"question": "", "answer": message})
 
     # 質問が長すぎる場合は、OpenAI APIを呼ばずにその場で返す。
     if len(question) > MAX_QUESTION_LENGTH:
-        return jsonify({
-            "question": question,
-            "answer": "申し訳ありません。質問文が長すぎます。300文字以内で入力してください。"
-        })
+        message = (
+            "Sorry, your question is too long. Please keep it within 300 characters."
+            if lang == "en"
+            else "申し訳ありません。質問文が長すぎます。300文字以内で入力してください。"
+        )
+        return jsonify({"question": question, "answer": message})
 
     board_text = get_board_text()
-    pdf_text = get_pdf_text()
+
+    # PDF全文を毎回渡すのはやめ、質問に関係する箇所だけを Retriever で取得する。
+    # 失敗しても空文字が返り、掲示板情報だけで回答を続ける（画面にはエラーを出さない）。
+    pdf_context, pdf_chunks_for_log = rag.retrieve_pdf_context(
+        app.root_path, question, k=4
+    )
+
+    if pdf_context:
+        pdf_section = pdf_context
+    else:
+        pdf_section = "（この質問に関係するPDF資料は見つかりませんでした）"
 
     # 日本時間（Asia/Tokyo）を明示して「今日」「明日」を求める。
     # Windows / Render では strftime の %-m や %-d、%A（日本語曜日）が
@@ -262,8 +283,8 @@ def ask_ai():
     def format_jp_date(dt):
         return f"{dt.year}年{dt.month}月{dt.day}日（{weekdays_jp[dt.weekday()]}）"
 
-    jst_now = datetime.datetime.now(ZoneInfo("Asia/Tokyo"))
-    jst_tomorrow = jst_now + datetime.timedelta(days=1)
+    jst_now = datetime.now(ZoneInfo("Asia/Tokyo"))
+    jst_tomorrow = jst_now + timedelta(days=1)
 
     today = format_jp_date(jst_now)          # 例：2026年7月5日（日曜日）
     tomorrow = format_jp_date(jst_tomorrow)  # 例：2026年7月6日（月曜日）
@@ -313,8 +334,9 @@ def ask_ai():
 【掲示板情報】
 {board_text}
 
-【ポリテックPDF資料】
-{pdf_text}
+【検索されたPDF資料】
+（polytech.pdf の中から、この質問に関係する部分だけを検索した結果です）
+{pdf_section}
 
 【住民からの質問】
 {question}
@@ -330,12 +352,54 @@ def ask_ai():
         ai_answer = response.choices[0].message.content
 
     except Exception:
-        ai_answer = "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。"
+        ai_answer = (
+            "We are sorry. The AI guidance service is currently unavailable. Please try again later."
+            if lang == "en"
+            else "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。"
+        )
+
+    # 会話履歴を保存する（あとから管理者が確認するため）。
+    # 保存に失敗しても、住民への回答表示は止めない。
+    try:
+        created_at = jst_now.strftime("%Y-%m-%d %H:%M")
+        new_log = AiLog(
+            question=question,
+            answer=ai_answer,
+            lang=lang,
+            created_at=created_at,
+            pdf_chunks=pdf_chunks_for_log or None,
+        )
+        db.session.add(new_log)
+        db.session.commit()
+
+        # 会話履歴用のベクターストアにも保存（回答の根拠には使わない・保管のみ）。
+        rag.save_conversation(
+            app.root_path, new_log.id, question, ai_answer, lang, created_at
+        )
+    except Exception:
+        db.session.rollback()
 
     return jsonify({
-    "question": question,
-    "answer": ai_answer
-})
+        "question": question,
+        "answer": ai_answer
+    })
+
+
+@app.route("/admin/ai_logs")
+def admin_ai_logs():
+    """
+    管理者がAI質問履歴を確認するページ。
+    ?password=... が ADMIN_DELETE_PASSWORD と一致したときだけ表示する。
+    """
+    password = request.args.get("password", "")
+
+    # パスワード未設定、または不一致の場合は表示しない（404で存在を隠す）。
+    if not ADMIN_DELETE_PASSWORD or password != ADMIN_DELETE_PASSWORD:
+        abort(404)
+
+    logs = db.session.query(AiLog).order_by(AiLog.id.desc()).all()
+
+    return render_template("ai_logs.html", logs=logs, password=password)
 
 
 @app.route("/add_comment", methods=["POST"])

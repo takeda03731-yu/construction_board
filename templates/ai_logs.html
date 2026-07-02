@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI質問履歴（管理者用）</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <style>
+        .log-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .log-table th, .log-table td {
+            border: 1px solid #ccc; padding: 8px; vertical-align: top; text-align: left;
+            font-size: 0.9rem;
+        }
+        .log-table th { background: #f0f0f0; }
+        .log-meta { white-space: nowrap; color: #555; }
+        .log-chunks {
+            white-space: pre-wrap; background: #fafafa; color: #444;
+            max-height: 200px; overflow-y: auto; font-size: 0.8rem;
+        }
+        .log-answer { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1>AI質問履歴（管理者用）</h1>
+            <p>新しい順に表示しています。全 {{ logs|length }} 件。</p>
+        </header>
+
+        {% if logs %}
+        <table class="log-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>投稿日時</th>
+                    <th>言語</th>
+                    <th>質問</th>
+                    <th>回答</th>
+                    <th>検索されたPDFチャンク</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.id }}</td>
+                    <td class="log-meta">{{ log.created_at }}</td>
+                    <td>{{ log.lang }}</td>
+                    <td>{{ log.question }}</td>
+                    <td class="log-answer">{{ log.answer }}</td>
+                    <td>
+                        {% if log.pdf_chunks %}
+                            <div class="log-chunks">{{ log.pdf_chunks }}</div>
+                        {% else %}
+                            <span class="log-meta">（なし）</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>まだAIへの質問履歴はありません。</p>
+        {% endif %}
+    </div>
+</body>
+</html>
