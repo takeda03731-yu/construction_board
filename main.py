@@ -16,6 +16,13 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+# -------------------------
+# AI利用の安全対策の設定
+# -------------------------
+# 公開掲示板のため、極端に長い質問でAPI料金が増えるのを防ぐ。
+MAX_QUESTION_LENGTH = 300   # 住民からの質問の最大文字数
+MAX_OUTPUT_TOKENS = 400     # OpenAI APIの回答トークン上限
+
 app = Flask(__name__)
 
 # -------------------------
@@ -237,6 +244,13 @@ def ask_ai():
         flash("質問を入力してください。")
         return redirect(url_for("board"))
 
+    # 質問が長すぎる場合は、OpenAI APIを呼ばずにその場で返す。
+    if len(question) > MAX_QUESTION_LENGTH:
+        return jsonify({
+            "question": question,
+            "answer": "申し訳ありません。質問文が長すぎます。300文字以内で入力してください。"
+        })
+
     board_text = get_board_text()
     pdf_text = get_pdf_text()
 
@@ -310,6 +324,7 @@ def ask_ai():
                 }
             ],
             temperature=0.2,
+            max_tokens=MAX_OUTPUT_TOKENS,
         )
 
         ai_answer = response.choices[0].message.content
