@@ -7,8 +7,12 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, ForeignKey
 from openai import OpenAI
 import fitz
+import datetime
+from zoneinfo import ZoneInfo
 
 load_dotenv()
+
+
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -236,6 +240,21 @@ def ask_ai():
     board_text = get_board_text()
     pdf_text = get_pdf_text()
 
+    # 日本時間（Asia/Tokyo）を明示して「今日」「明日」を求める。
+    # Windows / Render では strftime の %-m や %-d、%A（日本語曜日）が
+    # 安定しないため、曜日は日本語リストから、日付は f-string で組み立てる。
+    weekdays_jp = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+
+    def format_jp_date(dt):
+        return f"{dt.year}年{dt.month}月{dt.day}日（{weekdays_jp[dt.weekday()]}）"
+
+    jst_now = datetime.datetime.now(ZoneInfo("Asia/Tokyo"))
+    jst_tomorrow = jst_now + datetime.timedelta(days=1)
+
+    today = format_jp_date(jst_now)          # 例：2026年7月5日（日曜日）
+    tomorrow = format_jp_date(jst_tomorrow)  # 例：2026年7月6日（月曜日）
+    current_year = jst_now.year              # 例：2026
+
     system_message = """
 あなたは公共工事の住民向け掲示板の案内AIです。
 
@@ -246,6 +265,11 @@ def ask_ai():
 ・推測で答えないでください。
 ・工事費、契約内容、責任問題、職人や発注者の評価には答えないでください。
 ・分からない場合は「公開されている掲示板情報および資料では確認できません。必要に応じて現場担当者へお問い合わせください。」と答えてください。
+
+【日付の判断ルール】
+・「今日」「明日」「あさって」などの日付は、user メッセージ内の【現在の日付情報（日本時間）】を必ず基準に判断してください。
+・掲示板本文やPDF資料に「7月6日（月曜日）」のように西暦（年）が書かれていない場合は、【現在の日付情報（日本時間）】の「現在の西暦」を補って、その年の日付として判断してください。
+・ただし、掲示板本文・PDF資料に書かれていない予定は、日付から推測して答えないでください。書かれていない場合は「確認できません」と答えてください。
 
 【回答言語のルール】
 ・住民からの質問文の言語を判定し、その言語で回答してください。
@@ -265,6 +289,11 @@ def ask_ai():
                 {
                     "role": "user",
                     "content": f"""
+【現在の日付情報（日本時間）】
+今日：{today}
+明日：{tomorrow}
+現在の西暦：{current_year}年
+
 以下が掲示板に掲載されている情報です。
 
 【掲示板情報】
@@ -275,6 +304,8 @@ def ask_ai():
 
 【住民からの質問】
 {question}
+
+
 """
                 }
             ],
