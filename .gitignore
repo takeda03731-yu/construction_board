@@ -206,5 +206,3 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# LangChain / Chroma のローカルベクターストア（再生成可能なため追跡しない）
-vectorstores/
