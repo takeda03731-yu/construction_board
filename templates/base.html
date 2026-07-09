@@ -23,12 +23,12 @@
 
         <!-- 断水予定の注意ボックス：通常の文章に埋もれず、断水予定日を一目で分かるようにするため、
              ヘッダー直下（最も目に入る位置）に独立した注意ボックスとして配置 -->
-        <section class="suidan-box">
+        <!-- <section class="suidan-box">
             <span class="suidan-label">
                 {% if lang == "en" %}NOTICE{% else %}重要なお知らせ{% endif %}
             </span>
-            <!-- 「7月9日」を最大サイズで最も目立たせ、その下に「断水予定」を大きく表示 -->
-            <span class="suidan-date">
+            「7月9日」を最大サイズで最も目立たせ、その下に「断水予定」を大きく表示 -->
+            <!-- <span class="suidan-date">
                 {% if lang == "en" %}July 9 (Thu){% else %}7月9日（木曜日）{% endif %}
             </span>
             <span class="suidan-title">
@@ -43,13 +43,13 @@
                     詳細につきましては、近日中に配布予定のチラシをご確認ください。
                 {% endif %}
             </p>
-        </section>
+        </section> -->
 
         <nav class="toc">
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
         <ul>
-            <li><a href="#work">Next Construction Work on July 9<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">Next Construction Work on July 10<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">Temporary Parking Area</a></li>
             <li><a href="#flow">Construction Work Flow</a></li>
             <li><a href="#garbage">Garbage Collection Point<span class="new-badge">NEW</span></a></li>
@@ -58,7 +58,7 @@
     {% else %}
         <h2>📋 目次</h2>
         <ul>
-            <li><a href="#work">7月9日は引き続き配水管布設工を実施する予定です。<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">7月10日は引き続き配水管布設工を実施する予定です。<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
             <li><a href="#flow">本工事の順番です。</a></li>
             <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
@@ -69,9 +69,9 @@
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
-        Next Construction Work on July 9
+        Next Construction Work on July 10
     {% else %}
-        7月9日は引き続き配水管布設工を実施する予定です。
+        7月10日は引き続き配水管布設工を実施する予定です。
     {% endif %}
 <span class="new-badge">NEW</span></h2>
 
