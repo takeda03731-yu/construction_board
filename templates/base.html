@@ -21,6 +21,38 @@
     </div>
         </header>
 
+        <!-- 工事完了のお知らせカード：住民の方が開いた瞬間に「配水管布設工が完了した」ことが
+             一目で伝わるよう、ヘッダー直下（最も目に入る位置）に独立したカードとして配置。
+             完了を表す緑系を基調とし、完了日を最大サイズで強調 -->
+        <section class="kanryo-box">
+            <span class="kanryo-label">
+                {% if lang == "en" %}COMPLETED{% else %}工事完了のお知らせ{% endif %}
+            </span>
+            <!-- 完了日（7月10日）を最大サイズで最も目立たせ、その下に工種と「完了」を大きく表示 -->
+            <span class="kanryo-date">
+                <span class="kanryo-icon" aria-hidden="true">🎉</span>
+                {% if lang == "en" %}July 10{% else %}7月10日{% endif %}
+            </span>
+            <span class="kanryo-title">
+                {% if lang == "en" %}
+                    Water Pipeline Installation <span class="kanryo-done">Completed</span>
+                {% else %}
+                    配水管布設工 <span class="kanryo-done">完了</span>
+                {% endif %}
+            </span>
+            <p class="kanryo-desc">
+                {% if lang == "en" %}
+                    Thanks to the understanding and cooperation of everyone in the community,<br>
+                    the installation of the main water pipeline has been completed without incident.<br>
+                    We sincerely thank you for your cooperation.
+                {% else %}
+                    地域の皆様のご理解とご協力のおかげで、<br>
+                    本管である配水管の布設工事が無事完了しました。<br>
+                    ご協力いただき、誠にありがとうございました。
+                {% endif %}
+            </p>
+        </section>
+
         <!-- 断水予定の注意ボックス：通常の文章に埋もれず、断水予定日を一目で分かるようにするため、
              ヘッダー直下（最も目に入る位置）に独立した注意ボックスとして配置 -->
         <!-- <section class="suidan-box">
@@ -49,7 +81,7 @@
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
         <ul>
-            <li><a href="#work">Next Construction Work on July 10<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">Main Water Pipeline Installation Completed<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">Temporary Parking Area</a></li>
             <li><a href="#flow">Construction Work Flow</a></li>
             <li><a href="#garbage">Garbage Collection Point<span class="new-badge">NEW</span></a></li>
@@ -58,7 +90,7 @@
     {% else %}
         <h2>📋 目次</h2>
         <ul>
-            <li><a href="#work">7月10日は引き続き配水管布設工を実施する予定です。<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">配水管布設工が完了しました。<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
             <li><a href="#flow">本工事の順番です。</a></li>
             <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
@@ -69,9 +101,9 @@
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
-        Next Construction Work on July 10
+        Main Water Pipeline Installation Completed
     {% else %}
-        7月10日は引き続き配水管布設工を実施する予定です。
+        配水管布設工が完了しました。
     {% endif %}
 <span class="new-badge">NEW</span></h2>
 

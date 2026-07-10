@@ -493,3 +493,119 @@ html {
         font-size: 1rem;
     }
 }
+
+/* ===== 工事完了のお知らせカード =====
+   掲示板全体の角丸・影の基調（.card）を継承しつつ、「完了」が明るく伝わる
+   緑系グラデーションで強調。警告色（赤・黄）は使わず、住民の方に安心感を与える配色。
+   上下に十分な余白を取り、開いた瞬間に完了が目に入るようヘッダー直下に配置 */
+.kanryo-box {
+    background: linear-gradient(180deg, #f2fbf4, #e6f7ec);
+    border: 2px solid #47a06d;
+    border-radius: 16px;
+    padding: 32px 24px;
+    margin-bottom: 28px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(30, 120, 70, 0.14);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* hoverは控えめに：わずかに浮き上がる程度に留める */
+.kanryo-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(30, 120, 70, 0.2);
+}
+
+/* 「工事完了のお知らせ」ラベル：完了カードであることを一目で示す */
+.kanryo-label {
+    display: inline-block;
+    background-color: #2f8f5b;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: bold;
+    padding: 4px 18px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+/* 「7月10日」：カードの中で最も目立たせる最大サイズの文字 */
+.kanryo-date {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1e7a45;
+    line-height: 1.25;
+}
+
+/* 完了アイコン：日付の左に添えて完了の雰囲気を演出 */
+.kanryo-icon {
+    margin-right: 8px;
+}
+
+/* 「配水管布設工 完了」：日付に次いで大きく、太字で内容がすぐ伝わるサイズ */
+.kanryo-title {
+    display: block;
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: #234;
+    margin-top: 8px;
+}
+
+/* 「完了」の2文字はさらに強調し、緑で塗って達成感を伝える */
+.kanryo-done {
+    color: #1e7a45;
+}
+
+/* 御礼などの説明文 */
+.kanryo-desc {
+    margin-top: 18px;
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #2f5a41;
+}
+
+/* スマートフォン表示：文字サイズを抑えて画面内に収まりやすくする */
+@media (max-width: 600px) {
+    .kanryo-box {
+        padding: 26px 18px;
+    }
+
+    .kanryo-date {
+        font-size: 2.2rem;
+    }
+
+    .kanryo-title {
+        font-size: 1.45rem;
+    }
+
+    .kanryo-desc {
+        font-size: 1rem;
+    }
+}
+
+/* ダークモード：暗い背景でも緑の完了感を保ちつつ、文字を明るくして視認性を確保 */
+@media (prefers-color-scheme: dark) {
+    .kanryo-box {
+        background: linear-gradient(180deg, #1c2d24, #15241c);
+        border-color: #4fae77;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .kanryo-label {
+        background-color: #3fa068;
+    }
+
+    .kanryo-date,
+    .kanryo-done {
+        color: #6fd39a;
+    }
+
+    .kanryo-title {
+        color: #eaf6ee;
+    }
+
+    .kanryo-desc {
+        color: #bcd8c7;
+    }
+}
