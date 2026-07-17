@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="{{ 'en' if lang == 'en' else 'ja' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -114,7 +114,8 @@
             {% if ext in ["jpg", "jpeg", "png"] %}
             <img src="{{ url_for('static', filename=site.image_file) }}" alt="現場進捗図面" class="progress-image">
             {% elif ext == "pdf" %}
-            <iframe src="{{ url_for('static', filename=site.image_file) }}" class="progress-pdf"></iframe>
+            <iframe src="{{ url_for('static', filename=site.image_file) }}" class="progress-pdf"
+                title="{% if lang == 'en' %}Construction Progress (PDF){% else %}工事進捗の図面（PDF）{% endif %}"></iframe>
             {% else %}
             <p>対応していないファイル形式です。</p>
             {% endif %}
@@ -122,6 +123,7 @@
             <p class="image-description" style="white-space: pre-line;">
                 {{ site.image_description }}
             </p>
+        </section>
 
         <section class="card">
             <h2 id="parking">
@@ -132,12 +134,13 @@
     {% endif %}
 </h2>
 
-            {% set ext = site.image_file.split('.')[-1].lower() %}
+            {% set ext = site.image_file3.split('.')[-1].lower() %}
 
             {% if ext in ["jpg", "jpeg", "png"] %}
             <img src="{{ url_for('static', filename=site.image_file3) }}" alt="臨時駐車場" class="progress-image">
             {% elif ext == "pdf" %}
-            <iframe src="{{ url_for('static', filename=site.image_file3) }}" class="progress-pdf"></iframe>
+            <iframe src="{{ url_for('static', filename=site.image_file3) }}" class="progress-pdf"
+                title="{% if lang == 'en' %}Temporary Parking Area (PDF){% else %}臨時駐車場の図面（PDF）{% endif %}"></iframe>
             {% else %}
             <p>対応していないファイル形式です。</p>
             {% endif %}
@@ -145,6 +148,7 @@
             <p class="image-description" style="white-space: pre-line;">
                 {{ site.image_description3 }}
             </p>
+        </section>
 
         <section class="card">
                 <h2 id="flow">
@@ -160,7 +164,8 @@
                 {% if ext in ["jpg", "jpeg", "png"] %}
                 <img src="{{ url_for('static', filename=site.image_file2) }}" alt="工事概要" class="progress-image">
                 {% elif ext == "pdf" %}
-                <iframe src="{{ url_for('static', filename=site.image_file2) }}" class="progress-pdf"></iframe>
+                <iframe src="{{ url_for('static', filename=site.image_file2) }}" class="progress-pdf"
+                    title="{% if lang == 'en' %}Construction Work Flow (PDF){% else %}本工事の順番の図面（PDF）{% endif %}"></iframe>
                 {% else %}
                 <p>対応していないファイル形式です。</p>
                 {% endif %}
@@ -184,7 +189,8 @@
                 {% if ext in ["jpg", "jpeg", "png"] %}
                 <img src="{{ url_for('static', filename=site.image_file4) }}" alt="ゴミの移動" class="progress-image">
                 {% elif ext == "pdf" %}
-                <iframe src="{{ url_for('static', filename=site.image_file4) }}" class="progress-pdf"></iframe>
+                <iframe src="{{ url_for('static', filename=site.image_file4) }}" class="progress-pdf"
+                    title="{% if lang == 'en' %}Garbage Collection Point (PDF){% else %}ゴミの移動の図面（PDF）{% endif %}"></iframe>
                 {% else %}
                 <p>対応していないファイル形式です。</p>
                 {% endif %}
@@ -207,23 +213,24 @@
 
             <section class="card center-box">
                 {% if lang == "en" %}
-    <a href="{{ url_for('board') }}" class="main-link">View Residents' Message Board</a>
+    <a href="{{ url_for('board_en') }}" class="main-link">View Residents' Message Board</a>
 {% else %}
     <a href="{{ url_for('board') }}" class="main-link">地元住民様専用掲示板を見る</a>
 {% endif %}
             </section>
     </div>
-</body>
-<div style="text-align:center; margin:20px 0;">
-    <a href="#top">
-        {% if lang == "en" %}
-            ▲ Back to Top
-        {% else %}
-            ▲ ページ上部へ戻る
-        {% endif %}
-    </a>
-</div>
 
-<a href="#top" class="back-to-top">▲</a>
+    <div style="text-align:center; margin:20px 0;">
+        <a href="#top">
+            {% if lang == "en" %}
+                ▲ Back to Top
+            {% else %}
+                ▲ ページ上部へ戻る
+            {% endif %}
+        </a>
+    </div>
+
+    <a href="#top" class="back-to-top">▲</a>
+</body>
 
 </html>
