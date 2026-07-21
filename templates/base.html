@@ -232,6 +232,169 @@
     </div>
 
     <a href="#top" class="back-to-top">▲</a>
+
+    <!-- 左端フローティング・チャットボット「みずほ」：
+         住民の方がこのお知らせページを離れることなく、その場で質問できるよう、
+         画面左端に常駐する相談ボタンを設置。クリックするとチャットパネルが開き、
+         掲示板ページ（take.html）と同じ /ask_ai エンドポイントを使って回答する。
+         ※既存の機能はそのままで、このページに「左端の入口」を追加したもの。 -->
+    <div id="mizuho-widget" class="mizuho-widget">
+        <button id="mizuho-launcher" class="mizuho-launcher" type="button"
+            aria-label="{% if lang == 'en' %}Ask Mizuho{% else %}みずほに質問する{% endif %}">
+            <img src="{{ url_for('static', filename='mizuhho.png') }}"
+                alt="AIコンシェルジュみずほ" class="mizuho-launcher-img">
+            <span class="mizuho-launcher-text">
+                {% if lang == "en" %}Ask Mizuho{% else %}みずほに質問{% endif %}
+            </span>
+        </button>
+
+        <div id="mizuho-panel" class="mizuho-panel" style="display: none;">
+            <div class="mizuho-panel-header">
+                <img src="{{ url_for('static', filename='mizuhho.png') }}"
+                    alt="AIコンシェルジュみずほ" class="mizuho-panel-face">
+                <div class="mizuho-panel-title">
+                    {% if lang == "en" %}
+                        AI Construction Guide "Mizuho"
+                    {% else %}
+                        現場案内AI「みずほ」
+                    {% endif %}
+                </div>
+                <button id="mizuho-close" class="mizuho-close" type="button"
+                    aria-label="{% if lang == 'en' %}Close{% else %}閉じる{% endif %}">×</button>
+            </div>
+
+            <div id="mizuho-body" class="mizuho-body">
+                <div class="mizuho-msg mizuho-msg-bot">
+                    {% if lang == "en" %}
+                        Hello! I'm Mizuho, your AI Construction Guide. Feel free to ask me about the construction schedule, traffic restrictions, construction holidays, garbage collection, or the water pipes being installed.
+                    {% else %}
+                        こんにちは。現場案内AIの「みずほ」です。工事予定・通行規制・休工日・ゴミの移動・施工する管などについて、お気軽にご質問ください。
+                    {% endif %}
+                </div>
+
+                <div class="mizuho-faq">
+                    {% if lang == "en" %}
+                        <button type="button" class="mizuho-faq-btn">Will construction take place tomorrow?</button>
+                        <button type="button" class="mizuho-faq-btn">Can I pass through the road?</button>
+                        <button type="button" class="mizuho-faq-btn">Where should I put out my garbage?</button>
+                        <button type="button" class="mizuho-faq-btn">Is construction work carried out on weekends?</button>
+                    {% else %}
+                        <button type="button" class="mizuho-faq-btn">明日は工事がありますか？</button>
+                        <button type="button" class="mizuho-faq-btn">通り抜けできますか？</button>
+                        <button type="button" class="mizuho-faq-btn">ゴミはどこに出せばいいですか？</button>
+                        <button type="button" class="mizuho-faq-btn">土日は工事しますか？</button>
+                    {% endif %}
+                </div>
+            </div>
+
+            <form id="mizuho-form" class="mizuho-form" action="{{ url_for('ask_ai') }}" method="POST">
+                <input type="hidden" name="lang" value="{{ lang }}">
+                <textarea id="mizuho-question" name="question" rows="2"
+                    placeholder="{% if lang == 'en' %}Example: Will construction take place tomorrow?{% else %}例：明日は工事がありますか？{% endif %}"
+                    required></textarea>
+                <button id="mizuho-send" type="submit">
+                    {% if lang == "en" %}Send{% else %}送信{% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        const pageLang = "{{ lang }}";
+
+        const launcher = document.getElementById("mizuho-launcher");
+        const panel = document.getElementById("mizuho-panel");
+        const closeBtn = document.getElementById("mizuho-close");
+        const form = document.getElementById("mizuho-form");
+        const questionInput = document.getElementById("mizuho-question");
+        const sendBtn = document.getElementById("mizuho-send");
+        const body = document.getElementById("mizuho-body");
+
+        // パネルの開閉
+        function openPanel() {
+            panel.style.display = "flex";
+            launcher.classList.add("is-open");
+            questionInput.focus();
+        }
+        function closePanel() {
+            panel.style.display = "none";
+            launcher.classList.remove("is-open");
+        }
+        launcher.addEventListener("click", function () {
+            if (panel.style.display === "none" || panel.style.display === "") {
+                openPanel();
+            } else {
+                closePanel();
+            }
+        });
+        closeBtn.addEventListener("click", closePanel);
+
+        // チャットに1行の吹き出しを追加していちばん下まで自動スクロール
+        function appendMessage(text, who) {
+            const div = document.createElement("div");
+            div.className = "mizuho-msg " + (who === "user" ? "mizuho-msg-user" : "mizuho-msg-bot");
+            div.textContent = text;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+            return div;
+        }
+
+        // よくある質問ボタン：質問文を入れてそのまま送信
+        document.querySelectorAll(".mizuho-faq-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                questionInput.value = btn.textContent.trim();
+                if (typeof form.requestSubmit === "function") {
+                    form.requestSubmit();
+                } else {
+                    form.dispatchEvent(new Event("submit", { cancelable: true }));
+                }
+            });
+        });
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const question = questionInput.value.trim();
+            if (!question) return;
+
+            appendMessage(question, "user");
+            questionInput.value = "";
+            sendBtn.disabled = true;
+
+            // 「考え中…」の吹き出しを出しておき、回答が来たら差し替える
+            const thinking = appendMessage(
+                pageLang === "en"
+                    ? "Checking the notice board... Please wait a moment."
+                    : "掲示板の内容を確認しています。少々お待ちください…",
+                "bot"
+            );
+            thinking.classList.add("mizuho-msg-thinking");
+
+            try {
+                const formData = new FormData(form);
+                formData.set("question", question);
+
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: formData
+                });
+                const data = await response.json();
+
+                thinking.classList.remove("mizuho-msg-thinking");
+                thinking.textContent = data.answer;
+            } catch (error) {
+                thinking.classList.remove("mizuho-msg-thinking");
+                thinking.textContent = pageLang === "en"
+                    ? "We are sorry. The AI guidance service is currently unavailable. Please try again later."
+                    : "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。";
+            }
+
+            body.scrollTop = body.scrollHeight;
+            sendBtn.disabled = false;
+        });
+    })();
+    </script>
 </body>
 
 </html>

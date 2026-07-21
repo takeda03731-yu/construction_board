@@ -609,3 +609,250 @@ html {
         color: #bcd8c7;
     }
 }
+
+/* ===== 左端フローティング・チャットボット「みずほ」 =====
+   お知らせページ（base.html）を離れずにその場で質問できるよう、画面左端に
+   常駐させる相談ウィジェット。掲示板全体の水色系トーン（.ai-concierge 等）と
+   そろえ、公共工事の掲示として落ち着いた配色にしている。
+   position: fixed で常に左端に貼り付き、スクロールしても付いてくる。 */
+.mizuho-widget {
+    position: fixed;
+    left: 0;
+    bottom: 24px;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+/* 左端の起動ボタン：みずほの顔と短いラベルを縦に並べた丸みのあるタブ。
+   左端に貼り付くので左側の角丸だけ落として画面のふちになじませる。 */
+.mizuho-launcher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 0 16px 16px 0;
+    background: linear-gradient(180deg, #2a6f97, #1e5f8c);
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 70, 120, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mizuho-launcher:hover {
+    transform: translateX(3px);
+    box-shadow: 0 6px 18px rgba(0, 70, 120, 0.45);
+}
+
+.mizuho-launcher.is-open {
+    opacity: 0.85;
+}
+
+.mizuho-launcher-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #d9eef9;
+    border: 2px solid #ffffff;
+}
+
+.mizuho-launcher-text {
+    font-size: 0.8rem;
+    font-weight: bold;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* チャットパネル本体：起動ボタンの右側に開く縦長のカード */
+.mizuho-panel {
+    width: 340px;
+    max-width: calc(100vw - 90px);
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #cfe5f3;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 70, 120, 0.28);
+    overflow: hidden;
+}
+
+.mizuho-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: linear-gradient(180deg, #2a6f97, #1e5f8c);
+    color: #ffffff;
+}
+
+.mizuho-panel-face {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #d9eef9;
+    border: 2px solid #ffffff;
+    flex-shrink: 0;
+}
+
+.mizuho-panel-title {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.mizuho-close {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    flex-shrink: 0;
+}
+
+.mizuho-close:hover {
+    opacity: 0.8;
+}
+
+/* 会話の表示エリア：吹き出しを縦に積み、あふれたらスクロール */
+.mizuho-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f4f8fb;
+}
+
+/* 吹き出し（共通） */
+.mizuho-msg {
+    max-width: 85%;
+    padding: 10px 13px;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    white-space: pre-line;
+    word-break: break-word;
+}
+
+/* みずほ（AI）の吹き出し：左寄せ・白 */
+.mizuho-msg-bot {
+    align-self: flex-start;
+    background: #ffffff;
+    border: 1px solid #cfe3f0;
+    color: #234;
+}
+
+/* 住民（質問者）の吹き出し：右寄せ・水色 */
+.mizuho-msg-user {
+    align-self: flex-end;
+    background: #d9eef9;
+    border: 1px solid #b9d8ea;
+    color: #234;
+}
+
+/* 「考え中…」の吹き出しはやわらかく点滅させて待ち時間を伝える */
+.mizuho-msg-thinking {
+    color: #1e5f8c;
+    font-weight: bold;
+    animation: mizuho-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes mizuho-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* よくある質問ボタン：最初のあいさつの下に丸いタグとして並べる */
+.mizuho-faq {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.mizuho-faq-btn {
+    padding: 6px 11px;
+    border: 1px solid #b9d8ea;
+    border-radius: 16px;
+    background-color: #eef8ff;
+    color: #34607a;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.mizuho-faq-btn:hover {
+    background-color: #d9eef9;
+    border-color: #8fc3e0;
+}
+
+/* 入力フォーム：パネル下部に固定 */
+.mizuho-form {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid #e0eef6;
+    background: #ffffff;
+}
+
+.mizuho-form textarea {
+    flex: 1;
+    resize: none;
+    padding: 8px 10px;
+    border: 1px solid #cfe3f0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.mizuho-form button {
+    align-self: stretch;
+    padding: 0 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2a6f97;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.mizuho-form button:hover {
+    background-color: #1e5f8c;
+}
+
+.mizuho-form button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+/* スマートフォン表示：パネルを画面幅いっぱい近くまで広げ、
+   起動ボタンのラベルは隠して顔だけのコンパクトなタブにする */
+@media (max-width: 600px) {
+    .mizuho-widget {
+        bottom: 14px;
+    }
+
+    .mizuho-launcher-text {
+        display: none;
+    }
+
+    .mizuho-launcher-img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .mizuho-panel {
+        width: calc(100vw - 80px);
+        max-height: 75vh;
+    }
+}
