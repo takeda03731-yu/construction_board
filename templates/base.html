@@ -272,17 +272,29 @@
                     {% endif %}
                 </div>
 
+                <p class="mizuho-faq-label">
+                    {% if lang == "en" %}
+                        Frequently Asked Questions
+                    {% else %}
+                        よくある質問
+                    {% endif %}
+                </p>
+
                 <div class="mizuho-faq">
                     {% if lang == "en" %}
                         <button type="button" class="mizuho-faq-btn">Will construction take place tomorrow?</button>
                         <button type="button" class="mizuho-faq-btn">Can I pass through the road?</button>
                         <button type="button" class="mizuho-faq-btn">Where should I put out my garbage?</button>
                         <button type="button" class="mizuho-faq-btn">Is construction work carried out on weekends?</button>
+                        <button type="button" class="mizuho-faq-btn">Is the pipe being constructed earthquake-resistant?</button>
+                        <button type="button" class="mizuho-faq-btn">Please tell me about EF joints.</button>
                     {% else %}
                         <button type="button" class="mizuho-faq-btn">明日は工事がありますか？</button>
                         <button type="button" class="mizuho-faq-btn">通り抜けできますか？</button>
                         <button type="button" class="mizuho-faq-btn">ゴミはどこに出せばいいですか？</button>
                         <button type="button" class="mizuho-faq-btn">土日は工事しますか？</button>
+                        <button type="button" class="mizuho-faq-btn">施工している管は、地震に強いですか？</button>
+                        <button type="button" class="mizuho-faq-btn">EF接合について教えてください。</button>
                     {% endif %}
                 </div>
             </div>
@@ -302,6 +314,10 @@
     <script>
     (function () {
         const pageLang = "{{ lang }}";
+
+        // みずほの「考え中」「回答」の顔画像（take.htmlと同じ画像を使用）
+        const thinkingFaceSrc = "{{ url_for('static', filename='mizuhho.thinking.png') }}";
+        const answerFaceSrc = "{{ url_for('static', filename='mizuhho.answer.png') }}";
 
         const launcher = document.getElementById("mizuho-launcher");
         const panel = document.getElementById("mizuho-panel");
@@ -340,6 +356,27 @@
             return div;
         }
 
+        // みずほの顔付きの吹き出しを追加（考え中・回答のときに顔を出す）
+        function appendBotFaceMessage(text, faceSrc) {
+            const row = document.createElement("div");
+            row.className = "mizuho-face-row";
+
+            const face = document.createElement("img");
+            face.className = "mizuho-msg-face mini-ai-face-img";
+            face.src = faceSrc;
+            face.alt = "AIコンシェルジュみずほ";
+
+            const bubble = document.createElement("div");
+            bubble.className = "mizuho-msg mizuho-msg-bot";
+            bubble.textContent = text;
+
+            row.appendChild(face);
+            row.appendChild(bubble);
+            body.appendChild(row);
+            body.scrollTop = body.scrollHeight;
+            return { row: row, face: face, bubble: bubble };
+        }
+
         // よくある質問ボタン：質問文を入れてそのまま送信
         document.querySelectorAll(".mizuho-faq-btn").forEach(function (btn) {
             btn.addEventListener("click", function () {
@@ -362,14 +399,14 @@
             questionInput.value = "";
             sendBtn.disabled = true;
 
-            // 「考え中…」の吹き出しを出しておき、回答が来たら差し替える
-            const thinking = appendMessage(
+            // 「考え中…」の吹き出しを、みずほの考え中の顔付きで出しておき、回答が来たら差し替える
+            const thinking = appendBotFaceMessage(
                 pageLang === "en"
                     ? "Checking the notice board... Please wait a moment."
                     : "掲示板の内容を確認しています。少々お待ちください…",
-                "bot"
+                thinkingFaceSrc
             );
-            thinking.classList.add("mizuho-msg-thinking");
+            thinking.bubble.classList.add("mizuho-msg-thinking");
 
             try {
                 const formData = new FormData(form);
@@ -381,11 +418,13 @@
                 });
                 const data = await response.json();
 
-                thinking.classList.remove("mizuho-msg-thinking");
-                thinking.textContent = data.answer;
+                // 回答が来たら、みずほの回答の顔に差し替えて本文を表示
+                thinking.bubble.classList.remove("mizuho-msg-thinking");
+                thinking.face.src = answerFaceSrc;
+                thinking.bubble.textContent = data.answer;
             } catch (error) {
-                thinking.classList.remove("mizuho-msg-thinking");
-                thinking.textContent = pageLang === "en"
+                thinking.bubble.classList.remove("mizuho-msg-thinking");
+                thinking.bubble.textContent = pageLang === "en"
                     ? "We are sorry. The AI guidance service is currently unavailable. Please try again later."
                     : "申し訳ありません。現在AI案内を利用できません。時間をおいて再度お試しください。";
             }

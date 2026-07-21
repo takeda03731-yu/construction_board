@@ -772,6 +772,32 @@ html {
     50% { opacity: 0.5; }
 }
 
+/* みずほの顔付きの吹き出し（考え中・回答のとき顔を左に表示） */
+.mizuho-face-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: flex-start;
+    max-width: 95%;
+}
+
+.mizuho-face-row .mizuho-msg-face {
+    width: 44px;
+    height: 44px;
+}
+
+.mizuho-face-row .mizuho-msg {
+    max-width: none;
+}
+
+/* よくある質問の見出し */
+.mizuho-faq-label {
+    margin: 10px 0 6px;
+    font-size: 0.85rem;
+    color: #4c7a96;
+    font-weight: bold;
+}
+
 /* よくある質問ボタン：最初のあいさつの下に丸いタグとして並べる */
 .mizuho-faq {
     display: flex;
