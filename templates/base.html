@@ -83,32 +83,32 @@
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
         <ul>
-            <li><a href="#work">Main Water Pipeline Installation Completed</a></li>
+            <li><a href="#work">Pavement Cutting Work<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">Temporary Parking Area</a></li>
             <li><a href="#flow">Construction Work Flow</a></li>
             <li><a href="#garbage">Garbage Collection Point</a></li>
-            <li><a href="#holiday">Construction Holiday Notice</a></li>
+            <li><a href="#holiday">Construction Holiday Notice<span class="new-badge">NEW</span></a></li>
         </ul>
     {% else %}
         <h2>📋 目次</h2>
         <ul>
-            <li><a href="#work">配水管布設工が完了しました。</a></li>
+            <li><a href="#work">舗装切断工を実施します<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
             <li><a href="#flow">本工事の順番です。</a></li>
             <li><a href="#garbage">ゴミの移動について</a></li>
             <!-- <span class="new-badge">NEW</span> -->
-            <li><a href="#holiday">休工日のおしらせ</a></li>
+            <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li>
         </ul>
     {% endif %}
 </nav>
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
-        Main Water Pipeline Installation Completed
+        Pavement Cutting Work
     {% else %}
-        配水管布設工が完了しました。
+        舗装切断工を実施します
     {% endif %}
-</h2>
+<span class="new-badge">NEW</span></h2>
 
             {% set ext = site.image_file.split('.')[-1].lower() %}
 
@@ -208,7 +208,7 @@
     {% else %}
         【休工日のおしらせ】
     {% endif %}
-</h2>
+    <span class="new-badge">NEW</span></h2>
                 <p style="white-space: pre-line;">{{ site.holiday_notice }}</p>
             </section>
 
