@@ -103,7 +103,7 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　7月24日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　7月29日現在",
     "image_file": "舗装切断.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
@@ -116,7 +116,7 @@ SITE_INFO = {
 }
 
 SITE_INFO_EN = {
-    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of July 24, 2026",
+    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of July 29, 2026",
     "image_file": "舗装切断en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
