@@ -12,7 +12,7 @@
     <div class="container">
         <header class="main-header" id="top">
             <h1>{{ site.construction_name }}</h1>
-            <div style="margin-top: 10px;">
+            <div class="header-links">
         {% if lang == "en" %}
             <a href="{{ url_for('home') }}" class="sub-link">日本語ページへ</a>
         {% else %}
@@ -101,6 +101,7 @@
         </ul>
     {% endif %}
 </nav>
+        <div class="card-grid">
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
@@ -200,6 +201,7 @@
                     {{ site.image_description4 }}
                 </p>
             </section>
+        </div>
 
             <section class="card notice-box">
                 <h2 id="holiday">

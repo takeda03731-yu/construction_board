@@ -1,41 +1,153 @@
+/* ===== デザイントークン =====
+   色・角丸・影・余白を1か所にまとめ、全ページで同じルールを使えるようにする */
+:root {
+    --c-brand: #2a6f97;
+    --c-brand-dark: #1e5f8c;
+    --c-brand-tint: #eaf5fc;
+    --c-border: #cfe5f3;
+    --c-border-soft: #e3eff7;
+    --c-surface: #ffffff;
+    --c-surface-soft: #f7fbfe;
+    --c-ink: #22333f;
+    --c-ink-muted: #5b788c;
+
+    --radius-lg: 14px;
+    --radius-md: 10px;
+    --radius-sm: 8px;
+
+    --shadow-card: 0 4px 12px rgba(0, 70, 120, 0.08);
+    --shadow-hover: 0 8px 20px rgba(0, 70, 120, 0.14);
+
+    --gap-page: 26px;
+    --gap-card: 22px;
+}
+
+/* 枠線・内側余白を幅に含める。これがないと、枠線のぶんだけ要素が親からはみ出し、
+   スマートフォン幅で画面が横にずれてしまう */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    font-family: "Yu Gothic", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     background-color: #eef7fc;
-    color: #234;
+    color: var(--c-ink);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+    width: 92%;
+    max-width: 1120px;
+    margin: 30px auto 40px;
 }
 
+/* ===== ページ見出し =====
+   左に「タイトル」、右に「言語切替などのリンク」を置き、
+   ページを開いた瞬間の視線が左上→右上へ流れるようにする。
+   下の罫線が、そのまま次のブロック（目次）へ視線を降ろす区切りになる */
 .main-header {
-    text-align: center;
-    margin-bottom: 25px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    text-align: left;
+    padding-bottom: 16px;
+    margin-bottom: var(--gap-page);
+    border-bottom: 3px solid var(--c-brand);
 }
 
 .main-header h1 {
-    font-size: 2.2rem;
-    color: #1e5f8c;
-    margin-bottom: 10px;
+    flex: 1 1 420px;
+    font-size: clamp(1.35rem, 2.1vw, 1.85rem);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    color: var(--c-brand-dark);
+    margin: 0;
+    padding-left: 14px;
+    border-left: 6px solid var(--c-brand);
+}
+
+.header-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+}
+
+.header-links p {
+    margin: 0;
+}
+
+/* 右上のリンクは小さめのボタン型にして、タイトルとの主従をはっきりさせる */
+.header-links .sub-link {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    background-color: var(--c-surface);
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.header-links .sub-link:hover {
+    opacity: 1;
+    background-color: var(--c-brand-tint);
+    border-color: #9ccbe6;
+}
+
+@media (max-width: 600px) {
+    .main-header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .main-header h1 {
+        flex-basis: 100%;
+    }
+
+    .header-links {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* 見出しへジャンプしたとき、上に少し余白を残して見出しが埋もれないようにする */
+[id] {
+    scroll-margin-top: 24px;
 }
 
 .card {
-    background-color: #ffffff;
-    border: 1px solid #cfe5f3;
-    border-radius: 14px;
-    padding: 20px;
-    margin-bottom: 22px;
-    box-shadow: 0 4px 12px rgba(0, 70, 120, 0.08);
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    padding: 24px 26px;
+    margin-bottom: var(--gap-card);
+    box-shadow: var(--shadow-card);
 }
 
 .card h2 {
-    color: #2a6f97;
+    color: var(--c-brand);
+    font-size: 1.3rem;
+    line-height: 1.5;
     margin-top: 0;
     margin-bottom: 15px;
+}
+
+/* カード見出しの下に細い罫線を敷き、「見出し → 中身」の順に視線が降りるようにする */
+.card > h2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid var(--c-border-soft);
 }
 
 .progress-image,
@@ -44,7 +156,7 @@ body {
     max-height: 650px;
     object-fit: contain;
     border: 1px solid #d8ebf7;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     background-color: #f7fcff;
 }
 
@@ -54,16 +166,17 @@ body {
 
 .image-description {
     margin-top: 15px;
-    font-size: 1.05rem;
-    line-height: 1.8;
+    font-size: 1.02rem;
+    line-height: 1.95;
 }
 
 .notice-box {
-    background-color: #f7fbfe;
+    background-color: var(--c-surface-soft);
 }
 
 .center-box {
     text-align: center;
+    padding: 28px 26px;
 }
 
 .main-link,
@@ -74,15 +187,32 @@ body {
     font-weight: bold;
 }
 
+/* ページ最後の導線ボタン：ここが「次にやること」だと一目で分かるよう塗りボタンにする */
 .main-link {
-    display: inline-block;
-    background-color: #d9eef9;
-    padding: 12px 24px;
-    border-radius: 10px;
-    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(180deg, #2f7aa5, #1e5f8c);
+    color: #ffffff;
+    padding: 14px 30px;
+    border-radius: var(--radius-md);
+    font-size: 1.05rem;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.main-link:hover,
+.main-link::after {
+    content: "→";
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+.main-link:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
 .sub-link:hover,
 .mini-link:hover {
     opacity: 0.8;
@@ -91,33 +221,66 @@ body {
 .form-box {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+}
+
+/* 項目名は小さめの太字にして、「項目名 → 入力欄」の縦の流れを分かりやすくする */
+.form-box label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--c-ink-muted);
+    line-height: 1.5;
+}
+
+.form-box label + input,
+.form-box label + textarea {
+    margin-bottom: 6px;
 }
 
 .form-box input,
 .form-box textarea {
     width: 100%;
-    padding: 10px;
+    padding: 10px 12px;
     border: 1px solid #b9d8ea;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-size: 1rem;
+    font-family: inherit;
+    line-height: 1.7;
     box-sizing: border-box;
     background-color: #fbfeff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* 氏名・パスワードのような短い入力欄は、横幅を抑えて欄の長さで入力量を伝える */
+.form-box input[type="text"],
+.form-box input[type="password"] {
+    max-width: 420px;
+}
+
+.form-box input:focus,
+.form-box textarea:focus {
+    outline: none;
+    border-color: var(--c-brand);
+    box-shadow: 0 0 0 3px rgba(42, 111, 151, 0.15);
 }
 
 .form-box button {
     width: fit-content;
-    padding: 10px 18px;
+    padding: 10px 22px;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     background-color: #64a9d3;
     color: white;
     font-size: 0.95rem;
+    font-weight: bold;
+    font-family: inherit;
     cursor: pointer;
+    transition: background-color 0.15s, transform 0.15s;
 }
 
 .form-box button:hover {
     background-color: #4c97c4;
+    transform: translateY(-1px);
 }
 
 .danger-btn {
@@ -128,29 +291,103 @@ body {
     background-color: #bf5454 !important;
 }
 
+/* ===== 投稿カード =====
+   「投稿者・日時 → 本文 → 訂正リンク」と上から降りたあと、
+   「返信フォーム（左）／削除フォーム（右）」を横に並べ、視線が左→右に流れて完結するようにする */
 .comment-box {
-    border: 1px solid #d8ebf7;
-    border-radius: 10px;
-    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 14px;
+    align-items: start;
+    border: 1px solid var(--c-border-soft);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
     margin-bottom: 18px;
     background-color: #fafdff;
 }
 
-.reply-box {
-    margin-top: 15px;
-    margin-left: 30px;
-    padding: 12px;
-    border-left: 4px solid #9ccbe6;
-    background-color: #f3fafe;
-    border-radius: 8px;
+.comment-box > .comment-head,
+.comment-box > p,
+.comment-box > .action-row,
+.comment-box > .reply-list {
+    grid-column: 1 / -1;
+    margin: 0;
 }
 
+/* 返信欄と削除欄は高さをそろえて、左右2枚のカードとしてきれいに並べる */
+.comment-box > .reply-form {
+    grid-column: 1;
+    margin-top: 0;
+    align-self: stretch;
+}
+
+.comment-box > .delete-form {
+    grid-column: 2;
+    margin-top: 0;
+    align-self: stretch;
+}
+
+.comment-box > .reply-form > .small-form,
+.comment-box > .delete-form > .small-form {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.reply-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* 返信が1件もないときは、空の返信欄ぶんの余白が残らないようにする */
+.comment-box > .reply-list:not(:has(.reply-box)) {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .comment-box {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .comment-box > .reply-form,
+    .comment-box > .delete-form {
+        grid-column: 1;
+    }
+}
+
+.reply-box {
+    margin-top: 0;
+    margin-left: 30px;
+    padding: 14px 16px;
+    border-left: 4px solid #9ccbe6;
+    background-color: #f3fafe;
+    border-radius: var(--radius-sm);
+}
+
+.reply-box .small-form {
+    max-width: 440px;
+}
+
+/* 投稿者は左、日時は右。1行の中でも左→右に情報が並ぶようにする */
 .comment-head {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     flex-wrap: wrap;
+    gap: 4px 14px;
     margin-bottom: 8px;
     color: #356;
+}
+
+.comment-head strong {
+    font-size: 1.05rem;
+    color: var(--c-brand-dark);
+}
+
+.comment-head span {
+    font-size: 0.85rem;
+    color: var(--c-ink-muted);
 }
 
 .reply-form,
@@ -159,9 +396,9 @@ body {
 }
 
 .small-form {
-    background-color: #f7fcff;
-    padding: 12px;
-    border-radius: 8px;
+    background-color: var(--c-surface-soft);
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
     border: 1px solid #dbeef8;
 }
 
@@ -169,56 +406,208 @@ body {
     background-color: #e6f4ff;
     color: #1f5f8b;
     border: 1px solid #bfdff2;
-    border-radius: 10px;
+    border-left: 5px solid #64a9d3;
+    border-radius: var(--radius-md);
     padding: 12px 16px;
     margin-bottom: 20px;
+}
+
+.flash-box p {
+    margin: 4px 0;
 }
 
 .action-row {
     margin-top: 10px;
 }
 
+/* 「訂正」リンクは小さなタグ型にして、本文と混ざらないようにする */
+.action-row .mini-link {
+    display: inline-block;
+    padding: 3px 12px;
+    font-size: 0.85rem;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    background-color: var(--c-surface);
+}
+
+.action-row .mini-link:hover {
+    opacity: 1;
+    background-color: var(--c-brand-tint);
+    border-color: #9ccbe6;
+}
+
 .notice-text {
     white-space: pre-line;
 }
 
-/* 目次 */
+/* ===== 目次 =====
+   見出しの下に項目を横一列に並べ、01→02→03…と左から右へ読み進められるようにする。
+   番号は各カードの見出しに付く番号と一致させ、目次とページ本文の対応を分かりやすくする */
 .toc {
-    background: #f8f9fa;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    margin-bottom: var(--gap-page);
+    box-shadow: var(--shadow-card);
+}
+
+.toc h2 {
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--c-brand);
+    border-bottom: 2px solid var(--c-border-soft);
 }
 
 .toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
     margin: 0;
-    padding-left: 20px;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
 }
 
 .toc li {
-    margin: 8px 0;
+    margin: 0;
+    counter-increment: toc;
 }
 
 .toc a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     text-decoration: none;
-    color: #0077cc;
+    color: #0f6296;
     font-weight: bold;
+    font-size: 0.95rem;
+    padding: 7px 15px;
+    border: 1px solid var(--c-border);
+    border-radius: 999px;
+    background-color: var(--c-surface-soft);
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--c-brand);
+    opacity: 0.7;
 }
 
 .toc a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    background-color: var(--c-brand-tint);
+    border-color: #9ccbe6;
+}
+
+/* ===== お知らせカードの並び =====
+   カードは縦に積み、1枚のカードの中で「図面（左）→ 説明文（右）」と配置する。
+   これで視線は 図面 → 説明 → 次のカードへ、と左→右→下→左→右に流れる */
+.card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-card);
+    margin-bottom: var(--gap-card);
+}
+
+.card-grid > .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 28px;
+    row-gap: 16px;
+    align-items: start;
+    margin-bottom: 0;
+}
+
+/* 見出しはカードの横幅いっぱいに置き、その下の行を左右2列に分ける */
+.card-grid > .card > h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+/* 図面はすべてA4縦のため、列の幅に合わせて縦横比を保つ。
+   0.68 は A4縦（0.707）にPDFビューアのツールバーぶんを足した比率で、
+   図面の上下に余分な灰色の帯が出ないようにしている */
+.card-grid > .card > .progress-pdf {
+    height: auto;
+    max-height: none;
+    min-height: 620px; /* aspect-ratio に未対応の古いブラウザ向けの保険 */
+    aspect-ratio: 0.68;
+}
+
+.card-grid > .card > .progress-image {
+    height: auto;
+    max-height: 820px;
+}
+
+/* 右側の説明文：うすい面を敷いて「左の図面の解説である」ことを視覚的に結びつける */
+.card-grid > .card > .image-description {
+    margin-top: 0;
+    padding: 18px 20px;
+    background-color: var(--c-surface-soft);
+    border-left: 4px solid var(--c-border);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* 画面が狭いときは1列に切り替え、図面の下に説明文を置く。
+   図面は画面の高さに収まる大きさに抑える */
+@media (max-width: 900px) {
+    .card-grid > .card {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .card-grid > .card > .progress-pdf {
+        aspect-ratio: auto;
+        height: 72vh;
+        min-height: 420px;
+        max-height: 640px;
+    }
+
+    .card-grid > .card > .image-description {
+        border-left-width: 4px;
+    }
+}
+
+/* ===== カード見出しの通し番号 =====
+   目次の 01〜05 と同じ番号を各カードの見出しに付け、
+   いま何番目のお知らせを読んでいるかが分かるようにする */
+.container {
+    counter-reset: section;
+}
+
+.card-grid > .card > h2,
+.card.notice-box > h2 {
+    counter-increment: section;
+}
+
+.card-grid > .card > h2::before,
+.card.notice-box > h2::before {
+    content: counter(section, decimal-leading-zero);
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    background-color: var(--c-brand);
+    color: #ffffff;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
 }
 
 /* NEWバッジ */
 .new-badge {
-    background: red;
+    background: #e0453a;
     color: white;
-    font-size: 12px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-left: 5px;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    padding: 2px 9px;
+    border-radius: 999px;
+    margin-left: 2px;
     font-weight: bold;
+    vertical-align: middle;
 }
 
 /* スムーズスクロール */
@@ -228,28 +617,35 @@ html {
 
 .back-to-top {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 22px;
+    bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50px;
     height: 50px;
-    line-height: 50px;
+    line-height: 1;
     text-align: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 20px;
     color: white;
-    background-color: #2a6f97;
+    background-color: var(--c-brand);
+    border: 2px solid #ffffff;
     border-radius: 50%;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 14px rgba(0, 70, 120, 0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .back-to-top:hover {
-    opacity: 0.8;
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 70, 120, 0.4);
 }
 
 .ai-answer-box {
     margin-top: 20px;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 18px;
+    border-radius: var(--radius-md);
     background-color: #f4f8fb;
     border: 1px solid #cfe3f0;
 }
@@ -257,22 +653,69 @@ html {
 #thinking-message {
     margin-top: 15px;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     background: #eef7fc;
     color: #1e5f8c;
     font-weight: bold;
-    text-align: center;
+}
+
+/* 「考え中」と「回答」の枠は、JS が display:block で表示するため flex が効かない。
+   顔画像を float で左に寄せ、吹き出しを BFC にして「顔（左）→ 吹き出し（右）」に並べる */
+#thinking-message,
+#ai-answer-box {
+    text-align: left;
+}
+
+#thinking-message > .mini-ai-face-img,
+#ai-answer-box > .mini-ai-face-img {
+    float: left;
+    margin-right: 14px;
+}
+
+#thinking-message > .speech-bubble,
+#ai-answer-box > .speech-bubble {
+    display: flow-root;
+}
+
+#thinking-message::after,
+#ai-answer-box::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.ai-answer-box h3 {
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    font-size: 1.05rem;
+    color: var(--c-brand);
+    border-bottom: 2px solid var(--c-border-soft);
+}
+
+.ai-answer-box p {
+    margin: 8px 0 0;
 }
 
 .ai-concierge-card {
     background: linear-gradient(180deg, #ffffff, #f3fbff);
 }
 
+/* みずほの顔（左）→ あいさつ文（右）の並びで、視線を左から右へ導く */
 .ai-concierge-header {
     display: flex;
     gap: 18px;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+}
+
+.ai-character-message h2 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+}
+
+.ai-character-message p {
+    margin: 0;
+    font-size: 0.98rem;
 }
 
 .ai-character-placeholder {

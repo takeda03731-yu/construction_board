@@ -24,21 +24,23 @@
                 {% endif %}
             </h1>
 
-            <p>
-                {% if lang == "en" %}
-                    <a href="{{ url_for('home_en') }}" class="sub-link">← Back to Construction Notice Page</a>
-                {% else %}
-                    <a href="{{ url_for('home') }}" class="sub-link">← 工事おしらせ画面へ戻る</a>
-                {% endif %}
-            </p>
+            <div class="header-links">
+                <p>
+                    {% if lang == "en" %}
+                        <a href="{{ url_for('home_en') }}" class="sub-link">← Back to Construction Notice Page</a>
+                    {% else %}
+                        <a href="{{ url_for('home') }}" class="sub-link">← 工事おしらせ画面へ戻る</a>
+                    {% endif %}
+                </p>
 
-            <p>
-                {% if lang == "en" %}
-                    <a href="{{ url_for('board') }}" class="sub-link">日本語</a>
-                {% else %}
-                    <a href="{{ url_for('board_en') }}" class="sub-link">English</a>
-                {% endif %}
-            </p>
+                <p>
+                    {% if lang == "en" %}
+                        <a href="{{ url_for('board') }}" class="sub-link">日本語</a>
+                    {% else %}
+                        <a href="{{ url_for('board_en') }}" class="sub-link">English</a>
+                    {% endif %}
+                </p>
+            </div>
         </header>
 
         {% with messages = get_flashed_messages() %}
