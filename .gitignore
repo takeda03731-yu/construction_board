@@ -209,3 +209,5 @@ __marimo__/
 # Markdown docs (deploy不要)
 *.md
 
+#Excelデータ不要
+~$*.xlsx
