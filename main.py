@@ -103,26 +103,26 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　8月6日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　8月7日現在",
     "image_file": "給水分岐替工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.pdf",
-    "image_description": "日頃より、本工事の実施に際し、地域の皆様には多大なるご配慮をいただき、心より御礼申し上げます。\n\n明日8月7日（金曜日）は、図に示した給水分岐替工事箇所の「11番」を施工する予定です。\n\n工事に伴い、対象となるご家庭・事業所では、一時的に断水させていただく必要がございます。具体的な断水日時につきましては、対象となる皆様へ事前に個別でお知らせいたします。\n\nまた、引き続き、車両通行止めの範囲が拡大し、北側からの通り抜けができなくなります。お車で通行される際は、迂回路をご利用くださいますようお願いいたします。\n\nなお、中型車両につきましては、通行経路が限られるため、ご不便をおかけして誠に申し訳ございませんが、図に示した南側の通行箇所をご利用くださいますようお願いいたします。\n\n地域の皆様には、引き続きご不便とご迷惑をおかけいたしますが、安全を最優先に工事を進めてまいります。円滑な工事の実施に向け、何卒ご理解を賜りますよう、よろしくお願い申し上げます。",
+    "image_description": "【お盆期間中の休工および工事再開のお知らせ】\n\n日頃より、本工事の実施に際し、地域の皆様には多大なるご理解とご協力を賜り、心より御礼申し上げます。\n\n本工事は、お盆休みのため、8月8日（土曜日）から8月16日（日曜日）まで休工とさせていただきます。\n\n工事は8月17日（月曜日）から再開し、図に示した給水分岐替工事箇所の「10番」を施工する予定です。\n\n工事に伴い、対象となるご家庭・事業所では、一時的に断水させていただく必要がございます。具体的な断水日時につきましては、対象となる皆様へ事前に個別でお知らせいたします。\n\nまた、工事再開後も引き続き、車両通行止めの範囲が拡大しているため、北側からの通り抜けができません。お車で通行される際は、迂回路をご利用くださいますようお願いいたします。\n\nなお、中型車両につきましては、通行できる経路が限られております。ご不便をおかけして誠に申し訳ございませんが、図に示した南側の通行箇所をご利用くださいますようお願いいたします。\n\n地域の皆様には、引き続きご不便とご迷惑をおかけいたしますが、安全を最優先に工事を進めてまいります。円滑な工事の実施に向け、何卒ご理解とご協力を賜りますよう、よろしくお願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工で終了となります。給水分岐替工では、個別に断水が発生します。断水の際は事前にお知らせしますので、ご理解とご協力をお願い致します。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いさせていただくことがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
     "image_description4": "当面の間、工事に伴うゴミの移動は実施いたしません。\n\nゴミは、これまでどおり所定のゴミステーションへお出しくださいますようお願いいたします。\n\nなお、工事の進捗により再度ゴミの移動が必要となる際は、事前に掲示板にてお知らせいたします。\n\nその際は、ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願い申し上げます。",
-    "holiday_notice": "本工事では、作業員の安全確保や健康管理、ならびに建設業界における働き方改革の取り組みの一環として、原則として土曜日・日曜日を休工日としております。\n\n近年、建設業界では、安全で質の高い施工を継続するため、適切に休日を確保しながら工事を進める取り組みが進められています。\n\nそのため、本工事におきましても、特別な事情がない限り、土曜日・日曜日の作業は行わない予定です。\n\n地域の皆様には、ご不便をおかけすることもございますが、安全で円滑な工事の実施のため、何卒ご理解とご協力を賜りますよう、よろしくお願い申し上げます。"
+    "holiday_notice": "お盆休みの為、8月8日（土曜日）～8月16日（日曜日）までは休工となります。\n\n本工事では、作業員の安全確保や健康管理、ならびに建設業界における働き方改革の取り組みの一環として、原則として土曜日・日曜日を休工日としております。\n\n近年、建設業界では、安全で質の高い施工を継続するため、適切に休日を確保しながら工事を進める取り組みが進められています。\n\nそのため、本工事におきましても、特別な事情がない限り、土曜日・日曜日の作業は行わない予定です。\n\n地域の皆様には、ご不便をおかけすることもございますが、安全で円滑な工事の実施のため、何卒ご理解とご協力を賜りますよう、よろしくお願い申し上げます。"
 }
 
 SITE_INFO_EN = {
-    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of August 6, 2026",
+    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of August 7, 2026",
     "image_file": "給水分岐替工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.pdf",
 
-    "image_description": """We sincerely appreciate the understanding and consideration shown by local residents regarding this construction work.\n\nTomorrow, Friday, August 7, we are scheduled to carry out water service connection replacement work at Location No. 11, as shown in the diagram.\n\nAs part of the work, the water supply to the affected homes and businesses will need to be temporarily suspended. Those affected will be notified individually in advance of the specific date and time of the water outage.\n\nPlease also note that the road closure area will remain extended, and through traffic from the north will not be possible. If you are traveling by car, please use the designated detour route.\n\nAs access routes for medium-sized vehicles are limited, we sincerely apologize for the inconvenience and kindly ask drivers of such vehicles to use the southern access route shown in the diagram.\n\nWe apologize for the continued inconvenience this work may cause local residents. We will proceed with safety as our highest priority and sincerely appreciate your understanding and cooperation in ensuring the smooth completion of the work.""",
+    "image_description": """【Notice of Obon Holiday Work Suspension and Resumption of Construction】\n\nWe would like to express our sincere gratitude to all local residents for your continued understanding and cooperation regarding this construction work.\n\nConstruction work will be suspended from Saturday, August 8, through Sunday, August 16, for the Obon holiday period.\n\nConstruction will resume on Monday, August 17. We plan to carry out the water service connection replacement work at location “No. 10,” as shown in the diagram.\n\nAs part of the work, the water supply to the affected homes and businesses will need to be temporarily shut off. Those affected will be notified individually in advance of the specific date and time of the water outage.\n\nAfter construction resumes, the expanded road closure will remain in effect, and vehicles will not be able to pass through the construction area from the north side. Please use the designated detour when traveling by car.\n\nAs access routes for medium-sized vehicles are limited, we sincerely apologize for the inconvenience and kindly ask drivers of these vehicles to use the southern access route shown in the diagram.\n\nWe apologize for the continued inconvenience caused to local residents. We will proceed with the work while placing the highest priority on safety. We sincerely appreciate your continued understanding and cooperation.""",
 
 "image_description2": """The construction work will begin with pavement cutting and will be completed with final pavement restoration.
 
@@ -142,7 +142,7 @@ We will do our best to minimize inconvenience and appreciate your cooperation fo
 
     "image_description4": """For the time being, we will not relocate garbage due to the construction work.\n\nPlease continue to take your garbage to the designated garbage collection station as usual.\n\nIf it becomes necessary to relocate the garbage collection point again as the construction progresses, we will notify you in advance on this notice board.\n\nWe apologize for any inconvenience this may cause and appreciate your understanding and cooperation.""",
 
-    "holiday_notice": """As part of our efforts to ensure the safety and well-being of our workers and to promote work-style reform in the construction industry, work on this project will generally be suspended on Saturdays and Sundays.\n\nIn recent years, the construction industry has been working to secure appropriate rest days in order to maintain safe, high-quality construction practices.\n\nAccordingly, no construction work is scheduled on Saturdays or Sundays for this project unless there are exceptional circumstances.\n\nWe apologize for any inconvenience this may cause local residents. We sincerely appreciate your understanding and cooperation as we work to carry out the project safely and smoothly."""
+    "holiday_notice": """This construction project will be suspended from August 8 (Saturday) to August 16 (Sunday) for the Obon holiday. \n\nAs part of our efforts to ensure the safety and well-being of our workers and to promote work-style reform in the construction industry, work on this project will generally be suspended on Saturdays and Sundays.\n\nIn recent years, the construction industry has been working to secure appropriate rest days in order to maintain safe, high-quality construction practices.\n\nAccordingly, no construction work is scheduled on Saturdays or Sundays for this project unless there are exceptional circumstances.\n\nWe apologize for any inconvenience this may cause local residents. We sincerely appreciate your understanding and cooperation as we work to carry out the project safely and smoothly."""
 }
 
 def get_board_text():
