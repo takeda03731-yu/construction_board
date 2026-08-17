@@ -57,13 +57,13 @@
 
         <!-- 断水予定の注意ボックス：通常の文章に埋もれず、断水予定日を一目で分かるようにするため、
              ヘッダー直下（最も目に入る位置）に独立した注意ボックスとして配置 -->
-        <!-- <section class="suidan-box">
+        <section class="suidan-box">
             <span class="suidan-label">
                 {% if lang == "en" %}NOTICE{% else %}重要なお知らせ{% endif %}
             </span>
-            「7月9日」を最大サイズで最も目立たせ、その下に「断水予定」を大きく表示 -->
-            <!-- <span class="suidan-date">
-                {% if lang == "en" %}July 9 (Thu){% else %}7月9日（木曜日）{% endif %}
+            <!-- 「8月21日」を最大サイズで最も目立たせ、その下に「断水予定」を大きく表示 -->
+            <span class="suidan-date">
+                {% if lang == "en" %}August 21 (Fri){% else %}8月21日（金曜日）{% endif %}
             </span>
             <span class="suidan-title">
                 {% if lang == "en" %}Planned Water Outage{% else %}断水予定{% endif %}
@@ -77,25 +77,25 @@
                     詳細につきましては、近日中に配布予定のチラシをご確認ください。
                 {% endif %}
             </p>
-        </section> -->
+        </section>
 
         <nav class="toc">
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
         <ul>
-            <li><a href="#work">Water Supply Branch Replacement Work for August 17<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">Water Supply Branch Replacement Work for August 18<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">Temporary Parking Area</a></li>
             <li><a href="#flow">Construction Work Flow</a></li>
-            <li><a href="#garbage">Garbage Collection Point</a></li>
+            <li><a href="#garbage">Garbage Collection Point<span class="new-badge">NEW</span></a></li>
             <li><a href="#holiday">Construction Holiday Notice<span class="new-badge">NEW</span></a></li>
         </ul>
     {% else %}
         <h2>📋 目次</h2>
         <ul>
-            <li><a href="#work">8月17日は、給水分岐替工を実施します。<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">8月18日は、給水分岐替工を実施します。<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
             <li><a href="#flow">本工事の順番です。</a></li>
-            <li><a href="#garbage">ゴミの移動について</a></li>
+            <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
             <!-- <span class="new-badge">NEW</span> -->
             <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li>
         </ul>
@@ -105,9 +105,9 @@
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
-        Water Supply Branch Replacement Work for August 17
+        Water Supply Branch Replacement Work for August 18
     {% else %}
-        8月17日は、給水分岐替工を実施します。
+        8月18日は、給水分岐替工を実施します。
     {% endif %}
 <span class="new-badge">NEW</span></h2>
 
@@ -184,7 +184,7 @@
     {% else %}
         ゴミの移動について
     {% endif %}
-</h2>
+<span class="new-badge">NEW</span></h2>
 
                 {% set ext = site.image_file4.split('.')[-1].lower() %}
 
