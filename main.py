@@ -103,12 +103,12 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　8月17日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業　土与丸（是石）地区ほか配水管布設替工事掲示板　8月18日現在",
     "image_file": "給水分岐替工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.pdf",
-    "image_description": "日頃より、本工事の実施に際し、地域の皆様には多大なるご理解とご協力を賜り、心より御礼申し上げます。\n\n8月18日（火曜日）は、図に示した給水分岐替工事箇所の「12番」および「13番」を施工する予定です。\n\n工事に伴い、対象となるご家庭・事業所におきましては、一時的に断水させていただく必要がございます。具体的な断水日時につきましては、対象となる皆様へ事前に個別でお知らせいたします。\n\nまた、引き続き車両通行止めの範囲が拡大しているため、北側からの通り抜けができません。お車で通行される際は、迂回路をご利用くださいますようお願いいたします。\n\nなお、中型車両につきましては、通行可能な経路が限られております。ご不便をおかけして誠に申し訳ございませんが、目的地に応じた適切な経路をご利用くださいますようお願いいたします。\n\n地域の皆様には、引き続きご不便とご迷惑をおかけいたしますが、安全を最優先に工事を進めてまいります。工事の安全かつ円滑な実施に向け、何卒ご理解とご協力を賜りますよう、よろしくお願い申し上げます。",
+    "image_description": "日頃より、本工事の実施に際し、地域の皆様には多大なるご理解とご協力を賜り、心より御礼申し上げます。\n\n8月19日（水曜日）は、図に示した給水分岐替工事箇所の「14番」および「15番」を施工する予定です。\n\n工事に伴い、対象となるご家庭・事業所におきましては、一時的に断水させていただく必要がございます。具体的な断水日時につきましては、対象となる皆様へ事前に個別でお知らせいたします。\n\nまた、工事の進捗に伴い、車両通行止めの範囲が拡大するため、北側・南側のいずれの方向からも通り抜けができなくなります。お車で通行される際は、迂回路をご利用くださいますようお願いいたします。\n\nなお、中型車両につきましても、通行可能な経路が限られております。ご不便をおかけして誠に申し訳ございませんが、目的地に応じた適切な経路をご利用くださいますようお願いいたします。\n\n地域の皆様には、引き続きご不便とご迷惑をおかけいたしますが、安全を最優先に工事を進めてまいります。工事の安全かつ円滑な実施に向け、何卒ご理解とご協力を賜りますよう、よろしくお願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工で終了となります。給水分岐替工では、個別に断水が発生します。断水の際は事前にお知らせしますので、ご理解とご協力をお願い致します。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いさせていただくことがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
     "image_description4": "工事の進捗に伴い、8月19日（水曜日）より、ゴミの移動を再開いたします。\n\n「ゴミステーション1」に出されたゴミは、工事業者が「移動先ゴミステーション1」まで移動いたします。\n\n地域の皆様に特別なご対応をお願いするものではございません。これまでどおり、所定の時間までに「ゴミステーション1」へゴミをお出しください。ゴミの移動は工事業者が行います。\n\n地域の皆様にはご不便をおかけいたしますが、何卒ご理解とご協力を賜りますよう、よろしくお願い申し上げます。",
@@ -116,13 +116,13 @@ SITE_INFO = {
 }
 
 SITE_INFO_EN = {
-    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of August 17, 2026",
+    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work as of August 18, 2026",
     "image_file": "給水分岐替工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.pdf",
 
-    "image_description": """We would like to express our sincere gratitude to all residents for your continued understanding and cooperation regarding this construction work.\n\nOn Tuesday, August 18, water service connection replacement work is scheduled to be carried out at locations No. 12 and No. 13, as shown in the diagram.\n\nAs part of the work, water service will need to be temporarily suspended for the affected households and businesses. Those affected will be notified individually in advance of the specific date and time of the water service suspension.\n\nIn addition, due to the continued expansion of the road closure area, through traffic from the north remains unavailable. Drivers are kindly requested to use the designated detour route.\n\nPlease note that the available routes for medium-sized vehicles are limited. We sincerely apologize for the inconvenience and kindly ask drivers to use the appropriate route according to their destination.\n\nWe apologize for the continued inconvenience caused to local residents. We will proceed with the work while giving the highest priority to safety. We sincerely appreciate your continued understanding and cooperation in ensuring the safe and smooth completion of the construction work.""",
+    "image_description": """We would like to express our sincere gratitude to all local residents for your continued understanding and cooperation regarding this construction work.\n\nOn Wednesday, August 19, water service connection replacement work is scheduled to be carried out at locations No. 14 and No. 15, as shown in the diagram.\n\nAs part of the work, water service will need to be temporarily suspended for the affected households and businesses. Those affected will be notified individually in advance of the specific date and time of the water service suspension.\n\nDue to the progress of the construction work, the road closure area will be expanded, and through traffic will not be possible from either the north or the south. Drivers are kindly requested to use the designated detour routes.\n\nPlease note that the available routes for medium-sized vehicles will also be limited. We sincerely apologize for the inconvenience and kindly ask drivers to use the appropriate route according to their destination.\n\nWe apologize for the continued inconvenience caused to local residents. We will proceed with the work while giving the highest priority to safety. We sincerely appreciate your understanding and cooperation in ensuring the safe and smooth completion of the construction work.""",
 
 "image_description2": """The construction work will begin with pavement cutting and will be completed with final pavement restoration.
 
