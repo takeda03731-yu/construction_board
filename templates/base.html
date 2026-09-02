@@ -83,19 +83,19 @@
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
         <ul>
-            <li><a href="#work">Water distribution pipeline installation work and water service connection replacement work will be carried out on September 3 and 4.<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">Water distribution pipeline installation work and water service connection replacement work will be carried out on September 3.<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">Temporary Parking Area</a></li>
             <li><a href="#flow">Construction Work Flow</a></li>
-            <li><a href="#garbage">Garbage Collection Point</a></li>
+            <li><a href="#garbage">Garbage Collection Point<span class="new-badge">NEW</span></a></li>
             <li><a href="#holiday">Construction Holiday Notice<span class="new-badge">NEW</span></a></li>
         </ul>
     {% else %}
         <h2>📋 目次</h2>
         <ul>
-            <li><a href="#work">9月3・4日は、配水管布設工及び給水分岐替工を実施します。<span class="new-badge">NEW</span></a></li>
+            <li><a href="#work">9月3日は、配水管布設工及び給水分岐替工を実施します。<span class="new-badge">NEW</span></a></li>
             <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
             <li><a href="#flow">本工事の順番です。</a></li>
-            <li><a href="#garbage">ゴミの移動について</a></li>
+            <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
             <!-- <span class="new-badge">NEW</span> -->
             <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li>
         </ul>
@@ -105,9 +105,9 @@
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
-        Water distribution pipeline installation work and water service connection replacement work will be carried out on September 3 and 4.
+        Water distribution pipeline installation work and water service connection replacement work will be carried out on September 3.
     {% else %}
-        9月3・4日は、配水管布設工及び給水分岐替工を実施します。
+        9月3日は、配水管布設工及び給水分岐替工を実施します。
     {% endif %}
 <span class="new-badge">NEW</span></h2>
 
@@ -184,7 +184,7 @@
     {% else %}
         ゴミの移動について
     {% endif %}
-</h2>
+<span class="new-badge">NEW</span></h2>
 
                 {% set ext = site.image_file4.split('.')[-1].lower() %}
 
