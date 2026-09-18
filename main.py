@@ -123,26 +123,26 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 9月15日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 9月18日現在",
     "image_file": "撤去・連絡工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.pdf",
-    "image_description": "日頃より、水道工事にご理解とご協力をいただき、誠にありがとうございます。\n\n本日の作業は雨の予報を踏まえ、安全を考慮して中止いたしました。また、他工事への対応のため、9月23日まで本工事を休工いたします。作業の再開は9月24日以降を予定しております。\n\n再開後に着手する箇所は、断水作業の予定や天候を踏まえて決定いたします。決まり次第、掲示板でお知らせいたします。\n\n今後、既設管の閉栓・撤去を行い、最終工程となる本舗装を実施して、工事を完了する予定です。\n\n工事や交通規制により、引き続きご不便をおかけいたします。安全を最優先に作業を進めてまいりますので、工事完了までご理解とご協力を賜りますようお願い申し上げます。",
+    "image_description": "平素より、本工事に対し、地域の皆様にはご理解とご協力をいただき、誠にありがとうございます。\n\n他工事への対応のため、9月23日まで本工事を休工いたします。工事の再開は、9月24日を予定しております。\n\n9月24日は、図に示す2箇所において、既設管の撤去工および閉栓工を実施する予定です。当日は、朝から北側の箇所に着手し、作業完了後に埋戻しを行います。その後、南側の箇所へ移動して作業を進める予定です。\n\n工事に伴う交通規制につきましては、前回と同様の規制範囲で実施いたします。北側・南側のいずれの方向からも通り抜けができませんので、付近を通行される際は、迂回路をご利用くださいますようお願いいたします。\n\n工事箇所周辺には、皆様の安全な通行を確保するため、交通誘導員を配置いたします。通行の際は、現地の案内看板および交通誘導員の誘導に従っていただきますようお願いいたします。\n\n今後は、残る既設管の閉栓工および撤去工を進めた後、最終工程となる本舗装を実施し、本工事を完了する予定です。\n\n地域の皆様には、工事や交通規制により引き続きご不便をおかけいたします。安全を最優先に作業を進めてまいりますので、工事完了まで何卒ご理解とご協力を賜りますよう、お願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工で終了となります。給水分岐替工では、個別に断水が発生します。断水の際は事前にお知らせしますので、ご理解とご協力をお願い致します。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いさせていただくことがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
     "image_description4": "工事の進捗に伴い、工事業者によるゴミの移動は、当面の間行いません。\n\n今後は、これまでどおり、所定の時間までに普段ご利用のゴミステーションへゴミをお出しください。各ゴミステーションに出されたゴミは、それぞれの場所から通常どおり収集されます。地域の皆様に特別なご対応をお願いするものではございません。\n\n今後の工事状況により、再びゴミの移動が必要となる場合は、事前にこの掲示板にてお知らせいたします。\n\n工事期間中は、地域の皆様にご不便をおかけすることもございますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力をお願い申し上げます。",
-    "holiday_notice": "他工事への対応のため、本工事は9月23日まで休工いたします。工事の再開は9月24日以降を予定しております。\n\nまた、本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日としております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定です。\n\n地域の皆様には、工事期間中ご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力をお願いいたします。"
+    "holiday_notice": "他工事への対応のため、本工事は9月23日まで休工いたします。工事の再開は9月24日を予定しております。\n\nまた、本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日としております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定です。\n\n地域の皆様には、工事期間中ご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力をお願いいたします。"
 }
 
 SITE_INFO_EN = {
-    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work\nas of September 15, 2026",
+    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work\nas of September 18, 2026",
     "image_file": "撤去・連絡工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.pdf",
 
-    "image_description": """Thank you for your continued understanding and cooperation during the waterworks project.\n\nToday's work was canceled in consideration of safety due to the forecast of rain. Work on this project will also be suspended through September 23 while we attend to another construction project. We plan to resume work on or after September 24.\n\nThe location where work will resume will be decided based on the schedule for water shutoffs and the weather. We will post an update on this notice board as soon as the location is confirmed.\n\nAfter the existing water pipes have been closed off and removed, we plan to complete the final road paving and bring this project to a close.\n\nWe apologize for the continued inconvenience caused by the construction work and traffic restrictions. We will continue to put safety first and appreciate your understanding and cooperation until the work is complete.""",
+    "image_description": """We sincerely appreciate the continued understanding and cooperation of everyone in the community regarding this construction work.\n\nDue to work on another project, construction at this site will remain suspended through September 23. Work is scheduled to resume on September 24.\n\nOn September 24, existing pipe removal and closure work is scheduled to be carried out at the two locations shown in the diagram. Work will begin at the northern location in the morning. After the work and backfilling at that location have been completed, work will proceed at the southern location.\n\nTraffic restrictions will be the same as those previously implemented. Vehicles will not be able to pass through the construction area from either the north or the south. Please use the designated detour routes when traveling near the area.\n\nTraffic control personnel will be stationed around the construction area to ensure everyone’s safety. When passing through the area, please follow the on-site signs and the directions of the traffic control personnel.\n\nAfter the remaining existing pipe closure and removal work has been completed, the final road paving will be carried out, bringing this construction project to completion.\n\nWe apologize for the continued inconvenience caused by the construction work and traffic restrictions. We will continue to give the highest priority to safety and sincerely appreciate your understanding and cooperation until the project is completed.""",
 
 "image_description2": """The construction work will begin with pavement cutting and will be completed with final pavement restoration.
 
@@ -162,7 +162,7 @@ We will do our best to minimize inconvenience and appreciate your cooperation fo
 
     "image_description4": """Due to the progress of the construction work, the construction contractor will not relocate garbage for the time being.\n\nPlease continue to place your garbage at your usual collection point by the designated collection time. Garbage placed at each collection point will be collected directly from its usual location. No special action is required from local residents.\n\nIf it becomes necessary to relocate garbage again due to future construction activities, we will provide advance notice on this notice board.\n\nWe apologize for any inconvenience during the construction period. We will continue to carry out the work safely and smoothly, and we sincerely appreciate your understanding and cooperation.""",
 
-    "holiday_notice": """Work on this project will be suspended through September 23 while we attend to another construction project. We plan to resume work on or after September 24.\n\nTo protect the safety and health of our workers and ensure they have adequate time off, Saturdays and Sundays are generally non-working days for this project. Unless special circumstances arise, no work is planned on those days.\n\nWe apologize for any inconvenience during the construction period. We will continue to carry out the work safely and appreciate your continued understanding and cooperation."""
+    "holiday_notice": """Work on this project will be suspended through September 23 while we attend to another construction project. We plan to resume work on September 24.\n\nTo protect the safety and health of our workers and ensure they have adequate time off, Saturdays and Sundays are generally non-working days for this project. Unless special circumstances arise, no work is planned on those days.\n\nWe apologize for any inconvenience during the construction period. We will continue to carry out the work safely and appreciate your continued understanding and cooperation."""
 }
 
 def get_board_text():
