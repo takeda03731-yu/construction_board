@@ -1,8 +1,12 @@
+import hmac
 import os
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import CSRFProtect
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, ForeignKey
 from openai import OpenAI
@@ -29,6 +33,22 @@ app = Flask(__name__)
 # 基本設定
 # -------------------------
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
+if not app.config["SECRET_KEY"]:
+    raise RuntimeError(
+        "SECRET_KEY が設定されていません。"
+        "セッションやCSRF保護に使う秘密鍵を環境変数に設定してください。"
+    )
+
+# セッションCookieの堅牢性を明示的に設定（Flaskのデフォルト値を明記する）。
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+
+# CSRFトークンによるフォーム保護（全POSTフォームに csrf_token を埋め込む）。
+csrf = CSRFProtect(app)
+
+# /ask_ai の連投によるOpenAI APIコスト増加を防ぐ（IP単位のレート制限）。
+limiter = Limiter(key_func=get_remote_address, app=app, default_limits=[])
 
 # PostgreSQL の接続先を環境変数から取得
 # 例:
@@ -241,6 +261,7 @@ def board_en():
     )
 
 @app.route("/ask_ai", methods=["POST"])
+@limiter.limit("5 per minute")
 def ask_ai():
     question = request.form.get("question", "").strip()
     lang = request.form.get("lang", "ja").strip() or "ja"
@@ -354,6 +375,9 @@ def ask_ai():
         ai_answer = response.choices[0].message.content
 
     except Exception:
+        app.logger.exception(
+            "OpenAI API呼び出しに失敗しました（question=%r, lang=%s）", question, lang
+        )
         ai_answer = (
             "We are sorry. The AI guidance service is currently unavailable. Please try again later."
             if lang == "en"
@@ -379,6 +403,9 @@ def ask_ai():
             app.root_path, new_log.id, question, ai_answer, lang, created_at
         )
     except Exception:
+        app.logger.exception(
+            "AiLogの保存またはRAGへの会話履歴保存に失敗しました（question=%r）", question
+        )
         db.session.rollback()
 
     return jsonify({
@@ -387,21 +414,49 @@ def ask_ai():
     })
 
 
+@app.errorhandler(429)
+def ratelimit_handler(e):
+    # /ask_ai はJSがJSONレスポンスを期待するfetch実装のため、429もJSONで返す。
+    if request.path == "/ask_ai":
+        lang = request.form.get("lang", "ja").strip() or "ja"
+        message = (
+            "Too many questions. Please wait a moment and try again."
+            if lang == "en"
+            else "質問の回数が多すぎます。しばらく待ってから再度お試しください。"
+        )
+        return jsonify({"question": "", "answer": message}), 429
+    return e
+
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    """管理者ログイン画面。ADMIN_DELETE_PASSWORDと一致したらセッションに記録する。"""
+    error = None
+    if request.method == "POST":
+        password = request.form.get("password", "")
+        if ADMIN_DELETE_PASSWORD and hmac.compare_digest(password, ADMIN_DELETE_PASSWORD):
+            session["is_admin"] = True
+            return redirect(url_for("admin_ai_logs"))
+        error = "パスワードが違います。"
+
+    return render_template("admin_login.html", error=error)
+
+
+@app.route("/admin/logout")
+def admin_logout():
+    session.pop("is_admin", None)
+    return redirect(url_for("admin_login"))
+
+
 @app.route("/admin/ai_logs")
 def admin_ai_logs():
-    """
-    管理者がAI質問履歴を確認するページ。
-    ?password=... が ADMIN_DELETE_PASSWORD と一致したときだけ表示する。
-    """
-    password = request.args.get("password", "")
-
-    # パスワード未設定、または不一致の場合は表示しない（404で存在を隠す）。
-    if not ADMIN_DELETE_PASSWORD or password != ADMIN_DELETE_PASSWORD:
-        abort(404)
+    """管理者がAI質問履歴を確認するページ。セッションでログイン済みのときだけ表示する。"""
+    if not session.get("is_admin"):
+        return redirect(url_for("admin_login"))
 
     logs = db.session.query(AiLog).order_by(AiLog.id.desc()).all()
 
-    return render_template("ai_logs.html", logs=logs, password=password)
+    return render_template("ai_logs.html", logs=logs)
 
 
 @app.route("/add_comment", methods=["POST"])
@@ -454,6 +509,13 @@ def reply(comment_id):
 
 @app.route("/update/<int:comment_id>", methods=["POST"])
 def update(comment_id):
+    password = request.form.get("edit_password", "").strip()
+
+    # 訂正は削除と同じ管理者パスワードを要求する（誰でも他人の投稿を書き換えられないようにするため）。
+    if not ADMIN_DELETE_PASSWORD or not hmac.compare_digest(password, ADMIN_DELETE_PASSWORD):
+        flash("訂正用パスワードが違います。")
+        return redirect(url_for("board", edit_id=comment_id))
+
     comment = db.session.get(Comment, comment_id)
     if not comment:
         flash("編集対象のコメントが見つかりません。")
@@ -478,7 +540,7 @@ def update(comment_id):
 def delete(comment_id):
     password = request.form.get("delete_password", "").strip()
 
-    if password != ADMIN_DELETE_PASSWORD:
+    if not ADMIN_DELETE_PASSWORD or not hmac.compare_digest(password, ADMIN_DELETE_PASSWORD):
         flash("削除パスワードが違います。")
         return redirect(url_for("board"))
 

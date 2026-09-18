@@ -1,5 +1,7 @@
 Flask
 Flask-SQLAlchemy
+Flask-WTF
+Flask-Limiter
 gunicorn
 psycopg[binary]
 python-dotenv

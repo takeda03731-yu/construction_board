@@ -79,6 +79,7 @@
     </div>
 
     <form id="ai-form" action="{{ url_for('ask_ai') }}" method="POST" class="form-box">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <input type="hidden" name="lang" value="{{ lang }}">
 
         <label>
@@ -248,6 +249,7 @@
             </h2>
 
             <form action="{{ url_for('add_comment') }}" method="POST" class="form-box">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="lang" value="{{ lang }}">
 
                 <label>
@@ -295,6 +297,7 @@
             </h2>
 
             <form action="{{ url_for('update', comment_id=edit_comment.id) }}" method="POST" class="form-box">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="lang" value="{{ lang }}">
 
                 <label>
@@ -316,6 +319,18 @@
                 </label>
 
                 <textarea name="edit_message" rows="4" required>{{ edit_comment.message }}</textarea>
+
+                <label>
+                    {% if lang == "en" %}
+                        Edit Password
+                    {% else %}
+                        訂正用パスワード
+                    {% endif %}
+                </label>
+
+                <input type="password" name="edit_password"
+                    placeholder="{% if lang == 'en' %}Administrator only{% else %}管理者のみ{% endif %}"
+                    required>
 
                 <button type="submit">
                     {% if lang == "en" %}
@@ -356,6 +371,7 @@
 
                     <div class="reply-form">
                         <form action="{{ url_for('reply', comment_id=comment.id) }}" method="POST" class="form-box small-form">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="lang" value="{{ lang }}">
 
                             <label>
@@ -394,6 +410,7 @@
 
                     <div class="delete-form">
                         <form action="{{ url_for('delete', comment_id=comment.id) }}" method="POST" class="form-box small-form">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="lang" value="{{ lang }}">
 
                             <label>
@@ -438,6 +455,7 @@
                                     </div>
 
                                     <form action="{{ url_for('delete', comment_id=reply.id) }}" method="POST" class="form-box small-form">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                         <input type="hidden" name="lang" value="{{ lang }}">
 
                                         <label>

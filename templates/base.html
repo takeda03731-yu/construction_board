@@ -302,6 +302,7 @@
             </div>
 
             <form id="mizuho-form" class="mizuho-form" action="{{ url_for('ask_ai') }}" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="lang" value="{{ lang }}">
                 <textarea id="mizuho-question" name="question" rows="2"
                     placeholder="{% if lang == 'en' %}Example: Will construction take place tomorrow?{% else %}例：明日は工事がありますか？{% endif %}"
