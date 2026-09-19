@@ -123,7 +123,7 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 9月18日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 9月19日現在",
     "image_file": "撤去・連絡工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
@@ -131,12 +131,12 @@ SITE_INFO = {
     "image_description": "平素より、本工事に対し、地域の皆様にはご理解とご協力をいただき、誠にありがとうございます。\n\n他工事への対応のため、9月23日まで本工事を休工いたします。工事の再開は、9月24日を予定しております。\n\n9月24日は、図に示す2箇所において、既設管の撤去工および閉栓工を実施する予定です。当日は、朝から北側の箇所に着手し、作業完了後に埋戻しを行います。その後、南側の箇所へ移動して作業を進める予定です。\n\n工事に伴う交通規制につきましては、前回と同様の規制範囲で実施いたします。北側・南側のいずれの方向からも通り抜けができませんので、付近を通行される際は、迂回路をご利用くださいますようお願いいたします。\n\n工事箇所周辺には、皆様の安全な通行を確保するため、交通誘導員を配置いたします。通行の際は、現地の案内看板および交通誘導員の誘導に従っていただきますようお願いいたします。\n\n今後は、残る既設管の閉栓工および撤去工を進めた後、最終工程となる本舗装を実施し、本工事を完了する予定です。\n\n地域の皆様には、工事や交通規制により引き続きご不便をおかけいたします。安全を最優先に作業を進めてまいりますので、工事完了まで何卒ご理解とご協力を賜りますよう、お願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工で終了となります。給水分岐替工では、個別に断水が発生します。断水の際は事前にお知らせしますので、ご理解とご協力をお願い致します。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いさせていただくことがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
-    "image_description4": "工事の進捗に伴い、工事業者によるゴミの移動は、当面の間行いません。\n\n今後は、これまでどおり、所定の時間までに普段ご利用のゴミステーションへゴミをお出しください。各ゴミステーションに出されたゴミは、それぞれの場所から通常どおり収集されます。地域の皆様に特別なご対応をお願いするものではございません。\n\n今後の工事状況により、再びゴミの移動が必要となる場合は、事前にこの掲示板にてお知らせいたします。\n\n工事期間中は、地域の皆様にご不便をおかけすることもございますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力をお願い申し上げます。",
+    "image_description4": "工事再開に伴い、9月25日はゴミの移動を実施いたします。\n\nゴミステーション1のゴミは移動先ゴミステーション1へ、ゴミステーション2のゴミとゴミステーション3のゴミは移動先広場2へ、それぞれ工事業者が移動させていただきます。\n\n地域の皆様に特別なご対応をお願いするものではございません。今までどおり所定の時間までにゴミをお出しいただければ、ゴミの移動は工事業者が行います。\n\n工事期間中は、地域の皆様にご不便をおかけすることもございますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力を賜りますようお願い申し上げます。",
     "holiday_notice": "他工事への対応のため、本工事は9月23日まで休工いたします。工事の再開は9月24日を予定しております。\n\nまた、本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日としております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定です。\n\n地域の皆様には、工事期間中ご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力をお願いいたします。"
 }
 
 SITE_INFO_EN = {
-    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work\nas of September 18, 2026",
+    "construction_name": "Notice Board for Water Distribution Pipe Replacement Work\nas of September 19, 2026",
     "image_file": "撤去・連絡工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
@@ -160,7 +160,7 @@ Please note that we cannot be responsible for theft, accidents, or damage within
 
 We will do our best to minimize inconvenience and appreciate your cooperation for safe construction work.""",
 
-    "image_description4": """Due to the progress of the construction work, the construction contractor will not relocate garbage for the time being.\n\nPlease continue to place your garbage at your usual collection point by the designated collection time. Garbage placed at each collection point will be collected directly from its usual location. No special action is required from local residents.\n\nIf it becomes necessary to relocate garbage again due to future construction activities, we will provide advance notice on this notice board.\n\nWe apologize for any inconvenience during the construction period. We will continue to carry out the work safely and smoothly, and we sincerely appreciate your understanding and cooperation.""",
+    "image_description4": """With the resumption of construction work, garbage will be relocated on September 25.\n\nThe construction contractor will relocate the garbage as follows: garbage at Garbage Station 1 will be moved to relocation site Garbage Station 1, and garbage at Garbage Station 2 and Garbage Station 3 will be moved to relocation site Plaza 2.\n\nNo special action is required from local residents. Please continue to place your garbage at the usual collection point by the designated time, as before; the construction contractor will take care of relocating it.\n\nWe apologize for any inconvenience during the construction period. We will continue to carry out the work safely and smoothly, and we sincerely appreciate your understanding and cooperation.""",
 
     "holiday_notice": """Work on this project will be suspended through September 23 while we attend to another construction project. We plan to resume work on September 24.\n\nTo protect the safety and health of our workers and ensure they have adequate time off, Saturdays and Sundays are generally non-working days for this project. Unless special circumstances arise, no work is planned on those days.\n\nWe apologize for any inconvenience during the construction period. We will continue to carry out the work safely and appreciate your continued understanding and cooperation."""
 }
