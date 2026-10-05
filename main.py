@@ -123,34 +123,34 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 9月30日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月5日現在",
     "image_file": "舗装切断.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.pdf",
-    "image_description": "平素より、本工事に対しまして、地域の皆様にはご理解とご協力を賜り、誠にありがとうございます。\n\n本日、道路管理者立会のもと、本工事の舗装範囲を決定いたしました。\n\nこれに基づき、舗装版切断工を行い、その後、本舗装復旧工を行う予定でございます。\n\nまた、舗装版切断工の実施日が決まりましたので、お知らせいたします。舗装版切断工は10月5日、6日に実施することとなりました。\n\n現地には皆様の安全を確保するため、交通誘導員を配置いたします。交通規制に関しましては、時間帯によって通り抜けができない時間帯がございますので、現地の交通誘導員の誘導に従っていただけますと幸いです。\n\nいよいよ最終工程が近づいて参りました。最後まで気を緩めることなく施工してまいりますので、引き続きご理解とご協力のほどよろしくお願いいたします。",
+    "image_description": "平素より、本工事に対しまして、地域の皆様にはご理解とご協力を賜り、誠にありがとうございます。\n\n本日の舗装版切断工に際しましては、ご協力を賜り誠にありがとうございました。おかげさまで、順調に舗装版切断を進めることができました。\n\n明日10月6日は、図に示す箇所にて、本日の続きから工事を行う予定でございます。\n\n現地には皆様の安全を確保するため、交通誘導員を配置いたします。交通規制に関しましては、時間帯によって通り抜けいただけない時間帯がございますので、現地の交通誘導員の誘導に従っていただけますようお願い申し上げます。\n\nいよいよ最終工程が近づいてまいりました。最後まで気を緩めることなく施工してまいりますので、引き続きご理解とご協力のほど、何卒よろしくお願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工をもって終了となる予定でございます。\n\n給水分岐替工の際には、個別に断水が発生いたします。断水の際は事前にお知らせいたしますので、ご理解とご協力のほどよろしくお願いいたします。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いすることがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
-    "image_description4": "撤去・連絡工が全箇所完了いたしましたので、当分の間、ゴミの移動は致しません。\n\nこれまでどおり所定の時間までにゴミをお出しいただければ、通常どおりゴミステーションより収集されますので、ご安心ください。\n\n工事期間中は、地域の皆様にご不便をおかけすることもございますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力を賜りますようお願い申し上げます。",
-    "holiday_notice": "舗装版切断工が、10月5日、6日に決まりましたので10月4日まで休工といたします。\n\n本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日とさせていただいております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定でございます。\n\n地域の皆様には、工事期間中ご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力をお願いいたします。"
+    "image_description4": "当分の間、ゴミの移動はいたしません。\n\nこれまでどおり所定の時間までにゴミをお出しいただければ、通常どおりゴミステーションより収集されますので、ご安心ください。\n\n工事期間中は、地域の皆様にご不便をおかけすることもございますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力を賜りますようお願い申し上げます。",
+    "holiday_notice": "本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日とさせていただいております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定でございます。\n\n地域の皆様には、工事期間中ご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力を賜りますようお願い申し上げます。"
 }
 
 SITE_INFO_EN = {
-    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of September 30",
+    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 5",
     "image_file": "舗装切断en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.pdf",
 
-    "image_description": """We sincerely thank the local community for your ongoing understanding and cooperation with this construction project.\n\nToday, in the presence of the road administrator, the paving area for this project was determined.\n\nBased on this, pavement cutting work will be carried out, followed by final pavement restoration work.\n\nIn addition, we would like to inform you that the dates for the pavement cutting work have been decided. The pavement cutting work will be carried out on October 5 and 6.\n\nTraffic guides will be stationed on site to ensure everyone's safety. Please note that passage may be restricted during certain times due to traffic control, so we would appreciate it if you could follow the instructions of the traffic guides on site.\n\nThe final stage of the project is now approaching. We will continue to carry out the work with the utmost care and attention until completion, and we appreciate your continued understanding and cooperation.""",
+    "image_description": """We sincerely thank the local community for your ongoing understanding and cooperation with this construction project.\n\nThank you very much for your cooperation during today's pavement cutting work. Thanks to you, the pavement cutting has progressed smoothly.\n\nTomorrow, October 6, we plan to continue the work from where we left off today, at the location shown in the diagram.\n\nTraffic guides will be stationed on site to ensure everyone's safety. Please note that passage may be restricted during certain times due to traffic control, so we kindly ask that you follow the instructions of the traffic guides on site.\n\nThe final stage of the project is now approaching. We will continue the work with care and attention until the very end, and we sincerely appreciate your continued understanding and cooperation.""",
 
 "image_description2": """The construction work will begin with pavement cutting work and is scheduled to be completed with final pavement restoration work.\n\nDuring the water service connection replacement work, temporary water outages will occur for individual households. We will notify you in advance before any water outage occurs, and we appreciate your understanding and cooperation.""",
 
     "image_description3": """Thanks to the kind cooperation of a nearby resident, a temporary parking area has been set up.\n\nSince the water pipe-laying work involves excavating approximately 15 to 30 meters per day, access for your vehicle may become temporarily difficult depending on the work location.\n\nIn such cases, we may ask you to kindly move your vehicle to the temporary parking area.\n\nPlease note that we are unable to take responsibility for any theft, accidents, or other incidents that may occur within the temporary parking area. We ask that you please manage your valuables carefully and make sure your vehicle is locked.\n\nWe will do our best to minimize any inconvenience, and we kindly ask for your understanding and cooperation to ensure safe and secure construction work.""",
 
-    "image_description4": """As the removal and connection work has now been completed at all locations, garbage collection points will not be relocated for the time being.\n\nAs before, if you place your garbage out by the designated time, it will be collected as usual from the garbage station, so please rest assured.\n\nWe apologize for any inconvenience to the community during the construction period. We will continue to carry out the work safely and smoothly, and we appreciate your continued understanding and cooperation.""",
+    "image_description4": """Garbage will not be relocated for the time being.\n\nAs before, if you place your garbage out by the designated time, it will be collected as usual from the garbage station, so please rest assured.\n\nWe apologize for any inconvenience to the community during the construction period. We will continue to carry out the work safely and smoothly, and we appreciate your continued understanding and cooperation.""",
 
-    "holiday_notice": """The pavement cutting work has been scheduled for October 5 and 6, so construction will be suspended until October 4.\n\nTo protect the safety and health of our workers and ensure they have adequate time off, Saturdays and Sundays are generally treated as non-working days for this project. Unless special circumstances arise, no work is planned on those days.\n\nWe apologize for any inconvenience to the community during the construction period. We will continue to carry out the work safely, and we appreciate your continued understanding and cooperation."""
+    "holiday_notice": """To protect the safety and health of our workers and ensure they have adequate time off, Saturdays and Sundays are generally treated as non-working days for this project. Unless special circumstances arise, no work is planned on those days.\n\nWe apologize for any inconvenience to the community during the construction period. We will continue to carry out the work safely, and we appreciate your continued understanding and cooperation."""
 }
 
 def get_board_text():
