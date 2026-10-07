@@ -123,12 +123,12 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月6日現在",
-    "image_file": "舗装切断.pdf",  # staticフォルダ内のファイル名
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月7日現在",
+    "image_file": "本舗装復旧工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.pdf",
-    "image_description": "平素より、本工事に対しまして、地域の皆様にはご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本舗装復旧工前の舗装版切断工が無事終了いたしました。\n\nそして、最終工程の本舗装復旧工の日程が決まりましたのでお伝えいたします。本舗装復旧工は10月13日(火)から、線路付近から開始いたします。交通規制も線路付近の規制となり、北側・南側ともに通り抜けができなくなりますので、ご通行の際は迂回路をご利用いただきますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。ご通行の際は、交通誘導員の誘導にお従いいただきますようお願い申し上げます。\n\nいよいよ最終工程となりました。最後まで気を緩めることなく施工してまいりますので、引き続きご理解とご協力のほど、何卒よろしくお願い申し上げます。",
+    "image_description": "平素より、本工事に対しまして、地域の皆様にはご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本舗装復旧工前の舗装版切断工が無事終了いたしました。\n\nそして、最終工程の本舗装復旧工の日程が決まりましたのでお伝えいたします。本舗装復旧工は10月13日(火)から、図に示す箇所の線路付近から開始いたします。交通規制も線路付近の規制となり、北側・南側ともに通り抜けができなくなりますので、ご通行の際は迂回路をご利用いただきますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。ご通行の際は、交通誘導員の誘導にお従いいただきますようお願い申し上げます。\n\nいよいよ最終工程となりました。最後まで気を緩めることなく施工してまいりますので、引き続きご理解とご協力のほど、何卒よろしくお願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工をもって終了となる予定でございます。\n\n給水分岐替工の際には、個別に断水が発生いたします。断水の際は事前にお知らせいたしますので、ご理解とご協力のほどよろしくお願いいたします。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いすることがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
     "image_description4": "当分の間、ゴミの移動はいたしません。\n\nこれまでどおり所定の時間までにゴミをお出しいただければ、通常どおりゴミステーションより収集されますので、ご安心ください。\n\n工事期間中は、地域の皆様にご不便をおかけすることもございますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力を賜りますようお願い申し上げます。",
@@ -136,13 +136,13 @@ SITE_INFO = {
 }
 
 SITE_INFO_EN = {
-    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 6",
-    "image_file": "舗装切断en.pdf",
+    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 7",
+    "image_file": "本舗装復旧工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.pdf",
 
-    "image_description": "We sincerely thank everyone in the community for your understanding and cooperation with this construction project.\n\nThanks to you, the pavement cutting work that precedes the final pavement restoration work has been completed safely.\n\nWe would now like to inform you of the schedule for the final stage, the final pavement restoration work. The work will begin on Tuesday, October 13, starting from the area near the railway tracks. Traffic control will also be in place near the railway tracks, and passage will not be possible on either the north side or the south side. We kindly ask that you use the detour route when passing through the area.\n\nTraffic guides will be stationed on site to ensure everyone's safety. We kindly ask that you follow the instructions of the traffic guides when passing through.\n\nWe have finally reached the final stage. We will continue the work carefully until the very end, and we sincerely appreciate your continued understanding and cooperation.",
+    "image_description": "We sincerely thank everyone in the community for your understanding and cooperation with this construction project.\n\nThanks to you, the pavement cutting work that precedes the final pavement restoration work has been completed safely.\n\nWe would now like to inform you of the schedule for the final stage, the final pavement restoration work. The work will begin on Tuesday, October 13, starting from the area near the railway tracks at the location shown in the figure. Traffic control will also be limited to the area near the railway tracks, and passage will not be possible on either the north side or the south side. We kindly ask that you use the detour route when passing through the area.\n\nTraffic guides will be stationed on site to ensure everyone's safety. We kindly ask that you follow the instructions of the traffic guides when passing through.\n\nWe have finally reached the final stage. We will continue the work carefully until the very end, and we sincerely appreciate your continued understanding and cooperation.",
 
 "image_description2": """The construction work will begin with pavement cutting work and is scheduled to be completed with final pavement restoration work.\n\nDuring the water service connection replacement work, temporary water outages will occur for individual households. We will notify you in advance before any water outage occurs, and we appreciate your understanding and cooperation.""",
 
