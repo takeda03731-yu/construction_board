@@ -123,7 +123,7 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月7日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月9日現在",
     "image_file": "本舗装復旧工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
@@ -131,12 +131,12 @@ SITE_INFO = {
     "image_description": "平素より、本工事に対しまして、地域の皆様にはご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本舗装復旧工前の舗装版切断工が無事終了いたしました。\n\nそして、最終工程の本舗装復旧工の日程が決まりましたのでお伝えいたします。本舗装復旧工は10月13日(火)から、図に示す箇所の線路付近から開始いたします。交通規制も線路付近の規制となり、北側・南側ともに通り抜けができなくなりますので、ご通行の際は迂回路をご利用いただきますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。ご通行の際は、交通誘導員の誘導にお従いいただきますようお願い申し上げます。\n\nいよいよ最終工程となりました。最後まで気を緩めることなく施工してまいりますので、引き続きご理解とご協力のほど、何卒よろしくお願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工をもって終了となる予定でございます。\n\n給水分岐替工の際には、個別に断水が発生いたします。断水の際は事前にお知らせいたしますので、ご理解とご協力のほどよろしくお願いいたします。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いすることがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
-    "image_description4": "当分の間、ゴミの移動はいたしません。\n\nこれまでどおり所定の時間までにゴミをお出しいただければ、通常どおりゴミステーションより収集されますので、ご安心ください。\n\n工事期間中は、地域の皆様にご不便をおかけすることもございますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力を賜りますようお願い申し上げます。",
+    "image_description4": "10月13日よりゴミの移動を再開いたします。\n\nゴミステーション1のゴミは移動先ゴミステーション1へ、ゴミステーション2,3のゴミは移動先広場2へ、工事業者が移動いたします。\n\n皆様に特別なご対応をお願いするものではございません。ゴミは今まで通り、所定の時間までにゴミステーションへお出しいただければ、移動は工事業者が行います。\n\n工事期間中は、地域の皆様にご不便をおかけすることもあるかと存じますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力を賜りますようお願い申し上げます。",
     "holiday_notice": "最終工程の本舗装復旧工が10月13日から始まりますので、10月12日までは休工となります。\n\n本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日とさせていただいております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定でございます。\n\n地域の皆様には、工事期間中ご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力を賜りますようお願い申し上げます。"
 }
 
 SITE_INFO_EN = {
-    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 7",
+    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 9",
     "image_file": "本舗装復旧工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
@@ -148,7 +148,7 @@ SITE_INFO_EN = {
 
     "image_description3": """Thanks to the kind cooperation of a nearby resident, a temporary parking area has been set up.\n\nSince the water pipe-laying work involves excavating approximately 15 to 30 meters per day, access for your vehicle may become temporarily difficult depending on the work location.\n\nIn such cases, we may ask you to kindly move your vehicle to the temporary parking area.\n\nPlease note that we are unable to take responsibility for any theft, accidents, or other incidents that may occur within the temporary parking area. We ask that you please manage your valuables carefully and make sure your vehicle is locked.\n\nWe will do our best to minimize any inconvenience, and we kindly ask for your understanding and cooperation to ensure safe and secure construction work.""",
 
-    "image_description4": """Garbage will not be relocated for the time being.\n\nAs before, if you place your garbage out by the designated time, it will be collected as usual from the garbage station, so please rest assured.\n\nWe apologize for any inconvenience to the community during the construction period. We will continue to carry out the work safely and smoothly, and we appreciate your continued understanding and cooperation.""",
+    "image_description4": "From October 13, we will resume relocating the garbage.\n\nThe construction contractor will move the garbage from Garbage Station 1 to Relocation Garbage Station 1, and the garbage from Garbage Stations 2 and 3 to Open Space 2.\n\nWe are not asking residents to do anything special. As before, please place your garbage at the garbage station by the designated time, and the contractor will take care of moving it.\n\nWe understand that the construction may cause some inconvenience to the community. We will continue to carry out the work safely and smoothly, and we sincerely appreciate your understanding and cooperation.",
 
     "holiday_notice": """The final pavement restoration work, the last stage of the project, will begin on October 13, so there will be no work until October 12.\n\nTo protect the safety and health of our workers and ensure they have adequate time off, Saturdays and Sundays are generally treated as non-working days for this project. Unless special circumstances arise, no work is planned on those days.\n\nWe apologize for any inconvenience to the community during the construction period. We will continue to carry out the work safely, and we appreciate your continued understanding and cooperation."""
 }
