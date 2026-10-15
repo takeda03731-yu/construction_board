@@ -123,26 +123,26 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月14日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月15日現在",
     "image_file": "本舗装復旧工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.pdf",
-    "image_description": "平素より、本工事に対しまして、地域の皆様には格別のご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本日の本復旧工は無事に完了いたしました。\n\n明日10月15日（木）は、図に示す箇所で本舗装復旧工を実施いたします。交通規制は線路付近三叉路の規制となり、規制範囲が少し拡大いたします。ただし、北側・南側ともに引き続き通り抜けができなくなりますので、ご通行の際は迂回路をご利用くださいますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。ご通行の際は、交通誘導員の誘導にお従いくださいますようお願いいたします。\n\nいよいよ最終工程となりました。最後まで気を緩めることなく施工してまいりますので、引き続き温かいお力添えを賜りますよう、何卒よろしくお願い申し上げます。",
-    "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工をもって終了となる予定でございます。\n\n給水分岐替工の際には、個別に断水が発生いたします。断水の際は事前にお知らせいたしますので、ご理解とご協力のほどよろしくお願いいたします。",
-    "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へのお車のご移動にご協力をお願いすることがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほどお願い申し上げます。",
-    "image_description4": "10月14日から10月16日までの間、ゴミの移動を行います。\n\nゴミステーション1のゴミは、移動先のゴミステーション1へ工事業者が移動いたします。\n\n皆様に特別なご対応をお願いするものではございません。ゴミは今までどおり、所定の時間までにゴミステーションへお出しいただければ、移動は工事業者が行います。\n\n工事期間中は、地域の皆様にご不便をおかけすることもあるかと存じますが、引き続き安全かつ円滑に工事を進めてまいりますので、何卒ご理解とご協力を賜りますようお願い申し上げます。",
-    "holiday_notice": "本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日とさせていただいております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定でございます。\n\n地域の皆様には、工事期間中ご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力を賜りますようお願い申し上げます。"
+    "image_description": "平素より、本工事に対しまして、地域の皆様には格別のご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本日の本復旧工は無事に完了いたしました。\n\n明日10月16日（金）は、図に示す箇所で本舗装復旧工を実施いたします。交通規制は三叉路付近の規制となり、規制範囲が少し縮小いたします。ただし、北側・南側ともに引き続き通り抜けができなくなりますので、ご通行の際は迂回路をご利用くださいますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。交通誘導員の指示に従っていただきますよう、お願いいたします。\n\n最終工程の本舗装復旧工もあとわずかとなりました。最後まで気を緩めることなく施工してまいりますので、引き続き温かいお力添えを賜りますよう、何卒よろしくお願い申し上げます。",
+    "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工をもって終了となる予定でございます。\n\n給水分岐替工の際には、個別に断水が発生いたします。断水の際は事前にお知らせいたしますので、ご理解とご協力を賜りますようお願い申し上げます。",
+    "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へお車を移動していただくようお願いすることがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほど、よろしくお願い申し上げます。",
+    "image_description4": "10月14日から10月16日までの間、ゴミの移動を行います。\n\nゴミステーション1のゴミは、移動先のゴミステーション1へ工事業者が移動いたします。\n\n皆様に特別なご対応をお願いするものではございません。ゴミは今までどおり、所定の時間までにゴミステーションへお出しいただければ、移動は工事業者が行います。\n\n工事期間中は、地域の皆様にご不便をおかけすることもあるかと存じますが、引き続き安全かつ円滑に工事を進めてまいります。皆様のご理解とお力添えのほど、何卒よろしくお願い申し上げます。",
+    "holiday_notice": "本工事では、作業員の安全と健康を守り、適切な休日を確保するため、原則として土曜日・日曜日を休工日とさせていただいております。特別な事情がない限り、土曜日・日曜日の作業は行わない予定でございます。\n\n地域の皆様には、工事期間中何かとご不便をおかけいたしますが、安全に工事を進めてまいりますので、引き続きご理解とご協力を賜りますようお願い申し上げます。"
 }
 
 SITE_INFO_EN = {
-    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 14",
+    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 15",
     "image_file": "本舗装復旧工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.pdf",
 
-    "image_description": "We sincerely thank everyone in the community for your exceptional understanding and cooperation with this construction project.\n\nThanks to you, today's main restoration work has been completed safely.\n\nTomorrow, Thursday, October 15, the final pavement restoration work will be carried out at the location shown in the figure. Traffic control will be applied at the three-way intersection near the railway tracks, and the controlled area will be slightly expanded. However, passage will still not be possible on either the north side or the south side, so we kindly ask that you use the detour route when passing through the area.\n\nTraffic guides will be stationed on site to ensure everyone's safety. We kindly ask that you follow the instructions of the traffic guides when passing through.\n\nWe have finally reached the final stage. We will stay focused and carry out the work carefully until the very end, and we sincerely ask for your continued warm support and cooperation.",
+    "image_description": "We sincerely thank everyone in the community for your exceptional understanding and cooperation with this construction project.\n\nThanks to you, today's main restoration work has been completed safely.\n\nTomorrow, Friday, October 16, the final pavement restoration work will be carried out at the location shown in the figure. Traffic control will be applied near the three-way intersection, and the controlled area will be slightly reduced. However, passage will still not be possible on either the north side or the south side, so we kindly ask that you use the detour route when passing through the area.\n\nTraffic guides will be stationed on site to ensure everyone's safety. We kindly ask that you follow the instructions of the traffic guides when passing through.\n\nThe final pavement restoration work, the last stage of the project, is nearly complete. We will stay focused and carry out the work carefully until the very end, and we sincerely ask for your continued warm support and cooperation.",
 
 "image_description2": """The construction work will begin with pavement cutting work and is scheduled to be completed with final pavement restoration work.\n\nDuring the water service connection replacement work, temporary water outages will occur for individual households. We will notify you in advance before any water outage occurs, and we appreciate your understanding and cooperation.""",
 
