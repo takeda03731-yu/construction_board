@@ -123,12 +123,12 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月16日現在",
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月19日現在",
     "image_file": "本舗装復旧工.pdf",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.png",
-    "image_description": "平素より、本工事に対しまして、地域の皆様には格別のご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本日の本復旧工は無事に完了いたしました。\n\n土曜日・日曜日は休工とさせていただきますので、次回の工事は10月19日（月）に、図に示す箇所で本舗装復旧工を実施いたします。交通規制は三叉路付近の規制となり、規制範囲は前回と同様でございます。引き続き、北側・南側ともに通り抜けができなくなりますので、ご通行の際は迂回路をご利用くださいますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。交通誘導員の指示に従っていただきますよう、お願い申し上げます。\n\n最終工程の本舗装復旧工もあとわずかとなりました。最後まで気を緩めることなく施工してまいりますので、引き続き温かいお力添えを賜りますよう、何卒よろしくお願い申し上げます。",
+    "image_description": "平素より、本工事に対しまして、地域の皆様には格別のご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本日の本復旧工は無事に完了いたしました。\n\n次回の工事は10月20日（火）に、図に示す箇所で本舗装復旧工を実施いたします。交通規制は縮小され、当初の規制となります。工事箇所は通り抜けいただけませんので、ご通行の際は迂回路をご利用くださいますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。交通誘導員の指示にお従いくださいますよう、お願い申し上げます。\n\n最終工程の本舗装復旧工もあとわずかとなりました。最後まで気を緩めることなく施工してまいりますので、引き続き温かいお力添えを賜りますよう、何卒よろしくお願い申し上げます。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工をもって終了となる予定でございます。\n\n給水分岐替工の際には、個別に断水が発生いたします。断水の際は事前にお知らせいたしますので、ご理解とご協力を賜りますようお願い申し上げます。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へお車を移動していただくようお願いすることがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほど、よろしくお願い申し上げます。",
     "image_description4": "本工事に伴うゴミの移動は、終了となりました。ゴミは今までどおり、所定の時間までにゴミステーションへお出しくださいますようお願い申し上げます。\n\n工事期間中は、ご理解・ご協力を賜り、誠にありがとうございました。",
@@ -136,13 +136,13 @@ SITE_INFO = {
 }
 
 SITE_INFO_EN = {
-    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 16",
+    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 19",
     "image_file": "本舗装復旧工en.pdf",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.png",
 
-    "image_description": "We sincerely thank everyone in the community for your exceptional understanding and cooperation with this construction project.\n\nThanks to you, today's main restoration work has been completed safely.\n\nSaturdays and Sundays are non-working days, so the next work, the final pavement restoration work, will be carried out on Monday, October 19, at the location shown in the figure. Traffic control will be applied near the three-way intersection, and the controlled area will be the same as last time. Passage will continue to be impossible on both the north side and the south side, so we kindly ask that you use the detour route when passing through the area.\n\nTraffic guides will be stationed on site to ensure everyone's safety. We kindly ask that you follow the instructions of the traffic guides.\n\nThe final pavement restoration work, the last stage of the project, is nearly complete. We will stay focused and carry out the work carefully until the very end, and we sincerely ask for your continued warm support and cooperation.",
+    "image_description": "We sincerely thank everyone in the community for your exceptional understanding and cooperation with this construction project.\n\nThanks to you, today's main restoration work has been completed safely.\n\nThe next work, the final pavement restoration work, will be carried out on Tuesday, October 20, at the location shown in the figure. Traffic control will be reduced to the original controlled area. Passage through the work area will not be possible, so we kindly ask that you use the detour route when passing through the area.\n\nTraffic guides will be stationed on site to ensure everyone's safety. We kindly ask that you follow the instructions of the traffic guides.\n\nThe final pavement restoration work, the last stage of the project, is all that remains, and it is coming soon. We will stay focused and carry out the work carefully until the very end, and we sincerely ask for your continued warm support and cooperation.",
 
 "image_description2": """The construction work will begin with pavement cutting work and is scheduled to be completed with final pavement restoration work.\n\nDuring the water service connection replacement work, temporary water outages will occur for individual households. We will notify you in advance before any water outage occurs, and we appreciate your understanding and cooperation.""",
 
