@@ -24,36 +24,38 @@
         <!-- 工事完了のお知らせカード：住民の方が開いた瞬間に「配水管布設工が完了した」ことが
              一目で伝わるよう、ヘッダー直下（最も目に入る位置）に独立したカードとして配置。
              完了を表す緑系を基調とし、完了日を最大サイズで強調 -->
-        <!-- <section class="kanryo-box">
+        <section class="kanryo-box">
             <span class="kanryo-label">
                 {% if lang == "en" %}COMPLETED{% else %}工事完了のお知らせ{% endif %}
             </span>
-            完了日（9月25日）を最大サイズで最も目立たせ、その下に工種と「完了」を大きく表示
+            <!-- 完了日（9月25日）を最大サイズで最も目立たせ、その下に工種と「完了」を大きく表示 -->
             <span class="kanryo-date">
                 <span class="kanryo-icon" aria-hidden="true">🎉</span>
-                {% if lang == "en" %}September 25{% else %}9月25日{% endif %}
-            </span> -->
-            <!-- <span class="kanryo-title">
+                {% if lang == "en" %}October 22{% else %}10月22日{% endif %}
+            </span>
+            <span class="kanryo-title">
                 {% if lang == "en" %}
-                    Removal and Connection Work <span class="kanryo-done">Completed</span>
+                    Final Pavement Restoration Work <span class="kanryo-done">Completed</span>
                 {% else %}
-                    撤去・連絡工 <span class="kanryo-done">完了</span>
+                    本舗装復旧工 <span class="kanryo-done">完了</span>
                 {% endif %}
             </span>
-            <p class="kanryo-desc"> -->
-<!-- {% if lang == "en" %}
+            <p class="kanryo-desc">
+{% if lang == "en" %}
     Thanks to the understanding and cooperation of everyone in the community,<br>
-    the removal of unnecessary pipes and boxes, along with the connection work, has been completed safely.<br>
-    We sincerely appreciate your cooperation.<br>
-    The next stage of work will be the final pavement restoration.
+    the final pavement restoration work has been completed safely.<br>
+    With this, all stages of this construction project are now complete.<br>
+    Thank you very much for your cooperation.<br>
+    *This notice board is scheduled to be closed without delay after the final inspection, provided there are no issues.
 {% else %}
     地域の皆様のご理解とご協力のおかげで、<br>
-    不要管・ボックス撤去・連絡工が無事完了しました。<br>
+    本舗装復旧工が無事完了しました。<br>
+    これにより本工事の工程がすべて完了となります。<br>
     ご協力いただき、誠にありがとうございました。<br>
-    次の工種は、本舗装復旧工です。
+    ※この掲示板は、本検査後、問題がなければ遅滞なく閉鎖させていただく予定です。
 {% endif %}
             </p>
-        </section> -->
+        </section>
 
         <!-- 断水予定の注意ボックス：通常の文章に埋もれず、断水予定日を一目で分かるようにするため、
              ヘッダー直下（最も目に入る位置）に独立した注意ボックスとして配置 -->
@@ -83,21 +85,21 @@
     {% if lang == "en" %}
         <h2>📋 Contents</h2>
         <ul>
-            <li><a href="#work">Line marking work and core sampling will be carried out on October 22.<span class="new-badge">NEW</span></a></li>
-            <li><a href="#parking">Temporary Parking Area</a></li>
+            <li><a href="#work">This construction has been completed.<span class="new-badge">NEW</span></a></li>
+            <!-- <li><a href="#parking">Temporary Parking Area</a></li>
             <li><a href="#flow">Construction Work Flow</a></li>
             <li><a href="#garbage">Garbage Collection Point<span class="new-badge">NEW</span></a></li>
-            <li><a href="#holiday">Construction Holiday Notice<span class="new-badge">NEW</span></a></li>
+            <li><a href="#holiday">Construction Holiday Notice<span class="new-badge">NEW</span></a></li> -->
         </ul>
     {% else %}
         <h2>📋 目次</h2>
         <ul>
-            <li><a href="#work">10月22日は、区画線工・コア採取を実施します。<span class="new-badge">NEW</span></a></li>
-            <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
+            <li><a href="#work">工事が完了しました。<span class="new-badge">NEW</span></a></li>
+            <!-- <li><a href="#parking">臨時駐車場を設置させて頂きました。</a></li>
             <li><a href="#flow">本工事の順番です。</a></li>
-            <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li>
+            <li><a href="#garbage">ゴミの移動について<span class="new-badge">NEW</span></a></li> -->
             <!-- <span class="new-badge">NEW</span> -->
-            <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li>
+            <!-- <li><a href="#holiday">休工日のおしらせ<span class="new-badge">NEW</span></a></li> -->
         </ul>
     {% endif %}
 </nav>
@@ -105,9 +107,9 @@
         <section class="card">
             <h2 id="work">
     {% if lang == "en" %}
-        Line marking work and core sampling will be carried out on October 22.
+        This construction has been completed.
     {% else %}
-        10月22日は、区画線工・コア採取を実施します。
+        工事が完了しました。
     {% endif %}
 <span class="new-badge">NEW</span></h2>
 
@@ -127,7 +129,7 @@
             </p>
         </section>
 
-        <section class="card">
+        <!-- <section class="card">
             <h2 id="parking">
     {% if lang == "en" %}
         Temporary Parking Area
@@ -150,9 +152,9 @@
             <p class="image-description" style="white-space: pre-line;">
                 {{ site.image_description3 }}
             </p>
-        </section>
+        </section> -->
 
-        <section class="card">
+        <!-- <section class="card">
                 <h2 id="flow">
     {% if lang == "en" %}
         Construction Work Flow
@@ -175,9 +177,9 @@
                 <p class="image-description">
                     {{ site.image_description2 }}
                 </p>
-            </section>
+            </section> -->
 
-        <section class="card">
+        <!-- <section class="card">
                 <h2 id="garbage">
     {% if lang == "en" %}
         Garbage Collection Point
@@ -200,10 +202,10 @@
                 <p class="image-description" style="white-space: pre-line;">
                     {{ site.image_description4 }}
                 </p>
-            </section>
+            </section> -->
         </div>
 
-            <section class="card notice-box">
+            <!-- <section class="card notice-box">
                 <h2 id="holiday">
     {% if lang == "en" %}
         Construction Holiday Notice
@@ -212,15 +214,15 @@
     {% endif %}
     <span class="new-badge">NEW</span></h2>
                 <p style="white-space: pre-line;">{{ site.holiday_notice }}</p>
-            </section>
+            </section> -->
 
-            <section class="card center-box">
+             <!-- <section class="card center-box">
                 {% if lang == "en" %}
     <a href="{{ url_for('board_en') }}" class="main-link">View Residents' Message Board</a>
 {% else %}
     <a href="{{ url_for('board') }}" class="main-link">地元住民様専用掲示板を見る</a>
 {% endif %}
-            </section>
+            </section> -->
     </div>
 
     <div style="text-align:center; margin:20px 0;">
@@ -235,12 +237,12 @@
 
     <a href="#top" class="back-to-top">▲</a>
 
-    <!-- 左端フローティング・チャットボット「みずほ」：
+     <!-- 左端フローティング・チャットボット「みずほ」：
          住民の方がこのお知らせページを離れることなく、その場で質問できるよう、
          画面左端に常駐する相談ボタンを設置。クリックするとチャットパネルが開き、
          掲示板ページ（take.html）と同じ /ask_ai エンドポイントを使って回答する。
          ※既存の機能はそのままで、このページに「左端の入口」を追加したもの。 -->
-    <div id="mizuho-widget" class="mizuho-widget">
+    <!-- <div id="mizuho-widget" class="mizuho-widget">
         <button id="mizuho-launcher" class="mizuho-launcher" type="button"
             aria-label="{% if lang == 'en' %}Ask Mizuho{% else %}みずほに質問する{% endif %}">
             <img src="{{ url_for('static', filename='mizuhho.png') }}"
@@ -436,7 +438,7 @@
             sendBtn.disabled = false;
         });
     })();
-    </script>
+    </script> -->
 </body>
 
 </html>

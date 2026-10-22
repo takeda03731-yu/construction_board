@@ -123,12 +123,12 @@ with app.app_context():
 # 表示用固定データ
 # -------------------------
 SITE_INFO = {
-    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月20日現在",
-    "image_file": "本舗装復旧工.pdf",  # staticフォルダ内のファイル名
+    "construction_name": "令和7年度 管路更新（耐震化）事業 土与丸（是石）地区ほか\n配水管布設替工事掲示板 10月22日現在",
+    "image_file": "完了.png",  # staticフォルダ内のファイル名
     "image_file2": "工事概要.pdf",
     "image_file3": "臨時駐車場.pdf",
     "image_file4": "ゴミの移動.png",
-    "image_description": "平素より、本工事に対しまして、地域の皆様には格別のご理解とご協力を賜り、誠にありがとうございます。\n\nおかげさまで、本復旧工はすべて完了いたしました。\n\n明日、区画線工・コア採取を実施する予定でございましたが、雨の可能性が高いため、10月22日（木）に変更させていただくことになりました。交通規制は作業を行うわずかな時間のみ発生いたしますが、作業終了後は速やかに解除できる見込みでございます。規制にかかる場合は、お手数をおかけいたしますが、迂回路をご利用くださいますようお願い申し上げます。\n\n現地には、皆様の安全を確保するため、交通誘導員を配置いたします。交通誘導員の指示に従っていただきますよう、お願い申し上げます。\n\n最終工程の本舗装復旧工もあと一日となりました。最後まで気を緩めることなく施工してまいりますので、引き続き温かいお力添えを賜りますよう、何卒よろしくお願い申し上げます。",
+    "image_description": "平素より、本工事に対しまして、地域の皆様には格別のご理解とご協力を賜り、誠にありがとうございます。\n\n本日をもちまして、区画線工・コア採取も完了いたしました。これにより、最終工程である本舗装復旧工事を終え、本工事の工程がすべて完了いたしました。\n\nこれまでご協力を賜りました地域の皆様、水道企業団の皆様、常に最善を尽くしてくださった職人の皆様、交通誘導員の皆様に、心より御礼申し上げます。誠にありがとうございました。",
     "image_description2": "工事は舗装版切断工から始まり、本舗装復旧工をもって終了となる予定でございます。\n\n給水分岐替工の際には、個別に断水が発生いたします。断水の際は事前にお知らせいたしますので、ご理解とご協力を賜りますようお願い申し上げます。",
     "image_description3": "このたび、近隣の住民様のご厚意により、臨時駐車場を設置させていただくこととなりました。\n\n配水管の布設作業は、1日あたり約15m～30m程度の掘削を行うため、施工箇所によりましては、一時的にお車の出し入れが難しくなる場合がございます。\n\nその際には大変恐れ入りますが、臨時駐車場へお車を移動していただくようお願いすることがございます。\n\nなお、臨時駐車場内における盗難や事故等につきましては、誠に申し訳ございませんが、責任を負いかねますので、貴重品の管理や施錠等にご留意いただきますようお願い申し上げます。\n\nできる限りご不便をおかけしないよう努めてまいりますので、安心・安全な工事のため、何卒ご理解とご協力のほど、よろしくお願い申し上げます。",
     "image_description4": "本工事に伴うゴミの移動は、終了となりました。ゴミは今までどおり、所定の時間までにゴミステーションへお出しくださいますようお願い申し上げます。\n\n工事期間中は、ご理解・ご協力を賜り、誠にありがとうございました。",
@@ -136,13 +136,13 @@ SITE_INFO = {
 }
 
 SITE_INFO_EN = {
-    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 20",
-    "image_file": "本舗装復旧工en.pdf",
+    "construction_name": "FY2025 Water Pipeline Renewal (Seismic Reinforcement) Project, Doyomaru (Koreishi) District and Other Areas\nWater Distribution Pipe Replacement Work Notice Board, as of October 22",
+    "image_file": "完了en.png",
     "image_file2": "工事概要en.pdf",
     "image_file3": "臨時駐車場en.pdf",
     "image_file4": "ゴミの移動en.png",
 
-    "image_description": "We sincerely thank everyone in the community for your exceptional understanding and cooperation with this construction project.\n\nThanks to your support, the main pavement restoration work has been completed.\n\nWe had planned to carry out the road marking work and core sampling tomorrow. However, because rain is likely, we have changed the date to Thursday, October 22. Traffic control will be in place only for the short time the work is being done, and we expect to lift it promptly once the work is finished. If you are affected by the traffic control, we apologize for the inconvenience and kindly ask that you use the detour route.\n\nTraffic guides will be stationed on site to ensure everyone's safety. We kindly ask that you follow the instructions of the traffic guides.\n\nOnly one day remains until the completion of the final stage, the main pavement restoration work. We will stay focused and carry out the work carefully until the very end, and we sincerely ask for your continued warm support and cooperation.",
+    "image_description": "We sincerely thank everyone in the community for your exceptional understanding and cooperation with this construction project.\n\nAs of today, the road marking work and core sampling have also been completed. With this, the final stage, the main pavement restoration work, is finished, and all stages of this construction project are now complete.\n\nWe would like to express our heartfelt thanks to everyone in the community, to the staff of the Water Supply Authority, to the craftsmen who always did their best, and to the traffic guides, for your cooperation throughout the project. Thank you very much.",
 
 "image_description2": """The construction work will begin with pavement cutting work and is scheduled to be completed with final pavement restoration work.\n\nDuring the water service connection replacement work, temporary water outages will occur for individual households. We will notify you in advance before any water outage occurs, and we appreciate your understanding and cooperation.""",
 
